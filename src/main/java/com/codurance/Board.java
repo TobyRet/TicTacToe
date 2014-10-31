@@ -1,19 +1,12 @@
 package com.codurance;
 
-import java.util.List;
-
 public class Board {
+    private String emptyBoard;
 
-
-    private final List<Cell> cells;
-
-    public Board(List<Cell> cells) {
-        this.cells = cells;
+    public String getBoardForPrinting() {
+        return emptyBoard;
     }
 
-    public String getState() {
-        String state = "";
-        for(Cell cell : cells) state += cell.getValue();
-        return state;
+    public void addMove(int cellReference) {
     }
 }
