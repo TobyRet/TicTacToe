@@ -34,9 +34,7 @@ public class MultiPlayerGameShould {
     }
 
     @Test public void
-    print_empty_board_on_console() {
-        MultiPlayerGame game = new MultiPlayerGame(players, board, console);
-
+    print_empty_board_to_console() {
         given(board.getBoardForPrinting()).willReturn(
                 "- - - \n" +
                 "- - - \n" +
@@ -52,7 +50,7 @@ public class MultiPlayerGameShould {
     @Test public void
     add_player1_move_to_the_board() {
        game.play(1);
-       verify(board).addMove(1);
+       verify(board).addMove(1, player1);
        verify(console).printBoard(board.getBoardForPrinting());
     }
 

@@ -27,7 +27,7 @@ public class MultiPlayerGame implements Game{
     }
 
     public void play(int cellReference) {
-        board.addMove(cellReference);
+        board.addMove(cellReference, getCurrentPlayer());
         printBoard();
         changeCurrentPlayer();
 
