@@ -4,16 +4,18 @@ import java.util.List;
 
 public class Board {
     private final List<Cell> cells;
-    private String boardForPrinting;
+    private final BoardFormatter boardFormatter;
 
-    public Board(List<Cell> cells) {
+    public Board(List<Cell> cells, BoardFormatter boardFormatter) {
         this.cells = cells;
+        this.boardFormatter = boardFormatter;
     }
 
     public String getBoardForPrinting() {
-        return boardForPrinting;
+        return boardFormatter.format(cells);
     }
 
     public void addMove(int cellReference, Player currentPlayer) {
+        cells.get(cellReference).setValue("X");
     }
 }
