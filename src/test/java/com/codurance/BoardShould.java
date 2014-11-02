@@ -12,7 +12,6 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -20,8 +19,11 @@ public class BoardShould {
 
     private List<Cell> cells;
     private Board board;
+    private final String BOARD_WITH_ONE_MOVE = "X--\n" + "---\n" + "---\n";
+
     @Mock BoardFormatter boardFormatter;
     @Mock Cell mockedCell;
+    @Mock Player mockedPlayer1;
 
     @Before
     public void
@@ -38,19 +40,29 @@ public class BoardShould {
 
     @Test public void
     add_a_players_move_to_the_board() {
-        Player player1 = mock(Player.class);
         board = new Board(createMockedCells(), boardFormatter);
 
-        String boardWithOneMove = "X--\n" + "---\n" + "---\n";
+        given(mockedCell.getValue()).willReturn("-");
+        given(boardFormatter.format(cells)).willReturn(BOARD_WITH_ONE_MOVE);
+        given(mockedPlayer1.getMarker()).willReturn("X");
 
-        given(boardFormatter.format(cells)).willReturn(boardWithOneMove);
-        given(player1.getMarker()).willReturn("X");
-
-        board.addMove(1, player1);
+        board.addMove(1, mockedPlayer1);
 
         verify(mockedCell).setValue("X");
 
-        assertThat(board.getBoardForPrinting(), is(boardWithOneMove));
+        assertThat(board.getBoardForPrinting(), is(BOARD_WITH_ONE_MOVE));
+    }
+
+    @Test (expected=RuntimeException.class) public void
+    throw_exception_if_space_already_has_been_allocated() {
+        board = new Board(createMockedCells(), boardFormatter);
+
+        given(mockedCell.getValue()).willReturn("-");
+
+        board.addMove(1, mockedPlayer1);
+        given(mockedCell.getValue()).willReturn("X");
+
+        board.addMove(1, mockedPlayer1);
     }
 
     private List<Cell> createMockedCells() {
