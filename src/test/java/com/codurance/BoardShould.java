@@ -12,6 +12,7 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -37,12 +38,13 @@ public class BoardShould {
 
     @Test public void
     add_a_players_move_to_the_board() {
-        Player player1 = new Player();
+        Player player1 = mock(Player.class);
         board = new Board(createMockedCells(), boardFormatter);
 
         String boardWithOneMove = "X--\n" + "---\n" + "---\n";
 
         given(boardFormatter.format(cells)).willReturn(boardWithOneMove);
+        given(player1.getMarker()).willReturn("X");
 
         board.addMove(1, player1);
 

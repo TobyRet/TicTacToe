@@ -16,6 +16,6 @@ public class Board {
     }
 
     public void addMove(int cellReference, Player currentPlayer) {
-        cells.get(cellReference).setValue("X");
+        cells.get(cellReference).setValue(currentPlayer.getMarker());
     }
 }
