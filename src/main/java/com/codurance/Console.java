@@ -1,15 +1,24 @@
 package com.codurance;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Console {
-    public String requestGameType() {
-        return null;
+    public String requestGameType() throws IOException {
+        System.out.println("" +
+                "TIC TAC TOE\n" +
+                "-----------\n\n" +
+                "Please select [M]ultiplayer game or [S]ingleplayer game");
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        return userInput.readLine();
     }
 
     public void printBoard(String board) {
-
+        System.out.println(board);
     }
 
     public void printPlayerInstruction(Player currentPlayer) {
-
+        System.out.println(currentPlayer.getName() + "'s turn\n");
     }
 }

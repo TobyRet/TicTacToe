@@ -18,6 +18,7 @@ public class Board {
     public void addMove(int cellReference, Player currentPlayer) {
         if(cells.get(cellReference).getValue()=="-") {
             cells.get(cellReference).setValue(currentPlayer.getMarker());
+            getBoardForPrinting();
         } else {
             throw new RuntimeException("Move has already been allocated for this cell");
         }
