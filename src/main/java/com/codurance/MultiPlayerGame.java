@@ -1,5 +1,6 @@
 package com.codurance;
 
+import java.io.IOException;
 import java.util.List;
 
 public class MultiPlayerGame implements Game{
@@ -21,24 +22,24 @@ public class MultiPlayerGame implements Game{
         currentPlayer = players.get(0);
     }
 
-    public void start() {
+    public void start() throws IOException {
         printBoard();
-        printInstruction(currentPlayer);
+        requestNextMove(currentPlayer);
     }
 
-    public void play(int cellReference) {
-        board.addMove(cellReference, getCurrentPlayer());
+    public void play(String cellReference) throws IOException {
+        board.addMove(Integer.parseInt(cellReference) - 1, getCurrentPlayer());
         printBoard();
         changeCurrentPlayer();
-
+        requestNextMove(currentPlayer);
     }
 
     private void changeCurrentPlayer() {
         currentPlayer = currentPlayer == players.get(PLAYER_ONE) ? players.get(PLAYER_TWO) : players.get(PLAYER_ONE);
     }
 
-    private void printInstruction(Player currentPlayer) {
-        console.printPlayerInstruction(currentPlayer);
+    private void requestNextMove(Player currentPlayer) throws IOException {
+        play(console.requestNextMove(currentPlayer));
     }
 
     private void printBoard() {

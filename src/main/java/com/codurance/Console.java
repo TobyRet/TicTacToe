@@ -18,7 +18,11 @@ public class Console {
         System.out.println(board);
     }
 
-    public void printPlayerInstruction(Player currentPlayer) {
+    public String requestNextMove(Player currentPlayer) throws IOException {
         System.out.println(currentPlayer.getName() + "'s turn\n");
+        System.out.print(">> ");
+        BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+        return userInput.readLine();
     }
+
 }
