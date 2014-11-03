@@ -13,6 +13,7 @@ import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -27,40 +28,26 @@ public class MultiPlayerGameShould {
     private List<Player> players;
 
     @Before
-    public void initialise() {
+    public void initialise() throws IOException {
         players = new ArrayList();
         players.add(player1);
         players.add(player2);
         game = new MultiPlayerGame(players, board, console);
-    }
+        given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-//    @Test public void
-//    print_empty_board_to_console() throws IOException {
-//        given(board.getBoardForPrinting()).willReturn(
-//                "- - - \n" +
-//                "- - - \n" +
-//                "- - -"
-//        );
-//
-//        //given(console.requestNextMove(player1)).willReturn(null);
-//        game.start();
-//
-//        verify(console).printEmptyBoard(board.getBoardForPrinting());
-//
-//    }
+    }
 
     @Test public void
     add_player1_move_to_the_board() throws IOException {
-       given(console.requestNextMove(game.getCurrentPlayer())).willReturn("2");
        game.start();
-       verify(board).addMove(1, player1);
-       verify(console, times(2)).printBoard(board.getBoardForPrinting());
+       verify(board).addMove(0, player1);
+       verify(console, times(10)).printBoard(board.getBoardForPrinting());
     }
 
     @Test public void
     change_currentPlayer_to_player_2_after_player_1_has_made_move() throws IOException {
         assertThat(game.getCurrentPlayer(), is(player1));
-        game.play("1");
+        game.start();
         assertThat(game.getCurrentPlayer(), is(player2));
     }
 }

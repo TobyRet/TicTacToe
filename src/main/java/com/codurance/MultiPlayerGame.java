@@ -24,27 +24,33 @@ public class MultiPlayerGame implements Game{
 
     public void start() throws IOException {
         printBoard();
-        requestNextMove(currentPlayer);
+        commenceGamePlay();
     }
 
-    public void play(String cellReference) throws IOException {
-        board.addMove(Integer.parseInt(cellReference) - 1, getCurrentPlayer());
-        printBoard();
-        changeCurrentPlayer();
-        requestNextMove(currentPlayer);
+    private void commenceGamePlay() throws IOException {
+        for(int i=0; i < 9; i++) {
+            playTurn(requestNextMove(currentPlayer));
+            printBoard();
+            changeCurrentPlayer();
+        }
+    }
+
+    private int requestNextMove(Player currentPlayer) throws IOException {
+        return Integer.parseInt(console.requestNextMove(currentPlayer)) - 1;
+    }
+
+    public void playTurn(int cellReference) throws IOException {
+        board.addMove(cellReference, getCurrentPlayer());
+    }
+
+    private void printBoard() {
+        console.printBoard(board.getBoardForPrinting());
     }
 
     private void changeCurrentPlayer() {
         currentPlayer = currentPlayer == players.get(PLAYER_ONE) ? players.get(PLAYER_TWO) : players.get(PLAYER_ONE);
     }
 
-    private void requestNextMove(Player currentPlayer) throws IOException {
-        play(console.requestNextMove(currentPlayer));
-    }
-
-    private void printBoard() {
-        console.printBoard(board.getBoardForPrinting());
-    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
