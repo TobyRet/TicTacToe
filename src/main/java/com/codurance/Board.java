@@ -3,6 +3,10 @@ package com.codurance;
 import java.util.List;
 
 public class Board {
+    public List<Cell> getCells() {
+        return cells;
+    }
+
     private final List<Cell> cells;
     private final BoardFormatter boardFormatter;
 
@@ -16,7 +20,7 @@ public class Board {
     }
 
     public void addMove(int cellReference, Player currentPlayer) {
-        if(cells.get(cellReference).getValue()=="-") {
+        if(cells.get(cellReference).getValue().equals("-")) {
             cells.get(cellReference).setValue(currentPlayer.getMarker());
             getBoardForPrinting();
         } else {
