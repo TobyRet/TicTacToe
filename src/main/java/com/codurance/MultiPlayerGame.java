@@ -10,12 +10,12 @@ public class MultiPlayerGame implements Game{
     private final Console console;
     private final GameLogic gameLogic;
 
-
     private Player currentPlayer;
     private int PLAYER_ONE = 0;
     private final int PLAYER_TWO = 1;
     private boolean winner = false;
 
+    // too many arguments?
     public MultiPlayerGame(List<Player> players, Board board, Console console, GameLogic gameLogic) {
         this.players = players;
         this.board = board;
@@ -33,12 +33,28 @@ public class MultiPlayerGame implements Game{
     private void commenceGamePlay() throws IOException {
         for(int i=0; i<9; i++) {
             if (!winner) {
-                playTurn(requestNextMove(currentPlayer));
-                checkForWin();
-                printBoard();
-                changeCurrentPlayer();
+                runGame();
             }
         }
+        if (!winner) {
+            announceDraw();
+        }
+    }
+
+    private void announceDraw() {
+        console.printDraw();
+    }
+
+    private void runGame() throws IOException {
+        try {
+            playTurn(requestNextMove(currentPlayer));
+        } catch (RuntimeException e) {
+            console.printCellTaken();
+            playTurn(requestNextMove(currentPlayer));
+        }
+        checkForWin();
+        printBoard();
+        changeCurrentPlayer();
     }
 
     private void checkForWin() {
@@ -67,7 +83,6 @@ public class MultiPlayerGame implements Game{
     private void changeCurrentPlayer() {
         currentPlayer = currentPlayer == players.get(PLAYER_ONE) ? players.get(PLAYER_TWO) : players.get(PLAYER_ONE);
     }
-
 
     public Player getCurrentPlayer() {
         return currentPlayer;

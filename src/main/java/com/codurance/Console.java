@@ -20,7 +20,7 @@ public class Console {
 
     public String requestNextMove(Player currentPlayer) throws IOException {
         System.out.println(currentPlayer.getName() + "'s turn\n");
-        System.out.print(">> ");
+        System.out.print(">>\t");
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         return userInput.readLine();
     }
@@ -30,5 +30,15 @@ public class Console {
         System.out.println(player.getName() + " is the winner!");
         System.out.println("-----------------------");
 
+    }
+
+    public void printDraw() {
+        System.out.println("\n-------------");
+        System.out.println("\nIt's a draw!");
+        System.out.println("\n-------------");
+    }
+
+    public void printCellTaken() {
+        System.out.println("\nSorry that cell has already been taken.\n");
     }
 }

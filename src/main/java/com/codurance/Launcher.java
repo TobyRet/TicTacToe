@@ -7,7 +7,11 @@ import java.util.List;
 public class Launcher {
 
     public static void main(String[] args) throws IOException {
+        TicTacToe ticTacToe = loadTicTacToe();
+        ticTacToe.loadGameType();
+    }
 
+    private static TicTacToe loadTicTacToe() {
         List<Player> players = initialisePlayers();
         List<Cell> cells = initialiseCells();
         BoardFormatter boardFormatter = new BoardFormatter();
@@ -15,9 +19,7 @@ public class Launcher {
         GameLogic gameLogic = new GameLogic(board);
         Console console = new Console();
         MultiPlayerGame multiPlayerGame = new MultiPlayerGame(players, board, console, gameLogic);
-        TicTacToe ticTacToe = new TicTacToe(console, multiPlayerGame);
-
-        ticTacToe.loadGameType();
+        return new TicTacToe(console, multiPlayerGame);
     }
 
     private static List<Player> initialisePlayers() {

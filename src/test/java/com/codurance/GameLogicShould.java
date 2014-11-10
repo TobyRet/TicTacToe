@@ -62,6 +62,15 @@ public class GameLogicShould {
         board = new Board(cells, boardFormatter);
     }
 
+    private void winningGameByRow() {
+        board.addMove(0, player1);
+        board.addMove(1, player1);
+        board.addMove(2, player1);
+        board.addMove(3, player2);
+        board.addMove(5, player2);
+        board.addMove(7, player2);
+    }
+
     private void noWinningGame() {
         board.addMove(0, player1);
         board.addMove(1, player1);
@@ -85,15 +94,6 @@ public class GameLogicShould {
         board.addMove(2, player2);
         board.addMove(4, player2);
         board.addMove(8, player2);
-    }
-
-    private void winningGameByRow() {
-        board.addMove(0, player1);
-        board.addMove(1, player1);
-        board.addMove(2, player1);
-        board.addMove(3, player2);
-        board.addMove(5, player2);
-        board.addMove(7, player2);
     }
 
     private List<Cell> createCells() {

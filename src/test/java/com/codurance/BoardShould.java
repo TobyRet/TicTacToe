@@ -34,7 +34,9 @@ public class BoardShould {
     @Test public void
     creates_an_empty_board_for_printing() {
         String emptyBoard = "---\n" + "---\n" + "---\n";
+
         given(boardFormatter.format(cells)).willReturn(emptyBoard);
+
         assertThat(board.getBoardForPrinting(), is(emptyBoard));
     }
 
@@ -60,6 +62,7 @@ public class BoardShould {
         given(mockedCell.getValue()).willReturn("-");
 
         board.addMove(1, mockedPlayer1);
+
         given(mockedCell.getValue()).willReturn("X");
 
         board.addMove(1, mockedPlayer1);

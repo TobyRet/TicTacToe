@@ -7,7 +7,6 @@ public class TicTacToe {
     private final MultiPlayerGame multiPlayerGame;
 
     public TicTacToe(Console console, MultiPlayerGame multiPlayerGame) {
-
         this.console = console;
         this.multiPlayerGame = multiPlayerGame;
     }

@@ -32,13 +32,13 @@ public class MultiPlayerGameShould {
     public void initialise() throws IOException {
         createMockPlayers();
         game = new MultiPlayerGame(players, board, console, gameLogic);
-        given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "7", "8", "9");
-
+        given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "8", "7", "9");
     }
 
     @Test public void
     add_player1_move_to_the_board() throws IOException {
        game.start();
+
        verify(board).addMove(0, player1);
        verify(console, times(10)).printBoard(board.getBoardForPrinting());
     }
@@ -46,15 +46,29 @@ public class MultiPlayerGameShould {
     @Test public void
     change_currentPlayer_to_player_2_after_player_1_has_made_move() throws IOException {
         assertThat(game.getCurrentPlayer(), is(player1));
+
         game.start();
+
         assertThat(game.getCurrentPlayer(), is(player2));
     }
 
     @Test public void
-    stop_game_if_a_player_wins_the_game() throws IOException {
+    end_game_if_a_player_wins() throws IOException {
         given(gameLogic.checkForWin()).willReturn(true);
+
         game.start();
+
         verify(console).printWinner(player1);
+    }
+
+    @Test public void
+    announce_a_draw_if_there_is_no_winner() throws IOException {
+        given(console.requestNextMove(any())).willReturn("1", "2", "3", "5", "4", "6", "8", "7", "9");
+        given(gameLogic.checkForWin()).willReturn(false);
+
+        game.start();
+
+        verify(console).printDraw();
     }
 
     private void createMockPlayers() {
