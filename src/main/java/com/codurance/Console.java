@@ -25,4 +25,10 @@ public class Console {
         return userInput.readLine();
     }
 
+    public void printWinner(Player player) {
+        System.out.println("\n-----------------------");
+        System.out.println(player.getName() + " is the winner!");
+        System.out.println("-----------------------");
+
+    }
 }

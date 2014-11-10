@@ -24,15 +24,14 @@ public class MultiPlayerGameShould {
     @Mock Player player2;
     @Mock Board board;
     @Mock Console console;
+    @Mock GameLogic gameLogic;
     private MultiPlayerGame game;
     private List<Player> players;
 
     @Before
     public void initialise() throws IOException {
-        players = new ArrayList();
-        players.add(player1);
-        players.add(player2);
-        game = new MultiPlayerGame(players, board, console);
+        createMockPlayers();
+        game = new MultiPlayerGame(players, board, console, gameLogic);
         given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
     }
@@ -49,5 +48,18 @@ public class MultiPlayerGameShould {
         assertThat(game.getCurrentPlayer(), is(player1));
         game.start();
         assertThat(game.getCurrentPlayer(), is(player2));
+    }
+
+    @Test public void
+    stop_game_if_a_player_wins_the_game() throws IOException {
+        given(gameLogic.checkForWin()).willReturn(true);
+        game.start();
+        verify(console).printWinner(player1);
+    }
+
+    private void createMockPlayers() {
+        players = new ArrayList();
+        players.add(player1);
+        players.add(player2);
     }
 }

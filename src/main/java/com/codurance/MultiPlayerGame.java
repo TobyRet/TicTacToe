@@ -8,16 +8,19 @@ public class MultiPlayerGame implements Game{
     private final List<Player> players;
     private final Board board;
     private final Console console;
+    private final GameLogic gameLogic;
 
 
     private Player currentPlayer;
     private int PLAYER_ONE = 0;
     private final int PLAYER_TWO = 1;
+    private boolean winner = false;
 
-    public MultiPlayerGame(List<Player> players, Board board, Console console) {
+    public MultiPlayerGame(List<Player> players, Board board, Console console, GameLogic gameLogic) {
         this.players = players;
         this.board = board;
         this.console = console;
+        this.gameLogic = gameLogic;
 
         currentPlayer = players.get(0);
     }
@@ -28,11 +31,25 @@ public class MultiPlayerGame implements Game{
     }
 
     private void commenceGamePlay() throws IOException {
-        for(int i=0; i < 9; i++) {
-            playTurn(requestNextMove(currentPlayer));
-            printBoard();
-            changeCurrentPlayer();
+        for(int i=0; i<9; i++) {
+            if (!winner) {
+                playTurn(requestNextMove(currentPlayer));
+                checkForWin();
+                printBoard();
+                changeCurrentPlayer();
+            }
         }
+    }
+
+    private void checkForWin() {
+        if(gameLogic.checkForWin()) {
+            winner = true;
+            announceWinner();
+        }
+    }
+
+    private void announceWinner() {
+        console.printWinner(currentPlayer);
     }
 
     private int requestNextMove(Player currentPlayer) throws IOException {

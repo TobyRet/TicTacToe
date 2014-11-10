@@ -12,8 +12,9 @@ public class Launcher {
         List<Cell> cells = initialiseCells();
         BoardFormatter boardFormatter = new BoardFormatter();
         Board board = new Board(cells, boardFormatter);
+        GameLogic gameLogic = new GameLogic(board);
         Console console = new Console();
-        MultiPlayerGame multiPlayerGame = new MultiPlayerGame(players, board, console);
+        MultiPlayerGame multiPlayerGame = new MultiPlayerGame(players, board, console, gameLogic);
         TicTacToe ticTacToe = new TicTacToe(console, multiPlayerGame);
 
         ticTacToe.loadGameType();
