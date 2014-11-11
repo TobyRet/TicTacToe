@@ -3,6 +3,7 @@ package com.codurance;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Launcher {
 
@@ -13,7 +14,8 @@ public class Launcher {
         BoardFormatter boardFormatter = new BoardFormatter();
         Board board = new Board(cells, boardFormatter);
         GameLogic gameLogic = new GameLogic(board);
-        Console console = new Console();
+        Scanner scanner = new Scanner(System.in);
+        Console console = new Console(scanner);
         MultiPlayerGame multiPlayerGame = new MultiPlayerGame(players, board, console, gameLogic);
         TicTacToe ticTacToe = new TicTacToe(console, multiPlayerGame);
 
