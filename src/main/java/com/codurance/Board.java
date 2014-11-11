@@ -19,7 +19,7 @@ public class Board {
         return boardFormatter.format(cells);
     }
 
-    public void addMove(int cellReference, Player currentPlayer) {
+    public void addMove(int cellReference, HumanPlayer currentPlayer) {
         if(cells.get(cellReference).getValue().equals("-")) {
             cells.get(cellReference).setValue(currentPlayer.getMarker());
             getBoardForPrinting();

@@ -1,20 +1,17 @@
 package com.codurance;
 
-import java.io.IOException;
-
 public class TicTacToe {
     private final Console console;
-    private final MultiPlayerGame multiPlayerGame;
+    private final Game game;
 
-    public TicTacToe(Console console, MultiPlayerGame multiPlayerGame) {
+    public TicTacToe(Console console, Game game) {
 
         this.console = console;
-        this.multiPlayerGame = multiPlayerGame;
+        this.game = game;
     }
 
-    public void loadGameType() throws IOException {
-        if (console.requestGameType().equals("M")) {
-            multiPlayerGame.start();
-        }
+    public void loadGameType() {
+        GameType gameType = console.requestGameType();
+        game.start(gameType);
     }
 }

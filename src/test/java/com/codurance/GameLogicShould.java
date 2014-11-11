@@ -14,8 +14,8 @@ public class GameLogicShould {
     private BoardFormatter boardFormatter;
     private Board board;
     private GameLogic gameLogic;
-    private Player player1;
-    private Player player2;
+    private HumanPlayer player1;
+    private HumanPlayer player2;
 
     @Before
     public void initialise() {
@@ -23,8 +23,8 @@ public class GameLogicShould {
         createCells();
         board = new Board(cells, boardFormatter);
         gameLogic = new GameLogic(board);
-        player1 = new Player("player 1", "O");
-        player2 = new Player("player 2", "X");
+        player1 = new HumanPlayer("player 1", "O");
+        player2 = new HumanPlayer("player 2", "X");
     }
 
     @Test public void

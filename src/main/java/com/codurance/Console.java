@@ -1,6 +1,5 @@
 package com.codurance;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Console {
@@ -11,20 +10,20 @@ public class Console {
         this.scanner = scanner;
     }
 
-    public String requestGameType() throws IOException {
+    public GameType requestGameType() {
         System.out.println("" +
                 "TIC TAC TOE\n" +
                 "-----------\n\n" +
                 "Please select [M]ultiplayer game or [S]ingleplayer game");
 
-        return scanner.nextLine();
+        return new GameType(scanner.nextLine());
     }
 
     public void printBoard(String board) {
         System.out.println(board);
     }
 
-    public String requestNextMove(Player currentPlayer) throws IOException {
+    public String requestNextMove(Player currentPlayer) {
         System.out.println(currentPlayer.getName() + "'s turn\n");
         System.out.print(">> ");
         return scanner.nextLine();

@@ -23,7 +23,8 @@ public class BoardShould {
 
     @Mock BoardFormatter boardFormatter;
     @Mock Cell mockedCell;
-    @Mock Player mockedPlayer1;
+    @Mock
+    HumanPlayer mockedPlayer1;
 
     @Before
     public void
