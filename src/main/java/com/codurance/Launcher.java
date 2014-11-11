@@ -7,19 +7,20 @@ import java.util.List;
 public class Launcher {
 
     public static void main(String[] args) throws IOException {
-        TicTacToe ticTacToe = loadTicTacToe();
-        ticTacToe.loadGameType();
+        Console console = new Console();
+        TicTacToe ticTacToe = loadTicTacToe(console);
+        ticTacToe.loadGame();
     }
 
-    private static TicTacToe loadTicTacToe() {
+    private static TicTacToe loadTicTacToe(Console console) {
         List<Player> players = initialisePlayers();
         List<Cell> cells = initialiseCells();
         BoardFormatter boardFormatter = new BoardFormatter();
         Board board = new Board(cells, boardFormatter);
         GameLogic gameLogic = new GameLogic(board);
-        Console console = new Console();
-        MultiPlayerGame multiPlayerGame = new MultiPlayerGame(players, board, console, gameLogic);
-        return new TicTacToe(console, multiPlayerGame);
+        TwoPlayerGame twoPlayerGame = new TwoPlayerGame(players, board, console, gameLogic);
+        SinglePlayerGame singlePlayerGame = new SinglePlayerGame(players, board, console, gameLogic);
+        return new TicTacToe(console, singlePlayerGame, twoPlayerGame);
     }
 
     private static List<Player> initialisePlayers() {

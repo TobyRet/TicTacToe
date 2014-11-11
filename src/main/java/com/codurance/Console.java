@@ -10,6 +10,7 @@ public class Console {
                 "TIC TAC TOE\n" +
                 "-----------\n\n" +
                 "Please select [M]ultiplayer game or [S]ingleplayer game");
+
         BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
         return userInput.readLine();
     }
@@ -40,5 +41,9 @@ public class Console {
 
     public void printCellTaken() {
         System.out.println("\nSorry that cell has already been taken.\n");
+    }
+
+    public void printInvalidGameType() {
+
     }
 }

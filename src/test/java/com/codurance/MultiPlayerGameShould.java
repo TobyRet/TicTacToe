@@ -25,13 +25,13 @@ public class MultiPlayerGameShould {
     @Mock Board board;
     @Mock Console console;
     @Mock GameLogic gameLogic;
-    private MultiPlayerGame game;
+    private TwoPlayerGame game;
     private List<Player> players;
 
     @Before
     public void initialise() throws IOException {
         createMockPlayers();
-        game = new MultiPlayerGame(players, board, console, gameLogic);
+        game = new TwoPlayerGame(players, board, console, gameLogic);
         given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "8", "7", "9");
     }
 

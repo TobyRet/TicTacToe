@@ -3,7 +3,7 @@ package com.codurance;
 import java.io.IOException;
 import java.util.List;
 
-public class MultiPlayerGame implements Game{
+public class TwoPlayerGame {
 
     private final List<Player> players;
     private final Board board;
@@ -16,7 +16,7 @@ public class MultiPlayerGame implements Game{
     private boolean winner = false;
 
     // too many arguments?
-    public MultiPlayerGame(List<Player> players, Board board, Console console, GameLogic gameLogic) {
+    public TwoPlayerGame(List<Player> players, Board board, Console console, GameLogic gameLogic) {
         this.players = players;
         this.board = board;
         this.console = console;
@@ -42,7 +42,6 @@ public class MultiPlayerGame implements Game{
     }
 
     private void announceDraw() {
-        console.printDraw();
     }
 
     private void runGame() throws IOException {
@@ -65,7 +64,6 @@ public class MultiPlayerGame implements Game{
     }
 
     private void announceWinner() {
-        console.printWinner(currentPlayer);
     }
 
     private int requestNextMove(Player currentPlayer) throws IOException {
@@ -77,7 +75,6 @@ public class MultiPlayerGame implements Game{
     }
 
     private void printBoard() {
-        console.printBoard(board.getBoardForPrinting());
     }
 
     private void changeCurrentPlayer() {
@@ -85,6 +82,10 @@ public class MultiPlayerGame implements Game{
     }
 
     public Player getCurrentPlayer() {
+        console.printDraw();
+        console.printWinner(currentPlayer);
+        console.printBoard(board.getBoardForPrinting());
         return currentPlayer;
     }
+
 }
