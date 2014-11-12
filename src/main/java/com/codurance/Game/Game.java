@@ -14,12 +14,14 @@ public class Game {
     private final Board board;
     private final List<Player> players;
     private final Console console;
+    private final GameLogic gameLogic;
     private List<Player> gamePlayers = new ArrayList();
 
-    public Game(List<Player> players, Board board, Console console) {
+    public Game(List<Player> players, Board board, Console console, GameLogic gameLogic) {
         this.players = players;
         this.board = board;
         this.console = console;
+        this.gameLogic = gameLogic;
     }
 
     public void start(GameType gameType) {
@@ -52,8 +54,10 @@ public class Game {
     }
 
     private void commenceGamePlay() {
-        for (Player player : gamePlayers) {
-            player.makeMove(board, console);
+        if(gameLogic.checkForWin()==false) {
+            for (Player player : gamePlayers) {
+                player.makeMove(board, console);
+            }
         }
     }
 

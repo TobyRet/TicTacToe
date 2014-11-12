@@ -23,19 +23,13 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GameShould {
 
-    @Mock
-    HumanPlayer humanPlayer1;
+    @Mock HumanPlayer humanPlayer1;
     @Mock HumanPlayer humanPlayer2;
-    @Mock
-    ComputerPlayer computerPlayer;
-    @Mock
-    GameType gameType;
-    @Mock
-    Board board;
-    @Mock
-    Console console;
-    @Mock
-    GameLogic gameLogic;
+    @Mock ComputerPlayer computerPlayer;
+    @Mock GameType gameType;
+    @Mock Board board;
+    @Mock Console console;
+    @Mock GameLogic gameLogic;
     private Game game;
     private List<Player> allPlayers;
     private String MULTI_PLAYER = "M";
@@ -45,7 +39,7 @@ public class GameShould {
     @Before
     public void initialise() throws IOException {
         createMockPlayers();
-        game = new Game(allPlayers, board, console);
+        game = new Game(allPlayers, board, console, gameLogic);
     }
 
     @Test public void
