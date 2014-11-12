@@ -19,7 +19,6 @@ public class Console {
                 "TIC TAC TOE\n" +
                 "-----------\n\n" +
                 "Please select [M]ultiplayer game or [S]ingleplayer game");
-
         return new GameType(scanner.nextLine());
     }
 
@@ -37,6 +36,15 @@ public class Console {
         System.out.println("\n-----------------------");
         System.out.println(player.getName() + " is the winner!");
         System.out.println("-----------------------");
+    }
 
+    public void printDraw() {
+        System.out.println("\n-------------");
+        System.out.println("\nIt's a draw!");
+        System.out.println("\n-------------");
+    }
+
+    public void printCellTaken() {
+        System.out.println("\nSorry that cell has already been taken.\n");
     }
 }

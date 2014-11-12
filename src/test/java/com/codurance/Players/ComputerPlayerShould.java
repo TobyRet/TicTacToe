@@ -16,10 +16,8 @@ public class ComputerPlayerShould {
 
     @Mock CellReference cellReference;
     @Mock Board board;
-    @Mock
-    Console console;
-    @Mock
-    ComputerPlayerStrategies computerStrategies;
+    @Mock Console console;
+    @Mock ComputerPlayerStrategies computerStrategies;
 
     @Test public void
     add_move_to_the_board() {
