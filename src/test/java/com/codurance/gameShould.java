@@ -36,12 +36,11 @@ public class GameShould {
     @Before
     public void initialise() throws IOException {
         createMockPlayers();
-        game = new Game(allPlayers, gameLogic, board, console);
-//        given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "7", "8", "9");
+        game = new Game(allPlayers, board, console);
     }
 
     @Test public void
-    loads_human_players_when_multiplayer_game() {
+    loads_human_players_when_multi_player_game() {
         given(gameType.getValue()).willReturn(MULTI_PLAYER);
         game.start(gameType);
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, humanPlayer2));
@@ -63,26 +62,21 @@ public class GameShould {
         verify(console).printBoard(EMPTY_BOARD);
     }
 
-//    @Test public void
-//    add_player1_move_to_the_board() throws IOException {
-//       game.start(gameType);
-//       verify(board).addMove(0, humanPlayer1);
-//       verify(console, times(10)).printBoard(board.getBoardForPrinting());
-//    }
-//
-//    @Test public void
-//    change_currentPlayer_to_player_2_after_player_1_has_made_move() throws IOException {
-//        assertThat(game.getCurrentPlayer(), is(humanPlayer1));
-//        game.start(gameType);
-//        assertThat(game.getCurrentPlayer(), is(humanPlayer2));
-//    }
-//
-//    @Test public void
-//    stop_game_if_a_player_wins_the_game() throws IOException {
-//        given(gameLogic.checkForWin()).willReturn(true);
-//        game.start(gameType);
-//        verify(console).printWinner(humanPlayer1);
-//    }
+    @Test public void
+    start_multi_player_game_and_allow_players_to_make_moves() {
+        given(gameType.getValue()).willReturn(MULTI_PLAYER);
+        game.start(gameType);
+        verify(humanPlayer1).makeMove();
+        verify(humanPlayer2).makeMove();
+    }
+
+    @Test public void
+    start_single_player_game_and_allow_players_to_make_moves() {
+        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
+        game.start(gameType);
+        verify(humanPlayer1).makeMove();
+        verify(computerPlayer).makeMove();
+    }
 
     private void createMockPlayers() {
         allPlayers = new ArrayList();

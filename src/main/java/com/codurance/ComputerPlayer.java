@@ -5,4 +5,9 @@ public class ComputerPlayer implements Player{
     public String getName() {
         return null;
     }
+
+    @Override
+    public void makeMove() {
+
+    }
 }

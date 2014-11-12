@@ -17,4 +17,9 @@ public class HumanPlayer implements Player {
     public String getName() {
         return name;
     }
+
+    @Override
+    public void makeMove() {
+
+    }
 }
