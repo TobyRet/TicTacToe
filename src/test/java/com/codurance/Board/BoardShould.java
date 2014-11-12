@@ -29,7 +29,9 @@ public class BoardShould {
     @Test public void
     creates_an_empty_board_for_printing() {
         board = new Board(createCells(), mockedBoardFormatter);
+
         given(mockedBoardFormatter.format(cells)).willReturn(EMPTY_BOARD);
+
         assertThat(board.getBoardForPrinting(), is(EMPTY_BOARD));
     }
 
@@ -37,8 +39,9 @@ public class BoardShould {
     add_a_players_move_to_the_board() {
         BoardFormatter boardFormatter = new BoardFormatter();
         board = new Board(createCells(), boardFormatter);
-        given(cellReference.getValue()).willReturn("1");
+        
         given(boardMarker.getValue()).willReturn("X");
+        given(cellReference.getValue()).willReturn("1");
 
         board.addMove(cellReference, boardMarker);
 
@@ -47,6 +50,7 @@ public class BoardShould {
 
     private List<Cell> createCells() {
         cells = new ArrayList();
+
         for(int i=0; i<9; i++) {
             Cell cell = new Cell();
             cells.add(cell);
