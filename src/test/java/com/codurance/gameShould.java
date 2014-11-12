@@ -15,6 +15,7 @@ import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameShould {
@@ -28,29 +29,38 @@ public class GameShould {
     @Mock GameLogic gameLogic;
     private Game game;
     private List<Player> allPlayers;
-    private List<Player> gamePlayers;
+    private String MULTI_PLAYER = "M";
+    private final String SINGLE_PLAYER = "S";
+    private final String EMPTY_BOARD = "---\n" + "---\n" + "---";
 
     @Before
     public void initialise() throws IOException {
         createMockPlayers();
-        game = new Game(allPlayers, gameLogic);
+        game = new Game(allPlayers, gameLogic, board, console);
 //        given(console.requestNextMove(any())).willReturn("1", "2", "3", "4", "5", "6", "7", "8", "9");
     }
 
     @Test public void
     loads_human_players_when_multiplayer_game() {
-        given(gameType.getValue()).willReturn("M");
+        given(gameType.getValue()).willReturn(MULTI_PLAYER);
         game.start(gameType);
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, humanPlayer2));
         assertThat(game.getGamePlayers(), not(hasItem(computerPlayer)));
     }
 
     @Test public void
-    loads_computer_player_andPne_human_player_when_single_game() {
-        given(gameType.getValue()).willReturn("S");
+    loads_computer_player_and_one_human_player_when_single_game() {
+        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
         game.start(gameType);
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, computerPlayer));
         assertThat(game.getGamePlayers(), not(hasItem(humanPlayer2)));
+    }
+
+    @Test public void
+    loads_an_empty_board() {
+        given(board.getBoardForPrinting()).willReturn(EMPTY_BOARD);
+        game.start(gameType);
+        verify(console).printBoard(EMPTY_BOARD);
     }
 
 //    @Test public void

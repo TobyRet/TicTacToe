@@ -5,10 +5,12 @@ import java.util.List;
 
 public class Game {
 
-    private static final String SINGLEPLAYER_GAME = "S";
-    private String MULTIPLAYER_GAME = "M";
+    private final String SINGLEPLAYER_GAME = "S";
+    private final String MULTIPLAYER_GAME = "M";
+    private final Board board;
     private final List<Player> players;
     private final GameLogic gameLogic;
+    private final Console console;
 
     private Player currentPlayer;
     private int PLAYER_ONE = 0;
@@ -16,11 +18,13 @@ public class Game {
     private boolean winner = false;
     private List<Player> gamePlayers = new ArrayList();
 
-    public Game(List<Player> players, GameLogic gameLogic) {
+    public Game(List<Player> players, GameLogic gameLogic, Board board, Console console) {
         this.players = players;
         this.gameLogic = gameLogic;
+        this.board = board;
+        this.console = console;
 
-        currentPlayer = players.get(0);
+//        currentPlayer = players.get(0);
     }
 
     public void start(GameType gameType) {
@@ -31,7 +35,7 @@ public class Game {
             loadComputerAndHumanPlayers();
         }
 
-//        printBoard();
+        printBoard();
 //        commenceGamePlay();
     }
 
@@ -74,11 +78,12 @@ public class Game {
 //    public void playTurn(int cellReference) {
 //        board.addMove(cellReference, getCurrentPlayer());
 //    }
-//
-//    private void printBoard() {
-//        console.printBoard(board.getBoardForPrinting());
-//    }
-//
+
+    private void printBoard() {
+        String boardForPrinting = board.getBoardForPrinting();
+        console.printBoard(boardForPrinting);
+    }
+
 //    private void changeCurrentPlayer() {
 //        currentPlayer = currentPlayer == players.get(PLAYER_ONE) ? players.get(PLAYER_TWO) : players.get(PLAYER_ONE);
 //    }
