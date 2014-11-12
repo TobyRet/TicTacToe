@@ -1,6 +1,7 @@
 package com.codurance.Players;
 
 import com.codurance.Board.Board;
+import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.CellReference;
 import com.codurance.Console;
 import org.junit.Test;
@@ -18,12 +19,13 @@ public class ComputerPlayerShould {
     @Mock Board board;
     @Mock Console console;
     @Mock ComputerPlayerStrategies computerStrategies;
+    @Mock BoardMarker boardMarker;
 
     @Test public void
     add_move_to_the_board() {
         given(computerStrategies.requestNextMove()).willReturn(cellReference);
-        ComputerPlayer computerPlayer = new ComputerPlayer(board, console, computerStrategies);
-        computerPlayer.makeMove();
-        verify(board).addMove(cellReference);
+        ComputerPlayer computerPlayer = new ComputerPlayer(computerStrategies, boardMarker);
+        computerPlayer.makeMove(board, console);
+        verify(board).addMove(cellReference, boardMarker);
     }
 }

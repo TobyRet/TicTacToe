@@ -53,7 +53,7 @@ public class Game {
 
     private void commenceGamePlay() {
         for (Player player : gamePlayers) {
-            player.makeMove();
+            player.makeMove(board, console);
         }
     }
 

@@ -1,19 +1,18 @@
 package com.codurance.Players;
 
-import com.codurance.*;
 import com.codurance.Board.Board;
+import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.CellReference;
+import com.codurance.Console;
 
 public class HumanPlayer implements Player {
 
-    private final Board board;
-    private final Console console;
     private final PlayerName playerName;
+    private final BoardMarker boardMarker;
 
-    public HumanPlayer(PlayerName playerName, Board board, Console console) {
+    public HumanPlayer(PlayerName playerName, BoardMarker boardMarker) {
         this.playerName = playerName;
-        this.board = board;
-        this.console = console;
+        this.boardMarker = boardMarker;
     }
 
     @Override
@@ -22,8 +21,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void makeMove() {
+    public void makeMove(Board board, Console console) {
         CellReference cellReference = console.requestNextMove(this);
-        board.addMove(cellReference);
+        board.addMove(cellReference, boardMarker);
     }
 }

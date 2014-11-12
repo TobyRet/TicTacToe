@@ -1,71 +1,56 @@
 package com.codurance.Board;
 
-//@RunWith(MockitoJUnitRunner.class)
-//public class BoardShould {
-//
-//    private List<Cell> cells;
-//    private Board board;
-//    private final String BOARD_WITH_ONE_MOVE = "X--\n" + "---\n" + "---\n";
-//
-//    @Mock BoardFormatter boardFormatter;
-//    @Mock Cell mockedCell;
-//    @Mock
-//    HumanPlayer mockedPlayer1;
-//
-//    @Before
-//    public void
-//    intialise_with_nine_cell_objects() {
-//        board = new Board(createCells(), boardFormatter);
-//    }
-//
-//    @Test public void
-//    creates_an_empty_board_for_printing() {
-//        String emptyBoard = "---\n" + "---\n" + "---\n";
-//        given(boardFormatter.format(cells)).willReturn(emptyBoard);
-//        assertThat(board.getBoardForPrinting(), is(emptyBoard));
-//    }
-//
-//    @Test public void
-//    add_a_players_move_to_the_board() {
-//        board = new Board(createMockedCells(), boardFormatter);
-//
-//        given(mockedCell.getValue()).willReturn("-");
-//        given(boardFormatter.format(cells)).willReturn(BOARD_WITH_ONE_MOVE);
-//        given(mockedPlayer1.getMarker()).willReturn("X");
-//
-//        board.addMove(1, mockedPlayer1);
-//
-//        verify(mockedCell).setValue("X");
-//
-//        assertThat(board.getBoardForPrinting(), is(BOARD_WITH_ONE_MOVE));
-//    }
-//
-//    @Test (expected=RuntimeException.class) public void
-//    throw_exception_if_space_already_has_been_allocated() {
-//        board = new Board(createMockedCells(), boardFormatter);
-//
-//        given(mockedCell.getValue()).willReturn("-");
-//
-//        board.addMove(1, mockedPlayer1);
-//        given(mockedCell.getValue()).willReturn("X");
-//
-//        board.addMove(1, mockedPlayer1);
-//    }
-//
-//    private List<Cell> createMockedCells() {
-//        cells = new ArrayList();
-//        for(int i=0; i<9; i++) {
-//            cells.add(mockedCell);
-//        }
-//        return cells;
-//    }
-//
-//    private List<Cell> createCells() {
-//        cells = new ArrayList();
-//        for(int i=0; i<9; i++) {
-//            Cell cell = new Cell();
-//            cells.add(cell);
-//        }
-//        return cells;
-//    }
-//}
+import com.codurance.Cell.Cell;
+import com.codurance.Cell.CellReference;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
+
+@RunWith(MockitoJUnitRunner.class)
+public class BoardShould {
+
+    private static final String EMPTY_BOARD = "- - -\n" + "- - -\n" + "- - -\n";
+    private List<Cell> cells;
+    private Board board;
+    private final String BOARD_WITH_ONE_MOVE = "\nX - -\n" + "- - -\n" + "- - -\n";
+
+    @Mock BoardFormatter mockedBoardFormatter;
+    @Mock CellReference cellReference;
+    @Mock BoardMarker boardMarker;
+
+    @Test public void
+    creates_an_empty_board_for_printing() {
+        board = new Board(createCells(), mockedBoardFormatter);
+        given(mockedBoardFormatter.format(cells)).willReturn(EMPTY_BOARD);
+        assertThat(board.getBoardForPrinting(), is(EMPTY_BOARD));
+    }
+
+    @Test public void
+    add_a_players_move_to_the_board() {
+        BoardFormatter boardFormatter = new BoardFormatter();
+        board = new Board(createCells(), boardFormatter);
+        given(cellReference.getValue()).willReturn("1");
+        given(boardMarker.getValue()).willReturn("X");
+
+        board.addMove(cellReference, boardMarker);
+
+        assertThat(board.getBoardForPrinting(), is(BOARD_WITH_ONE_MOVE));
+    }
+
+    private List<Cell> createCells() {
+        cells = new ArrayList();
+        for(int i=0; i<9; i++) {
+            Cell cell = new Cell();
+            cells.add(cell);
+        }
+        return cells;
+    }
+}

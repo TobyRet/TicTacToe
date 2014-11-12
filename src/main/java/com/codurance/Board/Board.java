@@ -6,9 +6,6 @@ import com.codurance.Cell.CellReference;
 import java.util.List;
 
 public class Board {
-    public List<Cell> getCells() {
-        return cells;
-    }
 
     private final List<Cell> cells;
     private final BoardFormatter boardFormatter;
@@ -18,16 +15,19 @@ public class Board {
         this.boardFormatter = boardFormatter;
     }
 
+    public List<Cell> getCells() {
+        return cells;
+    }
+
     public String getBoardForPrinting() {
         return boardFormatter.format(cells);
     }
 
-    public void addMove(CellReference cellReference) {
-//        if(cells.get(cellReference).getValue().equals("-")) {
-//            cells.get(cellReference).setValue(currentPlayer.getMarker());
-//            getBoardForPrinting();
-//        } else {
-//            throw new RuntimeException("Move has already been allocated for this cell");
-//        }
+    public void addMove(CellReference cellReference, BoardMarker boardMarker) {
+        cells.get(cellIndexValue(cellReference)).setValue(boardMarker.getValue());
+    }
+
+    private int cellIndexValue(CellReference cellReference) {
+        return (Integer.parseInt(cellReference.getValue()) - 1);
     }
 }

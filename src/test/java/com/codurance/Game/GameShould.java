@@ -2,9 +2,6 @@ package com.codurance.Game;
 
 import com.codurance.Board.Board;
 import com.codurance.Console;
-import com.codurance.Game.Game;
-import com.codurance.Game.GameLogic;
-import com.codurance.Game.GameType;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
 import com.codurance.Players.Player;
@@ -18,9 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -80,16 +75,16 @@ public class GameShould {
     start_multi_player_game_and_allow_players_to_make_moves() {
         given(gameType.getValue()).willReturn(MULTI_PLAYER);
         game.start(gameType);
-        verify(humanPlayer1).makeMove();
-        verify(humanPlayer2).makeMove();
+        verify(humanPlayer1).makeMove(board, console);
+        verify(humanPlayer2).makeMove(board, console);
     }
 
     @Test public void
     start_single_player_game_and_allow_players_to_make_moves() {
         given(gameType.getValue()).willReturn(SINGLE_PLAYER);
         game.start(gameType);
-        verify(humanPlayer1).makeMove();
-        verify(computerPlayer).makeMove();
+        verify(humanPlayer1).makeMove(board, console);
+        verify(computerPlayer).makeMove(board, console);
     }
 
     private void createMockPlayers() {
