@@ -1,4 +1,8 @@
-package com.codurance;
+package com.codurance.Game;
+
+import com.codurance.Console;
+import com.codurance.Game.Game;
+import com.codurance.Game.GameType;
 
 public class TicTacToe {
     private final Console console;

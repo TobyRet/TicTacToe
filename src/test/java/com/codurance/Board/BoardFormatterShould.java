@@ -1,5 +1,7 @@
-package com.codurance;
+package com.codurance.Board;
 
+import com.codurance.Board.BoardFormatter;
+import com.codurance.Cell.Cell;
 import org.junit.Test;
 
 import java.util.ArrayList;

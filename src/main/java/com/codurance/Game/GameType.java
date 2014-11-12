@@ -1,4 +1,4 @@
-package com.codurance;
+package com.codurance.Game;
 
 public class GameType {
     private final String userSelection;

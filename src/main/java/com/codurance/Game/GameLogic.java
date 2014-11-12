@@ -1,4 +1,6 @@
-package com.codurance;
+package com.codurance.Game;
+
+import com.codurance.Board.Board;
 
 public class GameLogic {
     private final Board board;

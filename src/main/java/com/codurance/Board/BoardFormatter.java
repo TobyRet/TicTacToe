@@ -1,4 +1,6 @@
-package com.codurance;
+package com.codurance.Board;
+
+import com.codurance.Cell.Cell;
 
 import java.util.List;
 

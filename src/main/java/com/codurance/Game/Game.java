@@ -1,4 +1,8 @@
-package com.codurance;
+package com.codurance.Game;
+
+import com.codurance.Board.Board;
+import com.codurance.Console;
+import com.codurance.Players.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,7 @@ public class Game {
     }
 
     public void start(GameType gameType) {
-        checkIfMultiPLayerGameSelected(gameType);
+        checkIfMultiPlayerGameSelected(gameType);
         checkIfSinglePlayerGameSelected(gameType);
         printBoard();
         commenceGamePlay();
@@ -31,7 +35,7 @@ public class Game {
         }
     }
 
-    private void checkIfMultiPLayerGameSelected(GameType gameType) {
+    private void checkIfMultiPlayerGameSelected(GameType gameType) {
         if(gameType.getValue() == MULTIPLAYER_GAME) {
             loadHumanPlayers();
         }
