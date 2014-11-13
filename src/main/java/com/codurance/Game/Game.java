@@ -16,6 +16,7 @@ public class Game {
     private final Console console;
     private final Lines lines;
     private List<Player> gamePlayers = new ArrayList();
+    private Player currentPlayer;
 
     public Game(List<Player> players, Board board, Console console, Lines lines) {
         this.players = players;
@@ -28,6 +29,7 @@ public class Game {
         checkIfMultiPlayerGameSelected(gameType);
         checkIfSinglePlayerGameSelected(gameType);
         printBoard();
+        currentPlayer = gamePlayers.get(0);
         commenceGamePlay();
     }
 
@@ -54,11 +56,14 @@ public class Game {
     }
 
     private void commenceGamePlay() {
-        if(lines.checkForWin()==false) {
-            for (Player player : gamePlayers) {
-                player.makeMove(board, console);
-            }
+        while(lines.checkForWin()==false) {
+            currentPlayer.makeMove(board, console);
+            switchPlayer();
         }
+    }
+
+    private void switchPlayer() {
+        currentPlayer = currentPlayer == gamePlayers.get(0) ? gamePlayers.get(1) : gamePlayers.get(0);
     }
 
     private void printBoard() {

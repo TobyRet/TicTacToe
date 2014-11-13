@@ -45,6 +45,7 @@ public class GameShould {
     @Test public void
     loads_human_players_when_multi_player_game() {
         given(gameType.getValue()).willReturn(MULTI_PLAYER);
+        given(lines.checkForWin()).willReturn(true);
         game.start(gameType);
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, humanPlayer2));
         assertThat(game.getGamePlayers(), not(hasItem(computerPlayer)));
@@ -53,6 +54,7 @@ public class GameShould {
     @Test public void
     loads_computer_player_and_one_human_player_when_single_game() {
         given(gameType.getValue()).willReturn(SINGLE_PLAYER);
+        given(lines.checkForWin()).willReturn(true);
         game.start(gameType);
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, computerPlayer));
         assertThat(game.getGamePlayers(), not(hasItem(humanPlayer2)));
@@ -60,7 +62,9 @@ public class GameShould {
 
     @Test public void
     loads_an_empty_board() {
+        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
         given(board.getBoardForPrinting()).willReturn(EMPTY_BOARD);
+        given(lines.checkForWin()).willReturn(true);
         game.start(gameType);
         verify(console).printBoard(EMPTY_BOARD);
     }
@@ -68,6 +72,7 @@ public class GameShould {
     @Test public void
     start_multi_player_game_and_allow_players_to_make_moves() {
         given(gameType.getValue()).willReturn(MULTI_PLAYER);
+        given(lines.checkForWin()).willReturn(false, false, true);
         game.start(gameType);
         verify(humanPlayer1).makeMove(board, console);
         verify(humanPlayer2).makeMove(board, console);
@@ -76,6 +81,7 @@ public class GameShould {
     @Test public void
     start_single_player_game_and_allow_players_to_make_moves() {
         given(gameType.getValue()).willReturn(SINGLE_PLAYER);
+        given(lines.checkForWin()).willReturn(false, false, true);
         game.start(gameType);
         verify(humanPlayer1).makeMove(board, console);
         verify(computerPlayer).makeMove(board, console);

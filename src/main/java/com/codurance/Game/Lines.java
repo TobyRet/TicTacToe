@@ -12,10 +12,10 @@ public class Lines {
 
     public Lines(List<Cell> boardCells) {
         this.boardCells = boardCells;
-        createCombinations();
+        createLines();
     }
 
-    private void createCombinations() {
+    private void createLines() {
         Line row1 = new Line(0,1,2);
         Line row2 = new Line(3,4,5);
         Line row3 = new Line(6,7,8);
