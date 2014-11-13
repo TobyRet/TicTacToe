@@ -29,7 +29,7 @@ public class GameShould {
     @Mock GameType gameType;
     @Mock Board board;
     @Mock Console console;
-    @Mock GameLogic gameLogic;
+    @Mock Lines lines;
     private Game game;
     private List<Player> allPlayers;
     private String MULTI_PLAYER = "M";
@@ -39,7 +39,7 @@ public class GameShould {
     @Before
     public void initialise() throws IOException {
         createMockPlayers();
-        game = new Game(allPlayers, board, console, gameLogic);
+        game = new Game(allPlayers, board, console, lines);
     }
 
     @Test public void

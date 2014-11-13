@@ -2,7 +2,6 @@ package com.codurance.Game;
 
 import com.codurance.Board.Board;
 import com.codurance.Cell.Cell;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -16,58 +15,59 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-public class GameLogicShould {
-    private GameLogic gameLogic;
-    private WinningCombinations winningCombinations;
+public class LinesShould {
+    private Lines lines;
     private List<Cell> cells;
     @Mock Board board;
 
-    @Before
-    public void initialise() {
-        winningCombinations = new WinningCombinations();
-        gameLogic = new GameLogic(board, winningCombinations);
-    }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_row_is_a_cross() {
         given(board.getCells()).willReturn(rowWinCrosses());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_row_is_a_nought() {
         given(board.getCells()).willReturn(rowWinNoughts());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_column_is_a_cross() {
         given(board.getCells()).willReturn(columnWinCrosses());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_column_is_a_nought() {
         given(board.getCells()).willReturn(columnWinNoughts());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_cross() {
         given(board.getCells()).willReturn(diagonalWinCrosses());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_nought() {
         given(board.getCells()).willReturn(diagonalWinNoughts());
-        assertThat(gameLogic.checkForWin(), is(true));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(true));
     }
 
     @Test public void
     not_change_win_state_if_there_is_no_winning_combination() {
         given(board.getCells()).willReturn(noWin());
-        assertThat(gameLogic.checkForWin(), is(false));
+        lines = new Lines(board.getCells());
+        assertThat(lines.checkForWin(), is(false));
     }
 
     private List<Cell> diagonalWinNoughts() {

@@ -7,9 +7,9 @@ import java.util.List;
 public class BoardFormatter {
     public String format(List<Cell> cells) {
         String formattedBoard = "\n" +
-                cells.get(0).getValue() + " " + cells.get(1).getValue() + " " + cells.get(2).getValue() + "\n" +
-                cells.get(3).getValue() + " " + cells.get(4).getValue() + " " + cells.get(5).getValue() + "\n" +
-                cells.get(6).getValue() + " " + cells.get(7).getValue() + " " + cells.get(8).getValue() + "\n";
+                cells.get(0).value() + " " + cells.get(1).value() + " " + cells.get(2).value() + "\n" +
+                cells.get(3).value() + " " + cells.get(4).value() + " " + cells.get(5).value() + "\n" +
+                cells.get(6).value() + " " + cells.get(7).value() + " " + cells.get(8).value() + "\n";
         return formattedBoard;
     }
 }

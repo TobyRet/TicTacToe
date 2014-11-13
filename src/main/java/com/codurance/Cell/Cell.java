@@ -12,7 +12,7 @@ public class Cell {
         value = newValue;
     }
 
-    public String getValue() {
+    public String value() {
         return value;
     }
 }
