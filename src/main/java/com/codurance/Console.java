@@ -19,6 +19,7 @@ public class Console {
                 "TIC TAC TOE\n" +
                 "-----------\n\n" +
                 "Please select [M]ultiplayer game or [S]ingleplayer game");
+
         return new GameType(scanner.nextLine());
     }
 
@@ -28,23 +29,23 @@ public class Console {
 
     public CellReference requestNextMove(Player player) {
         System.out.println(player.getName() + " please enter your move");
-        System.out.print(">> ");
+        System.out.print(">>\t");
         return new CellReference(scanner.nextLine());
     }
 
-    public void printWinner(Player player) {
-        System.out.println("\n-----------------------");
-        System.out.println(player.getName() + " is the winner!");
-        System.out.println("-----------------------");
-    }
-
-    public void printDraw() {
-        System.out.println("\n-------------");
-        System.out.println("\nIt's a draw!");
-        System.out.println("\n-------------");
-    }
-
-    public void printCellTaken() {
-        System.out.println("\nSorry that cell has already been taken.\n");
-    }
+//    public void printWinner(Player player) {
+//        System.out.println("\n-----------------------");
+//        System.out.println(player.getName() + " is the winner!");
+//        System.out.println("-----------------------");
+//    }
+//
+//    public void printDraw() {
+//        System.out.println("\n-------------");
+//        System.out.println("\nIt's a draw!");
+//        System.out.println("\n-------------");
+//    }
+//
+//    public void printCellTaken() {
+//        System.out.println("\nSorry that cell has already been taken.\n");
+//    }
 }

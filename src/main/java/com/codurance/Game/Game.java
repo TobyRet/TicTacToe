@@ -29,18 +29,17 @@ public class Game {
         checkIfMultiPlayerGameSelected(gameType);
         checkIfSinglePlayerGameSelected(gameType);
         printBoard();
-        currentPlayer = gamePlayers.get(0);
         commenceGamePlay();
     }
 
     private void checkIfSinglePlayerGameSelected(GameType gameType) {
-        if(gameType.getValue() == SINGLEPLAYER_GAME) {
+        if(gameType.getValue().equals(SINGLEPLAYER_GAME)) {
             loadComputerAndHumanPlayers();
         }
     }
 
     private void checkIfMultiPlayerGameSelected(GameType gameType) {
-        if(gameType.getValue() == MULTIPLAYER_GAME) {
+        if(gameType.getValue().equals(MULTIPLAYER_GAME)) {
             loadHumanPlayers();
         }
     }
@@ -56,8 +55,10 @@ public class Game {
     }
 
     private void commenceGamePlay() {
+        currentPlayer = gamePlayers.get(0);
         while(lines.checkForWin()==false) {
             currentPlayer.makeMove(board, console);
+            printBoard();
             switchPlayer();
         }
     }
