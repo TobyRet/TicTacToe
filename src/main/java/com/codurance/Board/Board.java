@@ -30,4 +30,8 @@ public class Board {
     private int cellIndexValue(CellReference cellReference) {
         return (Integer.parseInt(cellReference.getValue()) - 1);
     }
+
+    public boolean isEmpty() {
+        return false;
+    }
 }

@@ -56,11 +56,29 @@ public class Game {
 
     private void commenceGamePlay() {
         currentPlayer = gamePlayers.get(0);
-        while(lines.checkForWin()==false) {
+
+        makeMoves();
+        printDraw();
+        printWinner();
+    }
+
+    private void makeMoves() {
+        while(lines.checkForWin() == false && board.isEmpty() == false) {
             currentPlayer.makeMove(board, console);
             printBoard();
             switchPlayer();
         }
+    }
+
+    private void printDraw() {
+        if(lines.checkForWin() == false && board.isEmpty() == true) {
+            console.printDraw();
+        }
+    }
+
+    private void printWinner() {
+        switchPlayer();
+        console.printWinner(currentPlayer);
     }
 
     private void switchPlayer() {

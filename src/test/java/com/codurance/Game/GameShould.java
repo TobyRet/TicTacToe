@@ -87,6 +87,23 @@ public class GameShould {
         verify(computerPlayer).makeMove(board, console);
     }
 
+    @Test public void
+    stop_game_if_a_player_wins() {
+        given(gameType.getValue()).willReturn(MULTI_PLAYER);
+        given(lines.checkForWin()).willReturn(false, false, false, false, false, true);
+        game.start(gameType);
+        verify(console).printWinner(humanPlayer1);
+    }
+
+    @Test public void
+    stop_game_if_a_draw() {
+        given(gameType.getValue()).willReturn(MULTI_PLAYER);
+        given(lines.checkForWin()).willReturn(false, false, false, false, false, false, false, false, false, false);
+        given(board.isEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
+        game.start(gameType);
+        verify(console).printDraw();
+    }
+
     private void createMockPlayers() {
         allPlayers = new ArrayList();
         allPlayers.add(humanPlayer1);
