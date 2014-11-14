@@ -60,7 +60,7 @@ public class Launcher {
         humanPlayer2 = new HumanPlayer(playerNameHuman2, boardMarkerHuman2);
 
         boardMarkerComputer = new BoardMarker("X");
-        computerPlayerStrategies = new ComputerPlayerStrategies();
+        computerPlayerStrategies = new ComputerPlayerStrategies(lines);
         computerPlayer = new ComputerPlayer(computerPlayerStrategies, boardMarkerComputer);
 
         players.add(humanPlayer1);

@@ -29,20 +29,19 @@ public class Console {
 
     public CellReference requestNextMove(Player player) {
         System.out.println(player.getName() + " please enter your move");
-        System.out.print(">>\t");
         return new CellReference(scanner.nextLine());
     }
 
     public void printWinner(Player player) {
-        System.out.println("\n-----------------------");
-        System.out.println(player.getName() + " is the winner!");
         System.out.println("-----------------------");
+        System.out.println(player.getName() + " is the winner!");
+        System.out.println("-----------------------\n");
     }
 
     public void printDraw() {
-        System.out.println("\n-------------");
-        System.out.println("\nIt's a draw!");
-        System.out.println("\n-------------");
+        System.out.println("-------------");
+        System.out.println("It's a draw!");
+        System.out.println("-------------\n");
     }
 
 //    public void printCellTaken() {

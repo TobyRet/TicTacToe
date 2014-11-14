@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 public class LineShould {
 
     private List<Cell> cells;
+    private Line line;
 
     @Test public void
     return_true_if_cells_have_same_values() {
@@ -25,6 +26,29 @@ public class LineShould {
         Line line = new Line(0,1,2);
         List<Cell> boardCells = noWin();
         assertThat(line.cellsHaveSameValues(boardCells), is(false));
+    }
+
+    @Test public void
+    return_cell_reference_for_win_scenario() {
+        line = new Line(0,1,2);
+        List<Cell> boardCells = winScenario1();
+        assertThat(line.checkWinScenario(boardCells).getValue(), is("2"));
+    }
+
+    private List<Cell> winScenario1() {
+        cells = new ArrayList();
+        for(int i=0; i<2; i++) {
+            Cell cell = new Cell();
+            cell.setValue("X");
+            cells.add(cell);
+        }
+
+        for(int i=0; i<6; i++) {
+            Cell cell = new Cell();
+            cells.add(cell);
+        }
+
+        return cells;
     }
 
     private List<Cell> rowWinNoughts() {

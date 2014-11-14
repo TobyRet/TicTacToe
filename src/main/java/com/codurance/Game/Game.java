@@ -63,7 +63,7 @@ public class Game {
     }
 
     private void makeMoves() {
-        while(lines.checkForWin() == false && board.isEmpty() == false) {
+        while(lines.checkIfThereIsAWinner() == false && board.isEmpty() == false) {
             currentPlayer.makeMove(board, console);
             printBoard();
             switchPlayer();
@@ -71,7 +71,7 @@ public class Game {
     }
 
     private void printDraw() {
-        if(lines.checkForWin() == false && board.isEmpty() == true) {
+        if(lines.checkIfThereIsAWinner() == false && board.isEmpty() == true) {
             console.printDraw();
         }
     }

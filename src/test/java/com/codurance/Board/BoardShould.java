@@ -28,7 +28,7 @@ public class BoardShould {
 
     @Test public void
     creates_an_empty_board_for_printing() {
-        board = new Board(createCells(), mockedBoardFormatter);
+        board = new Board(createEmptyCells(), mockedBoardFormatter);
 
         given(mockedBoardFormatter.format(cells)).willReturn(EMPTY_BOARD);
 
@@ -38,7 +38,7 @@ public class BoardShould {
     @Test public void
     add_a_players_move_to_the_board() {
         BoardFormatter boardFormatter = new BoardFormatter();
-        board = new Board(createCells(), boardFormatter);
+        board = new Board(createEmptyCells(), boardFormatter);
         
         given(boardMarker.getValue()).willReturn("X");
         given(cellReference.getValue()).willReturn("1");
@@ -48,7 +48,23 @@ public class BoardShould {
         assertThat(board.getBoardForPrinting(), is(BOARD_WITH_ONE_MOVE));
     }
 
-    private List<Cell> createCells() {
+    @Test public void
+    know_if_has_empty_cells() {
+        BoardFormatter boardFormatter = new BoardFormatter();
+        board = new Board(createFullCells(), boardFormatter);
+    }
+
+    private List<Cell> createFullCells() {
+        cells = new ArrayList();
+
+        for(int i=0; i<9; i++) {
+            Cell cell = new Cell();
+            cells.add(cell);
+        }
+        return cells;
+    }
+
+    private List<Cell> createEmptyCells() {
         cells = new ArrayList();
 
         for(int i=0; i<9; i++) {

@@ -1,6 +1,7 @@
 package com.codurance.Game;
 
 import com.codurance.Cell.Cell;
+import com.codurance.Cell.CellReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ public class Lines {
 
     private final List<Cell> boardCells;
     private List<Line> lines = new ArrayList();
+    private CellReference cellReference;
 
     public Lines(List<Cell> boardCells) {
         this.boardCells = boardCells;
@@ -35,13 +37,23 @@ public class Lines {
         lines.add(diagonal2);
     }
 
-    public boolean checkForWin() {
+    public boolean checkIfThereIsAWinner() {
         boolean winstate = false;
+
         for(Line line : lines) {
             if(line.cellsHaveSameValues(boardCells)) {
                 winstate = true;
             }
         }
         return winstate;
+    }
+
+    public CellReference calculateMoveForComputer() {
+//        List<CellReference> possibleMoves = new ArrayList();
+//        for (Line line : lines) {
+//            possibleMoves.add(line.checkWinScenario(boardCells));
+//        }
+//        return possibleMoves.get(0);
+        return null;
     }
 }
