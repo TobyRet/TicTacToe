@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class GameShould {
     private final String EMPTY_BOARD = "---\n" + "---\n" + "---";
 
     @Before
-    public void initialise() throws IOException {
+    public void initialise() {
         createMockPlayers();
         game = new Game(allPlayers, board, console, lines);
     }

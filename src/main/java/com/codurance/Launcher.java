@@ -4,6 +4,8 @@ import com.codurance.Board.Board;
 import com.codurance.Board.BoardFormatter;
 import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.Cell;
+import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
+import com.codurance.ComputerStrategies.RandomStrategy;
 import com.codurance.Game.Game;
 import com.codurance.Game.Lines;
 import com.codurance.Game.TicTacToe;
@@ -33,15 +35,16 @@ public class Launcher {
     private static BoardMarker boardMarkerComputer;
     private static ComputerPlayer computerPlayer;
     private static ComputerPlayerStrategies computerPlayerStrategies;
+    private static RandomStrategy randomStrategy;
 
     public static void main(String[] args) {
         createCells();
-        createPlayers();
         scanner = new Scanner(System.in);
         console = new Console(scanner);
         boardFormatter = new BoardFormatter();
         board = new Board(cells, boardFormatter);
         lines = new Lines(board.getCells());
+        createPlayers();
         game = new Game(players, board, console, lines);
         ticTacToe = new TicTacToe(console, game);
 
@@ -60,7 +63,8 @@ public class Launcher {
         humanPlayer2 = new HumanPlayer(playerNameHuman2, boardMarkerHuman2);
 
         boardMarkerComputer = new BoardMarker("X");
-        computerPlayerStrategies = new ComputerPlayerStrategies(lines);
+        randomStrategy = new RandomStrategy(lines);
+        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy);
         computerPlayer = new ComputerPlayer(computerPlayerStrategies, boardMarkerComputer);
 
         players.add(humanPlayer1);

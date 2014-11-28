@@ -3,6 +3,7 @@ package com.codurance.Players;
 import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.CellReference;
+import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
 import com.codurance.Console;
 
 public class ComputerPlayer implements Player {
@@ -25,6 +26,7 @@ public class ComputerPlayer implements Player {
     @Override
     public void makeMove(Board board, Console console) {
         CellReference cellReference = computerPlayerStrategies.requestNextMove();
+        console.computerMoveConfirmation();
         board.addMove(cellReference, boardMarker);
     }
 }

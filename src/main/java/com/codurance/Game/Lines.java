@@ -10,7 +10,6 @@ public class Lines {
 
     private final List<Cell> boardCells;
     private List<Line> lines = new ArrayList();
-    private CellReference cellReference;
 
     public Lines(List<Cell> boardCells) {
         this.boardCells = boardCells;
@@ -48,12 +47,15 @@ public class Lines {
         return winstate;
     }
 
-    public CellReference calculateMoveForComputer() {
-//        List<CellReference> possibleMoves = new ArrayList();
-//        for (Line line : lines) {
-//            possibleMoves.add(line.checkWinScenario(boardCells));
-//        }
-//        return possibleMoves.get(0);
-        return null;
+    public CellReference getFirstAvailableMove() {
+        CellReference cellReference = null;
+
+        for(Cell cell : boardCells) {
+            if (cellReference == null && cell.value().equals("-")) {
+                String convertCellReference = "" + (boardCells.indexOf(cell) + 1);
+                cellReference = new CellReference(convertCellReference);
+            }
+        }
+        return cellReference;
     }
 }

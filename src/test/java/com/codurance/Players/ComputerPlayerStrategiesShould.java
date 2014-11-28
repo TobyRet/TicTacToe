@@ -1,6 +1,8 @@
 package com.codurance.Players;
 
 import com.codurance.Cell.CellReference;
+import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
+import com.codurance.ComputerStrategies.RandomStrategy;
 import com.codurance.Game.Lines;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,15 +17,16 @@ import static org.mockito.BDDMockito.given;
 public class ComputerPlayerStrategiesShould {
 
     private ComputerPlayerStrategies computerPlayerStrategies;
-    @Mock CellReference cellReference;
+    @Mock CellReference mockedCellReference;
     @Mock Lines lines;
+    @Mock
+    RandomStrategy randomStrategy;
 
     @Test public void
-    play_win_strategy() {
-        computerPlayerStrategies = new ComputerPlayerStrategies(lines);
+    return_a_random_move() {
 
-        given(lines.calculateMoveForComputer()).willReturn(cellReference);
-
-        assertThat(computerPlayerStrategies.requestNextMove(), is(cellReference));
+        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy);
+        given(randomStrategy.execute()).willReturn(mockedCellReference);
+        assertThat(computerPlayerStrategies.requestNextMove(), is(mockedCellReference));
     }
 }

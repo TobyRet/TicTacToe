@@ -3,6 +3,7 @@ package com.codurance.Players;
 import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.CellReference;
+import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
 import com.codurance.Console;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,7 @@ public class ComputerPlayerShould {
         given(computerStrategies.requestNextMove()).willReturn(cellReference);
         ComputerPlayer computerPlayer = new ComputerPlayer(computerStrategies, boardMarker);
         computerPlayer.makeMove(board, console);
+        verify(console).computerMoveConfirmation();
         verify(board).addMove(cellReference, boardMarker);
     }
 }

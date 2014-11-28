@@ -3,6 +3,7 @@ package com.codurance.Game;
 import com.codurance.Board.Board;
 import com.codurance.Cell.Cell;
 import com.codurance.Cell.CellReference;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -73,27 +74,11 @@ public class LinesShould {
         assertThat(lines.checkIfThereIsAWinner(), is(false));
     }
 
-//    @Test public void
-//    calculate_next_move_for_computer() {
-//        given(board.getCells()).willReturn(winScenario());
-//        given(line.checkWinScenario(board.getCells())).willReturn(cellReference);
-//        lines = new Lines(board.getCells());
-//        assertThat(lines.calculateMoveForComputer(), is(cellReference));
-//    }
-
-    private List<Cell> winScenario() {
-        cells = new ArrayList();
-        for(int i=0; i<2; i++) {
-            Cell cell = new Cell();
-            cell.setValue("X");
-            cells.add(cell);
-        }
-
-        for(int i=2; i<9; i++) {
-            Cell cell = new Cell();
-            cells.add(cell);
-        }
-        return cells;
+    @Test public void
+    get_a_random_move_for_the_Computer_player() {
+        given(board.getCells()).willReturn(noWin());
+        lines = new Lines(board.getCells());
+        assertThat(lines.getFirstAvailableMove(), is(Matchers.any(CellReference.class)));
     }
 
     private List<Cell> diagonalWinNoughts() {

@@ -44,7 +44,7 @@ public class Console {
         System.out.println("-------------\n");
     }
 
-//    public void printCellTaken() {
-//        System.out.println("\nSorry that cell has already been taken.\n");
-//    }
+    public void computerMoveConfirmation() {
+        System.out.println("Computer has made its move");
+    }
 }
