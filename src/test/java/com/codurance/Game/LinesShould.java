@@ -2,8 +2,7 @@ package com.codurance.Game;
 
 import com.codurance.Board.Board;
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.CellReference;
-import org.hamcrest.Matchers;
+import com.codurance.Cell.Position;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -22,7 +21,8 @@ public class LinesShould {
     private List<Cell> cells;
     @Mock Board board;
     @Mock Line line;
-    @Mock CellReference cellReference;
+    @Mock
+    Position position;
 
 
     @Test public void
@@ -72,13 +72,6 @@ public class LinesShould {
         given(board.getCells()).willReturn(noWin());
         lines = new Lines(board.getCells());
         assertThat(lines.checkIfThereIsAWinner(), is(false));
-    }
-
-    @Test public void
-    get_a_random_move_for_the_Computer_player() {
-        given(board.getCells()).willReturn(noWin());
-        lines = new Lines(board.getCells());
-        assertThat(lines.getFirstAvailableMove(), is(Matchers.any(CellReference.class)));
     }
 
     private List<Cell> diagonalWinNoughts() {

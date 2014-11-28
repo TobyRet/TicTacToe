@@ -1,9 +1,9 @@
 package com.codurance.Cell;
 
-public class CellReference {
+public class Position {
     private String value;
 
-    public CellReference(String value) {
+    public Position(String value) {
         this.value = value;
     }
 

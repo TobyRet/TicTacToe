@@ -1,7 +1,7 @@
 package com.codurance.Game;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class Line {
         return boardCells.get(firstCellIndex).value() == boardCells.get(secondCellIndex).value();
     }
 
-    public CellReference checkWinScenario(List<Cell> boardCells) {
+    public Position checkWinScenario(List<Cell> boardCells) {
         List<String> compareValues = new ArrayList<>();
         compareValues.add(boardCells.get(firstCellIndex).value());
         compareValues.add(boardCells.get(secondCellIndex).value());
@@ -52,6 +52,6 @@ public class Line {
             move = firstCellIndex;
         }
 
-        return new CellReference(String.valueOf(move));
+        return new Position(String.valueOf(move));
     }
 }

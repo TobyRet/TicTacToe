@@ -2,7 +2,7 @@ package com.codurance.Players;
 
 import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 import com.codurance.Console;
 
 public class HumanPlayer implements Player {
@@ -22,7 +22,7 @@ public class HumanPlayer implements Player {
 
     @Override
     public void makeMove(Board board, Console console) {
-        CellReference cellReference = console.requestNextMove(this);
-        board.addMove(cellReference, boardMarker);
+        Position position = console.requestNextMove(this);
+        board.addMove(position, boardMarker);
     }
 }

@@ -1,6 +1,6 @@
 package com.codurance;
 
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 import com.codurance.Game.GameType;
 import com.codurance.Players.Player;
 
@@ -27,9 +27,9 @@ public class Console {
         System.out.println(board);
     }
 
-    public CellReference requestNextMove(Player player) {
+    public Position requestNextMove(Player player) {
         System.out.println(player.getName() + " please enter your move");
-        return new CellReference(scanner.nextLine());
+        return new Position(scanner.nextLine());
     }
 
     public void printWinner(Player player) {

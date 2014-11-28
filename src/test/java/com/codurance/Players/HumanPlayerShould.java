@@ -2,7 +2,7 @@ package com.codurance.Players;
 
 import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 import com.codurance.Console;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,14 +19,15 @@ public class HumanPlayerShould {
     @Mock Console console;
     @Mock Board board;
     @Mock PlayerName playerName;
-    @Mock CellReference cellReference;
+    @Mock
+    Position position;
     @Mock BoardMarker boardMarker;
 
     @Test public void
     add_move_to_the_board() {
-        given(console.requestNextMove(any())).willReturn(cellReference);
+        given(console.requestNextMove(any())).willReturn(position);
         HumanPlayer humanPlayer = new HumanPlayer(playerName, boardMarker);
         humanPlayer.makeMove(board, console);
-        verify(board).addMove(cellReference, boardMarker);
+        verify(board).addMove(position, boardMarker);
     }
 }

@@ -1,17 +1,22 @@
 package com.codurance.ComputerStrategies;
 
 
-import com.codurance.Cell.CellReference;
-import com.codurance.Game.Lines;
+import com.codurance.Cell.Cell;
+import com.codurance.Cell.Position;
+
+import java.util.List;
 
 public class RandomStrategy {
-    private final Lines lines;
 
-    public RandomStrategy(Lines lines) {
-        this.lines = lines;
-    }
+    public Position execute(List<Cell> boardCells) {
+        Position position = null;
 
-    public CellReference execute() {
-        return lines.getFirstAvailableMove();
+        for(Cell cell : boardCells) {
+            if (position == null && cell.value().equals("-")) {
+                String location = "" + (boardCells.indexOf(cell) + 1);
+                position = new Position(location);
+            }
+        }
+        return position;
     }
 }

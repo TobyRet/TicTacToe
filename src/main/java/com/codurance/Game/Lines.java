@@ -1,7 +1,6 @@
 package com.codurance.Game;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.CellReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,15 +46,4 @@ public class Lines {
         return winstate;
     }
 
-    public CellReference getFirstAvailableMove() {
-        CellReference cellReference = null;
-
-        for(Cell cell : boardCells) {
-            if (cellReference == null && cell.value().equals("-")) {
-                String convertCellReference = "" + (boardCells.indexOf(cell) + 1);
-                cellReference = new CellReference(convertCellReference);
-            }
-        }
-        return cellReference;
-    }
 }

@@ -63,8 +63,8 @@ public class Launcher {
         humanPlayer2 = new HumanPlayer(playerNameHuman2, boardMarkerHuman2);
 
         boardMarkerComputer = new BoardMarker("X");
-        randomStrategy = new RandomStrategy(lines);
-        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy);
+        randomStrategy = new RandomStrategy();
+        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy, board);
         computerPlayer = new ComputerPlayer(computerPlayerStrategies, boardMarkerComputer);
 
         players.add(humanPlayer1);

@@ -1,7 +1,7 @@
 package com.codurance.Board;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 
 import java.util.List;
 
@@ -23,12 +23,12 @@ public class Board {
         return boardFormatter.format(cells);
     }
 
-    public void addMove(CellReference cellReference, BoardMarker boardMarker) {
-        cells.get(cellIndexValue(cellReference)).setValue(boardMarker.getValue());
+    public void addMove(Position position, BoardMarker boardMarker) {
+        cells.get(cellIndexValue(position)).setValue(boardMarker.getValue());
     }
 
-    private int cellIndexValue(CellReference cellReference) {
-        return (Integer.parseInt(cellReference.getValue()) - 1);
+    private int cellIndexValue(Position position) {
+        return (Integer.parseInt(position.getValue()) - 1);
     }
 
     public boolean isEmpty() {

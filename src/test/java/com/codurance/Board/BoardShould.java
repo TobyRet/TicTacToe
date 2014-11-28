@@ -1,7 +1,7 @@
 package com.codurance.Board;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -23,7 +23,8 @@ public class BoardShould {
     private final String BOARD_WITH_ONE_MOVE = "\nX - -\n" + "- - -\n" + "- - -\n";
 
     @Mock BoardFormatter mockedBoardFormatter;
-    @Mock CellReference cellReference;
+    @Mock
+    Position position;
     @Mock BoardMarker boardMarker;
 
     @Test public void
@@ -41,9 +42,9 @@ public class BoardShould {
         board = new Board(createEmptyCells(), boardFormatter);
         
         given(boardMarker.getValue()).willReturn("X");
-        given(cellReference.getValue()).willReturn("1");
+        given(position.getValue()).willReturn("1");
 
-        board.addMove(cellReference, boardMarker);
+        board.addMove(position, boardMarker);
 
         assertThat(board.getBoardForPrinting(), is(BOARD_WITH_ONE_MOVE));
     }

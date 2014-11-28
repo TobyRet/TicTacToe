@@ -2,7 +2,7 @@ package com.codurance.Players;
 
 import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
-import com.codurance.Cell.CellReference;
+import com.codurance.Cell.Position;
 import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
 import com.codurance.Console;
 import org.junit.Test;
@@ -16,7 +16,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ComputerPlayerShould {
 
-    @Mock CellReference cellReference;
+    @Mock
+    Position position;
     @Mock Board board;
     @Mock Console console;
     @Mock ComputerPlayerStrategies computerStrategies;
@@ -24,10 +25,10 @@ public class ComputerPlayerShould {
 
     @Test public void
     add_move_to_the_board() {
-        given(computerStrategies.requestNextMove()).willReturn(cellReference);
+        given(computerStrategies.requestNextMove()).willReturn(position);
         ComputerPlayer computerPlayer = new ComputerPlayer(computerStrategies, boardMarker);
         computerPlayer.makeMove(board, console);
         verify(console).computerMoveConfirmation();
-        verify(board).addMove(cellReference, boardMarker);
+        verify(board).addMove(position, boardMarker);
     }
 }

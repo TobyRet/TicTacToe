@@ -1,9 +1,9 @@
 package com.codurance.Players;
 
-import com.codurance.Cell.CellReference;
+import com.codurance.Board.Board;
+import com.codurance.Cell.Position;
 import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
 import com.codurance.ComputerStrategies.RandomStrategy;
-import com.codurance.Game.Lines;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -17,16 +17,16 @@ import static org.mockito.BDDMockito.given;
 public class ComputerPlayerStrategiesShould {
 
     private ComputerPlayerStrategies computerPlayerStrategies;
-    @Mock CellReference mockedCellReference;
-    @Mock Lines lines;
     @Mock
-    RandomStrategy randomStrategy;
+    Position mockedPosition;
+    @Mock Board board;
+    @Mock RandomStrategy randomStrategy;
 
     @Test public void
     return_a_random_move() {
 
-        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy);
-        given(randomStrategy.execute()).willReturn(mockedCellReference);
-        assertThat(computerPlayerStrategies.requestNextMove(), is(mockedCellReference));
+        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy, board);
+        given(randomStrategy.execute(board.getCells())).willReturn(mockedPosition);
+        assertThat(computerPlayerStrategies.requestNextMove(), is(mockedPosition));
     }
 }
