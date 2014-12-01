@@ -9,11 +9,11 @@ import com.codurance.Console;
 public class ComputerPlayer implements Player {
 
     private final String playerName;
-    private final ComputerMove computerPlayerStrategies;
+    private final ComputerMove computerMove;
     private BoardMarker boardMarker;
 
-    public ComputerPlayer(ComputerMove computerPlayerStrategies, BoardMarker boardMarker) {
-        this.computerPlayerStrategies = computerPlayerStrategies;
+    public ComputerPlayer(ComputerMove computerMove, BoardMarker boardMarker) {
+        this.computerMove = computerMove;
         this.boardMarker = boardMarker;
         this.playerName = "Computer";
     }
@@ -25,7 +25,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public void makeMove(Board board, Console console) {
-        Position position = computerPlayerStrategies.calculateNextMove();
+        Position position = computerMove.calculateNextMove();
         console.computerMoveConfirmation();
         board.addMove(position, boardMarker);
     }

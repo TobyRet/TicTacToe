@@ -4,13 +4,14 @@ import com.codurance.Cell.Cell;
 import com.codurance.Cell.Position;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Line {
     private final int firstCellIndex;
     private final int secondCellIndex;
     private final int thirdCellIndex;
-    private int move;
+    private int cellLocation;
 
     public Line(int cell1, int cell2, int cell3) {
         this.firstCellIndex = cell1;
@@ -22,29 +23,19 @@ public class Line {
         return firstCellIsNotNull(boardCells) && firstCellEqualsSecondCell(boardCells) && secondCellEqualsThirdCell(boardCells);
     }
 
-    public Position checkWinScenario(List<Cell> boardCells) {
+    public Position identifyWinScenarioCellPosition(List<Cell> boardCells) {
         List<String> compareValues = new ArrayList<>();
+
         compareValues.add(boardCells.get(firstCellIndex).value());
         compareValues.add(boardCells.get(secondCellIndex).value());
         compareValues.add(boardCells.get(thirdCellIndex).value());
 
-        if(compareValues.get(0) ==  compareValues.get(1)) {
-            move = thirdCellIndex;
+        if(Collections.frequency(compareValues, "X") == 2 && Collections.frequency(compareValues, "-") == 1) {
+            cellLocation = compareValues.indexOf("-");
+            return new Position(String.valueOf(cellLocation));
+        } else {
+            return null;
         }
-
-        if(compareValues.get(0) ==  compareValues.get(2)) {
-            move = secondCellIndex;
-        }
-
-        if(compareValues.get(1) ==  compareValues.get(2)) {
-            move = firstCellIndex;
-        }
-
-        return new Position(String.valueOf(move));
-    }
-
-    public Position identifyWinScenarioCellPosition(List<Cell> boardCells) {
-        return new Position("3");
     }
 
     private boolean firstCellIsNotNull(List<Cell> boardCells) {

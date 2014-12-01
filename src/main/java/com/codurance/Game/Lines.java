@@ -35,9 +35,8 @@ public class Lines {
             Position position = line.identifyWinScenarioCellPosition(boardCells);
             possiblePositions.add(position);
         }
-
         possiblePositions.removeAll(Collections.singleton(null));
 
-        return possiblePositions.get(0);
+        return possiblePositions.isEmpty() ? null : possiblePositions.get(0);
     }
 }

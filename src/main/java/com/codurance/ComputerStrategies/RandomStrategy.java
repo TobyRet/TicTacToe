@@ -8,17 +8,21 @@ import java.util.List;
 
 public class RandomStrategy implements ComputerPlayerStrategy {
 
+    private boolean notFoundEmptyPosition;
+
     @Override
     public Position execute(List<Cell> boardCells) {
-        Position position = null;
 
         for(Cell cell : boardCells) {
-            if (position == null && cell.value().equals("-")) {
+            notFoundEmptyPosition = true;
+            System.out.println("Current board values " + cell.value());
+            if (notFoundEmptyPosition && cell.value().equals("-")) {
                 String location = "" + (boardCells.indexOf(cell) + 1);
-                position = new Position(location);
+                notFoundEmptyPosition = false;
+                return new Position(location);
             }
         }
-        return position;
+        return null;
     }
 
 

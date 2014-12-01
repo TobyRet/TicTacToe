@@ -29,10 +29,10 @@ public class LineShould {
     }
 
     @Test public void
-    return_cell_reference_for_win_scenario() {
+    know_return_correct_cell_if_there_a_computer_can_play_win_strategy() {
         line = new Line(0,1,2);
         List<Cell> boardCells = winScenario1();
-        assertThat(line.checkWinScenario(boardCells).getValue(), is("2"));
+        assertThat(line.identifyWinScenarioCellPosition(boardCells).getValue(), is("2"));
     }
 
     private List<Cell> winScenario1() {

@@ -18,6 +18,7 @@ public class ComputerMove {
 
     public Position calculateNextMove() {
         List<Position> possibleMoves = computerStrategyList.stream().map(strategy -> strategy.execute(board.getCells())).collect(Collectors.toList());
+        System.out.println(possibleMoves);
         possibleMoves.removeAll(Collections.singleton(null));
         return possibleMoves.get(0);
     }
