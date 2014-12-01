@@ -1,9 +1,8 @@
-package com.codurance.Players;
+package com.codurance.ComputerStrategies;
 
 import com.codurance.Board.Board;
 import com.codurance.Cell.Cell;
 import com.codurance.Cell.Position;
-import com.codurance.ComputerStrategies.RandomStrategy;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;

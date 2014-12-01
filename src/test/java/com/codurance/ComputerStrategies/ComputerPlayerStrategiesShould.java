@@ -1,4 +1,4 @@
-package com.codurance.Players;
+package com.codurance.ComputerStrategies;
 
 import com.codurance.Board.Board;
 import com.codurance.Cell.Position;
@@ -26,8 +26,7 @@ public class ComputerPlayerStrategiesShould {
     @Mock Position mockedPosition;
     @Mock Board board;
     @Mock RandomStrategy randomStrategy;
-    @Mock
-    WinStrategy winStrategy;
+    @Mock WinStrategy winStrategy;
     private List<ComputerPlayerStrategy> computerStrategyList;
 
     @Before
@@ -35,7 +34,6 @@ public class ComputerPlayerStrategiesShould {
         addStrategiesToList();
         computerPlayerStrategies = new ComputerMove(computerStrategyList, board);
     }
-
 
     @Test public void
     return_next_available_empty_cell() {

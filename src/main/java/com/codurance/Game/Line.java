@@ -22,18 +22,6 @@ public class Line {
         return firstCellIsNotNull(boardCells) && firstCellEqualsSecondCell(boardCells) && secondCellEqualsThirdCell(boardCells);
     }
 
-    private boolean firstCellIsNotNull(List<Cell> boardCells) {
-        return boardCells.get(firstCellIndex).value() != "-";
-    }
-
-    private boolean secondCellEqualsThirdCell(List<Cell> boardCells) {
-        return boardCells.get(secondCellIndex).value() == boardCells.get(thirdCellIndex).value();
-    }
-
-    private boolean firstCellEqualsSecondCell(List<Cell> boardCells) {
-        return boardCells.get(firstCellIndex).value() == boardCells.get(secondCellIndex).value();
-    }
-
     public Position checkWinScenario(List<Cell> boardCells) {
         List<String> compareValues = new ArrayList<>();
         compareValues.add(boardCells.get(firstCellIndex).value());
@@ -53,5 +41,21 @@ public class Line {
         }
 
         return new Position(String.valueOf(move));
+    }
+
+    public Position identifyWinScenarioCellPosition(List<Cell> boardCells) {
+        return new Position("3");
+    }
+
+    private boolean firstCellIsNotNull(List<Cell> boardCells) {
+        return boardCells.get(firstCellIndex).value() != "-";
+    }
+
+    private boolean secondCellEqualsThirdCell(List<Cell> boardCells) {
+        return boardCells.get(secondCellIndex).value() == boardCells.get(thirdCellIndex).value();
+    }
+
+    private boolean firstCellEqualsSecondCell(List<Cell> boardCells) {
+        return boardCells.get(firstCellIndex).value() == boardCells.get(secondCellIndex).value();
     }
 }

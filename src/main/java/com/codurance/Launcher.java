@@ -8,6 +8,7 @@ import com.codurance.ComputerStrategies.ComputerMove;
 import com.codurance.ComputerStrategies.ComputerPlayerStrategy;
 import com.codurance.ComputerStrategies.RandomStrategy;
 import com.codurance.Game.Game;
+import com.codurance.Game.Line;
 import com.codurance.Game.Lines;
 import com.codurance.Game.TicTacToe;
 import com.codurance.Players.*;
@@ -38,6 +39,7 @@ public class Launcher {
     private static ComputerMove computerPlayerStrategies;
     private static RandomStrategy randomStrategy;
     private static List<ComputerPlayerStrategy> computerStrategyList;
+    private static List<Line> linesList;
 
     public static void main(String[] args) {
         createCells();
@@ -45,7 +47,7 @@ public class Launcher {
         console = new Console(scanner);
         boardFormatter = new BoardFormatter();
         board = new Board(cells, boardFormatter);
-        lines = new Lines(board.getCells());
+        lines = new Lines(board.getCells(), linesList);
         createPlayers();
         game = new Game(players, board, console, lines);
         ticTacToe = new TicTacToe(console, game);
