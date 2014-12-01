@@ -4,7 +4,8 @@ import com.codurance.Board.Board;
 import com.codurance.Board.BoardFormatter;
 import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.Cell;
-import com.codurance.ComputerStrategies.ComputerPlayerStrategies;
+import com.codurance.ComputerStrategies.ComputerMove;
+import com.codurance.ComputerStrategies.ComputerPlayerStrategy;
 import com.codurance.ComputerStrategies.RandomStrategy;
 import com.codurance.Game.Game;
 import com.codurance.Game.Lines;
@@ -34,8 +35,9 @@ public class Launcher {
     private static HumanPlayer humanPlayer2;
     private static BoardMarker boardMarkerComputer;
     private static ComputerPlayer computerPlayer;
-    private static ComputerPlayerStrategies computerPlayerStrategies;
+    private static ComputerMove computerPlayerStrategies;
     private static RandomStrategy randomStrategy;
+    private static List<ComputerPlayerStrategy> computerStrategyList;
 
     public static void main(String[] args) {
         createCells();
@@ -64,7 +66,7 @@ public class Launcher {
 
         boardMarkerComputer = new BoardMarker("X");
         randomStrategy = new RandomStrategy();
-        computerPlayerStrategies = new ComputerPlayerStrategies(randomStrategy, board);
+        computerPlayerStrategies = new ComputerMove(computerStrategyList, board);
         computerPlayer = new ComputerPlayer(computerPlayerStrategies, boardMarkerComputer);
 
         players.add(humanPlayer1);

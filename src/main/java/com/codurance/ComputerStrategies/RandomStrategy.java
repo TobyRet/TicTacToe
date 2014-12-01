@@ -6,8 +6,9 @@ import com.codurance.Cell.Position;
 
 import java.util.List;
 
-public class RandomStrategy {
+public class RandomStrategy implements ComputerPlayerStrategy {
 
+    @Override
     public Position execute(List<Cell> boardCells) {
         Position position = null;
 
@@ -19,4 +20,6 @@ public class RandomStrategy {
         }
         return position;
     }
+
+
 }
