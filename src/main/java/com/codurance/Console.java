@@ -2,6 +2,7 @@ package com.codurance;
 
 import com.codurance.Cell.Position;
 import com.codurance.Game.GameType;
+import com.codurance.Game.Positions;
 import com.codurance.Players.Player;
 
 import java.util.Scanner;
@@ -46,5 +47,9 @@ public class Console {
 
     public void computerMoveConfirmation() {
         System.out.println("Computer has made its move");
+    }
+
+    public void printPositions(Positions positions) {
+
     }
 }

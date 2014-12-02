@@ -1,9 +1,9 @@
 package com.codurance.Players;
 
-import com.codurance.Board.Board;
 import com.codurance.Board.BoardMarker;
 import com.codurance.Cell.Position;
 import com.codurance.Console;
+import com.codurance.Game.Positions;
 
 public class HumanPlayer implements Player {
 
@@ -21,8 +21,8 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void makeMove(Board board, Console console) {
-        Position position = console.requestNextMove(this);
-        board.addMove(position, boardMarker);
+    public void makeMove(Positions positions, Console console) {
+        Position move = console.requestNextMove(this);
+        positions.record(move);
     }
 }

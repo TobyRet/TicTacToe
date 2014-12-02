@@ -1,6 +1,5 @@
 package com.codurance.Game;
 
-import com.codurance.Board.Board;
 import com.codurance.Console;
 import com.codurance.Players.Player;
 
@@ -9,18 +8,16 @@ import java.util.List;
 
 public class Game {
 
-    private final String SINGLEPLAYER_GAME = "S";
-    private final String MULTIPLAYER_GAME = "M";
-    private final Board board;
     private final List<Player> players;
     private final Console console;
     private final Lines lines;
     private List<Player> gamePlayers = new ArrayList();
     private Player currentPlayer;
+    private Positions positions;
 
-    public Game(List<Player> players, Board board, Console console, Lines lines) {
+    public Game(List<Player> players, Positions positions, Console console, Lines lines) {
         this.players = players;
-        this.board = board;
+        this.positions = positions;
         this.console = console;
         this.lines = lines;
     }
@@ -33,13 +30,13 @@ public class Game {
     }
 
     private void checkIfSinglePlayerGameSelected(GameType gameType) {
-        if(gameType.getValue().equals(SINGLEPLAYER_GAME)) {
+        if(gameType.isSinglePlayer()) {
             loadComputerAndHumanPlayers();
         }
     }
 
     private void checkIfMultiPlayerGameSelected(GameType gameType) {
-        if(gameType.getValue().equals(MULTIPLAYER_GAME)) {
+        if(gameType.isMultiPlayer()) {
             loadHumanPlayers();
         }
     }
@@ -58,25 +55,33 @@ public class Game {
         currentPlayer = gamePlayers.get(0);
 
         makeMoves();
-        printDraw();
-        printWinner();
+        checkForDraw();
+        announceWinner();
     }
 
     private void makeMoves() {
-        while(lines.checkIfThereIsAWinner() == false && board.isEmpty() == false) {
-            currentPlayer.makeMove(board, console);
+        while(gameIncomplete()) {
+            currentPlayer.makeMove(positions, console);
             printBoard();
             switchPlayer();
         }
     }
 
-    private void printDraw() {
-        if(lines.checkIfThereIsAWinner() == false && board.isEmpty() == true) {
+    private boolean gameIncomplete() {
+        return lines.isThereAWinner() == false && positions.areEmpty() == true;
+    }
+
+    private void checkForDraw() {
+        if(thereIsADraw()) {
             console.printDraw();
         }
     }
 
-    private void printWinner() {
+    private boolean thereIsADraw() {
+        return lines.isThereAWinner() == false && positions.areEmpty() == false;
+    }
+
+    private void announceWinner() {
         switchPlayer();
         console.printWinner(currentPlayer);
     }
@@ -86,8 +91,7 @@ public class Game {
     }
 
     private void printBoard() {
-        String boardForPrinting = board.getBoardForPrinting();
-        console.printBoard(boardForPrinting);
+        console.printPositions(positions);
     }
 
     public List<Player> getGamePlayers() {

@@ -1,13 +1,17 @@
 package com.codurance.Game;
 
 public class GameType {
-    private final String userSelection;
+    private String gameType;
 
-    public GameType(String userSelection) {
-        this.userSelection = userSelection;
+    public GameType(String gameType) {
+        this.gameType = gameType;
     }
 
-    public String getValue() {
-        return userSelection;
+    public boolean isSinglePlayer() {
+        return gameType.equals("S");
+    }
+
+    public boolean isMultiPlayer() {
+        return gameType.equals("M");
     }
 }

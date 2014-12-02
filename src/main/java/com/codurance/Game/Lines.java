@@ -17,7 +17,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public boolean checkIfThereIsAWinner() {
+    public boolean isThereAWinner() {
         boolean winstate = false;
 
         for(Line line : lines) {

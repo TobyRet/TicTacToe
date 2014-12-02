@@ -22,91 +22,143 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GameShould {
 
-    @Mock HumanPlayer humanPlayer1;
-    @Mock HumanPlayer humanPlayer2;
-    @Mock ComputerPlayer computerPlayer;
+    private HumanPlayer humanPlayer1;
+    private HumanPlayer humanPlayer2;
+    private ComputerPlayer computerPlayer;
+    private Game game;
+    private List<Player> allPlayers;
+    private Positions positions;
+    private List<Player> allMockPlayers;
     @Mock GameType gameType;
     @Mock Board board;
     @Mock Console console;
     @Mock Lines lines;
-    private Game game;
-    private List<Player> allPlayers;
-    private String MULTI_PLAYER = "M";
-    private final String SINGLE_PLAYER = "S";
-    private final String EMPTY_BOARD = "---\n" + "---\n" + "---";
+    @Mock Positions mockPositions;
+    @Mock Player mockHumanPlayer1;
+    @Mock Player mockHumanPlayer2;
+    @Mock Player mockComputerPlayer;
 
     @Before
     public void initialise() {
-        createMockPlayers();
-        game = new Game(allPlayers, board, console, lines);
+        createPlayers();
+        game = new Game(allPlayers, positions, console, lines);
     }
 
     @Test public void
     loads_human_players_when_multi_player_game() {
-        given(gameType.getValue()).willReturn(MULTI_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(true);
+        given(gameType.isMultiPlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(true);
+
         game.start(gameType);
+
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, humanPlayer2));
         assertThat(game.getGamePlayers(), not(hasItem(computerPlayer)));
     }
 
     @Test public void
     loads_computer_player_and_one_human_player_when_single_game() {
-        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(true);
+        given(gameType.isSinglePlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(true);
+
         game.start(gameType);
+
         assertThat(game.getGamePlayers(), hasItems(humanPlayer1, computerPlayer));
         assertThat(game.getGamePlayers(), not(hasItem(humanPlayer2)));
     }
 
     @Test public void
-    loads_an_empty_board() {
-        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
-        given(board.getBoardForPrinting()).willReturn(EMPTY_BOARD);
-        given(lines.checkIfThereIsAWinner()).willReturn(true);
+    prints_board_to_screen() {
+        positions = new Positions();
+        game = new Game(allPlayers, positions, console, lines);
+
+        given(gameType.isSinglePlayer()).willReturn(true);
+
         game.start(gameType);
-        verify(console).printBoard(EMPTY_BOARD);
+
+        verify(console).printPositions(positions);
     }
 
     @Test public void
     start_multi_player_game_and_allow_players_to_make_moves() {
-        given(gameType.getValue()).willReturn(MULTI_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(false, false, true);
+        createMockPlayers();
+
+        game = new Game(allMockPlayers, mockPositions, console, lines);
+
+        System.out.println(allMockPlayers);
+
+        given(gameType.isMultiPlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(false, false, true);
+        given(mockPositions.areEmpty()).willReturn(true, true, true);
+
         game.start(gameType);
-        verify(humanPlayer1).makeMove(board, console);
-        verify(humanPlayer2).makeMove(board, console);
+
+        verify(mockHumanPlayer1).makeMove(mockPositions, console);
+        verify(mockHumanPlayer2).makeMove(mockPositions, console);
     }
 
     @Test public void
     start_single_player_game_and_allow_players_to_make_moves() {
-        given(gameType.getValue()).willReturn(SINGLE_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(false, false, true);
+        createMockPlayers();
+
+        game = new Game(allMockPlayers, mockPositions, console, lines);
+
+        given(gameType.isSinglePlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(false, false, true);
+        given(mockPositions.areEmpty()).willReturn(true, true, true);
+
         game.start(gameType);
-        verify(humanPlayer1).makeMove(board, console);
-        verify(computerPlayer).makeMove(board, console);
+
+        verify(mockHumanPlayer1).makeMove(mockPositions, console);
+        verify(mockComputerPlayer).makeMove(mockPositions, console);
     }
 
     @Test public void
-    stop_game_if_a_player_wins() {
-        given(gameType.getValue()).willReturn(MULTI_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(false, false, false, false, false, true);
+    announce_winner_if_a_player_wins() {
+        createPlayers();
+
+        game = new Game(allPlayers, mockPositions, console, lines);
+
+        given(gameType.isMultiPlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(false, false, false, false, false, true);
+        given(mockPositions.areEmpty()).willReturn(true);
+
         game.start(gameType);
+
         verify(console).printWinner(humanPlayer1);
     }
 
     @Test public void
-    stop_game_if_a_draw() {
-        given(gameType.getValue()).willReturn(MULTI_PLAYER);
-        given(lines.checkIfThereIsAWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
-        given(board.isEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
+    announce_a_draw_if_a_draw() {
+        createPlayers();
+
+        game = new Game(allPlayers, mockPositions, console, lines);
+
+        given(gameType.isMultiPlayer()).willReturn(true);
+        given(lines.isThereAWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
+        given(mockPositions.areEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
+
         game.start(gameType);
+
         verify(console).printDraw();
     }
 
-    private void createMockPlayers() {
+    private void createPlayers() {
         allPlayers = new ArrayList();
+
+        humanPlayer1 = new HumanPlayer(null, null);
+        humanPlayer2 = new HumanPlayer(null, null);
+        computerPlayer = new ComputerPlayer(null, null);
+
         allPlayers.add(humanPlayer1);
         allPlayers.add(humanPlayer2);
         allPlayers.add(computerPlayer);
+    }
+
+    private void createMockPlayers() {
+        allMockPlayers = new ArrayList();
+
+        allMockPlayers.add(mockHumanPlayer1);
+        allMockPlayers.add(mockHumanPlayer2);
+        allMockPlayers.add(mockComputerPlayer);
     }
 }

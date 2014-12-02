@@ -27,49 +27,49 @@ public class LinesShould {
     set_win_state_to_true_when_each_cell_in_a_row_is_a_cross() {
         given(board.getCells()).willReturn(rowWinCrosses());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_row_is_a_nought() {
         given(board.getCells()).willReturn(rowWinNoughts());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_column_is_a_cross() {
         given(board.getCells()).willReturn(columnWinCrosses());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_column_is_a_nought() {
         given(board.getCells()).willReturn(columnWinNoughts());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_cross() {
         given(board.getCells()).willReturn(diagonalWinCrosses());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_nought() {
         given(board.getCells()).willReturn(diagonalWinNoughts());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(true));
+        assertThat(lines.isThereAWinner(), is(true));
     }
 
     @Test public void
     not_change_win_state_if_there_is_no_winning_combination() {
         given(board.getCells()).willReturn(noWin());
         lines = new Lines(board.getCells(), createLines());
-        assertThat(lines.checkIfThereIsAWinner(), is(false));
+        assertThat(lines.isThereAWinner(), is(false));
     }
 
     @Test public void
