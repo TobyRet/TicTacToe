@@ -23,6 +23,6 @@ public class HumanPlayer implements Player {
     @Override
     public void makeMove(Positions positions, Console console) {
         Position move = console.requestNextMove(this);
-        positions.record(move);
+        positions.addMove(move);
     }
 }

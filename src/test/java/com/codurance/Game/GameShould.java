@@ -1,6 +1,5 @@
 package com.codurance.Game;
 
-import com.codurance.Board.Board;
 import com.codurance.Console;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
@@ -30,7 +29,6 @@ public class GameShould {
     private Positions positions;
     private List<Player> allMockPlayers;
     @Mock GameType gameType;
-    @Mock Board board;
     @Mock Console console;
     @Mock Lines lines;
     @Mock Positions mockPositions;
