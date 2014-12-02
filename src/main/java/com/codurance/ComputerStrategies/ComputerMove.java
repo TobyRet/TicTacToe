@@ -1,7 +1,7 @@
-package com.codurance.ComputerStrategies;
+/*package com.codurance.ComputerStrategies;
 
 import com.codurance.Board.Board;
-import com.codurance.Cell.Position;
+import com.codurance.Positions.Position;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,4 +22,4 @@ public class ComputerMove {
         possibleMoves.removeAll(Collections.singleton(null));
         return possibleMoves.get(0);
     }
-}
+}*/

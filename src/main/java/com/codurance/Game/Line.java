@@ -1,11 +1,4 @@
-package com.codurance.Game;
-
-import com.codurance.Cell.Cell;
-import com.codurance.Cell.Position;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+/*package com.codurance.Game;
 
 public class Line {
     private final int firstCellIndex;
@@ -49,4 +42,4 @@ public class Line {
     private boolean firstCellEqualsSecondCell(List<Cell> boardCells) {
         return boardCells.get(firstCellIndex).value() == boardCells.get(secondCellIndex).value();
     }
-}
+}*/

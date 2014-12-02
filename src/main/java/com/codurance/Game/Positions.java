@@ -1,20 +1,31 @@
 package com.codurance.Game;
 
-import com.codurance.Cell.Position;
+import com.codurance.Positions.Marker;
+import com.codurance.Positions.Position;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Positions {
 
-    public List<Position> positionsList = new ArrayList(9);
+    private static final String EMPTY_VALUE = "-";
+    private List<String> positions = new ArrayList<>(9);
+
+    public Positions() {
+        createPositions();
+    }
 
     public boolean areEmpty() {
-        return positionsList.size() <= 9;
+        return positions.contains(EMPTY_VALUE);
     }
 
-    public void addMove(Position position) {
-        positionsList.add(position);
+    public void addMove(Marker marker, Position position) {
+        positions.set(position.value(), marker.value());
     }
 
+    private void createPositions() {
+        for(int i=0; i < 9; i++) {
+            positions.add(EMPTY_VALUE);
+        }
+    }
 }

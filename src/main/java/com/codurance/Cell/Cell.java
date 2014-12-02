@@ -1,4 +1,4 @@
-package com.codurance.Cell;
+/*package com.codurance.Cell;
 
 public class Cell {
 
@@ -15,4 +15,4 @@ public class Cell {
     public String value() {
         return value;
     }
-}
+}*/

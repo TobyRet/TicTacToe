@@ -1,4 +1,4 @@
-package com.codurance.Board;
+/*package com.codurance.Board;
 
 public class BoardMarker {
     private String value;
@@ -10,4 +10,4 @@ public class BoardMarker {
     public String getValue() {
         return value;
     }
-}
+}*/

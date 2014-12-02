@@ -1,3 +1,4 @@
+/*
 package com.codurance.Players;
 
 import com.codurance.Board.Board;
@@ -9,3 +10,4 @@ public interface Player {
 
     void makeMove(Positions board, Console console);
 }
+*/

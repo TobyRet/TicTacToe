@@ -1,8 +1,5 @@
-package com.codurance.Players;
+/*package com.codurance.Players;
 
-import com.codurance.Board.BoardMarker;
-import com.codurance.Cell.Position;
-import com.codurance.ComputerStrategies.ComputerMove;
 import com.codurance.Console;
 import com.codurance.Game.Positions;
 
@@ -27,6 +24,6 @@ public class ComputerPlayer implements Player {
     public void makeMove(Positions board, Console console) {
         Position position = computerMove.calculateNextMove();
         console.computerMoveConfirmation();
-//        board.addMove(position, boardMarker);
+        board.addMove(position, boardMarker);
     }
-}
+}*/

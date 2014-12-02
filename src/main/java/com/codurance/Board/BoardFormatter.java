@@ -1,4 +1,4 @@
-package com.codurance.Board;
+/*package com.codurance.Board;
 
 import com.codurance.Cell.Cell;
 
@@ -12,4 +12,4 @@ public class BoardFormatter {
                 cells.get(6).value() + " " + cells.get(7).value() + " " + cells.get(8).value() + "\n";
         return formattedBoard;
     }
-}
+}*/

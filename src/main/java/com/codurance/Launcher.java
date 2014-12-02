@@ -1,6 +1,6 @@
-package com.codurance;
-
-public class Launcher {
+//package com.codurance;
+//
+//public class Launcher {
 //
 //    private static Console console;
 //    private static Game game;
@@ -118,4 +118,4 @@ public class Launcher {
 //            cells.add(cell);
 //        }
 //    }
-}
+//}

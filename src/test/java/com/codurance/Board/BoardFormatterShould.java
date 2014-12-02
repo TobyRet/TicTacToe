@@ -1,4 +1,4 @@
-package com.codurance.Board;
+/*package com.codurance.Board;
 
 import com.codurance.Board.BoardFormatter;
 import com.codurance.Cell.Cell;
@@ -30,4 +30,4 @@ public class BoardFormatterShould {
         }
         return cells;
     }
-}
+}*/

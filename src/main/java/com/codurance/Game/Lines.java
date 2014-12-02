@@ -1,10 +1,8 @@
-package com.codurance.Game;
+/*package com.codurance.Game;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.Position;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lines {
@@ -39,4 +37,4 @@ public class Lines {
 
         return possiblePositions.isEmpty() ? null : possiblePositions.get(0);
     }
-}
+}*/

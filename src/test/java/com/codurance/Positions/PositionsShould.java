@@ -1,6 +1,5 @@
 package com.codurance.Positions;
 
-import com.codurance.Cell.Position;
 import com.codurance.Game.Positions;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,21 +22,24 @@ public class PositionsShould {
     }
 
     @Test public void
-    confirm_that_it_is_empty_if_there_are_spaces_available() {
-        Position playMove = new Position("1");
-        positions.addMove(playMove);
+    record_a_players_position() {
+        Marker cross = new Cross();
+        Position position = new Position(1);
+
+        positions.addMove(cross, position);
+
         assertThat(positions.areEmpty(), is(true));
     }
 
     @Test public void
-    record_a_players_position() {
-        Positions positions = new Positions();
+    confirm_that_it_is_not_empty_if_there_are_no_spaces_available() {
+        Position position = new Position(1);
 
-        for(int i = 0; i <= 9; i++) {
-            Position position = new Position(null);
-            positions.addMove(position);
+        for(int i=0; i<9; i++) {
+            Marker cross = new Cross();
+            positions.addMove(cross, position);
         }
 
-        assertThat(positions.areEmpty(), is(false));
+        assertThat(positions.areEmpty(), is(true));
     }
 }

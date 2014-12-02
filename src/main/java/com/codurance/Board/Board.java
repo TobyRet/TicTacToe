@@ -1,7 +1,7 @@
-package com.codurance.Board;
+/*package com.codurance.Board;
 
 import com.codurance.Cell.Cell;
-import com.codurance.Cell.Position;
+import com.codurance.Positions.Position;
 
 import java.util.List;
 
@@ -28,10 +28,10 @@ public class Board {
     }
 
     private int cellIndexValue(Position position) {
-        return (Integer.parseInt(position.getValue()) - 1);
+        return 1; //(Integer.parseInt(position.value()) - 1); // fix this
     }
 
     public boolean isEmpty() {
         return false;
     }
-}
+}*/
