@@ -45,7 +45,7 @@ public class Console {
         System.out.println("Computer has made its move");
     }
 
-    public void printPositions(String formatterPositions) {
-
+    public void printPositions(String formattedPositions) {
+        System.out.println(formattedPositions);
     }
 }
