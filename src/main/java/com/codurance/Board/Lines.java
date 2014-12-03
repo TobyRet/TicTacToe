@@ -9,7 +9,7 @@ public class Lines {
         this.lines = lines;
     }
 
-    public boolean checkLinesForWinner(Positions positions) {
+    public boolean checkLinesForWinner(List<String> positions) {
         boolean winner = false;
 
         for(Line line : lines) {
@@ -17,19 +17,6 @@ public class Lines {
                 winner = true;
             }
         }
-
         return winner;
     }
-
-//    public Position determineWinPosition(List<Cell> boardCells) {
-//        List<Position> possiblePositions = new ArrayList();
-//
-//        for(Line line : lines) {
-//            Position position = line.identifyWinScenarioCellPosition(boardCells);
-//            possiblePositions.add(position);
-//        }
-//        possiblePositions.removeAll(Collections.singleton(null));
-//
-//        return possiblePositions.isEmpty() ? null : possiblePositions.get(0);
-//    }
 }

@@ -30,12 +30,11 @@ public class GameShould {
     private Player computerPlayer;
     private Game game;
     private List<Player> allPlayers;
-    private Positions positions;
     private List<Player> allMockPlayers;
+    @Mock Positions positions;
     @Mock GameType gameType;
     @Mock Console console;
-    @Mock
-    Lines lines;
+    @Mock Lines lines;
     @Mock Positions mockPositions;
     @Mock Player mockHumanPlayer1;
     @Mock Player mockHumanPlayer2;
@@ -50,7 +49,7 @@ public class GameShould {
     @Test public void
     loads_human_players_when_multi_player_game() {
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(true);
+        given(positions.checkForWinner()).willReturn(true);
 
         game.start(gameType);
 
@@ -61,7 +60,7 @@ public class GameShould {
     @Test public void
     loads_computer_player_and_one_human_player_when_single_game() {
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(true);
+        given(positions.checkForWinner()).willReturn(true);
 
         game.start(gameType);
 
@@ -82,43 +81,43 @@ public class GameShould {
     start_multi_player_game_and_allow_players_to_make_moves() {
         createMockPlayers();
 
-        game = new Game(allMockPlayers, mockPositions, console, lines);
+        game = new Game(allMockPlayers, positions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(false, false, true);
-        given(mockPositions.areEmpty()).willReturn(true, true, true);
+        given(positions.checkForWinner()).willReturn(false, false, true);
+        given(positions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
 
-        verify(mockHumanPlayer1).makeMove(mockPositions, console);
-        verify(mockHumanPlayer2).makeMove(mockPositions, console);
+        verify(mockHumanPlayer1).makeMove(positions, console);
+        verify(mockHumanPlayer2).makeMove(positions, console);
     }
 
     @Test public void
     start_single_player_game_and_allow_players_to_make_moves() {
         createMockPlayers();
 
-        game = new Game(allMockPlayers, mockPositions, console, lines);
+        game = new Game(allMockPlayers, positions, console, lines);
 
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(false, false, true);
-        given(mockPositions.areEmpty()).willReturn(true, true, true);
+        given(positions.checkForWinner()).willReturn(false, false, true);
+        given(positions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
 
-        verify(mockHumanPlayer1).makeMove(mockPositions, console);
-        verify(mockComputerPlayer).makeMove(mockPositions, console);
+        verify(mockHumanPlayer1).makeMove(positions, console);
+        verify(mockComputerPlayer).makeMove(positions, console);
     }
 
     @Test public void
     announce_winner_if_a_player_wins() {
         createPlayers();
 
-        game = new Game(allPlayers, mockPositions, console, lines);
+        game = new Game(allPlayers, positions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(false, false, false, false, false, true);
-        given(mockPositions.areEmpty()).willReturn(true);
+        given(positions.checkForWinner()).willReturn(false, false, false, false, false, true);
+        given(positions.areEmpty()).willReturn(true);
 
         game.start(gameType);
 
@@ -129,11 +128,11 @@ public class GameShould {
     announce_a_draw_if_a_draw() {
         createPlayers();
 
-        game = new Game(allPlayers, mockPositions, console, lines);
+        game = new Game(allPlayers, positions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkLinesForWinner(positions)).willReturn(false, false, false, false, false, false, false, false, false, false);
-        given(mockPositions.areEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
+        given(positions.checkForWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
+        given(positions.areEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
 
         game.start(gameType);
 

@@ -1,49 +1,42 @@
 package com.codurance.Board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Line {
-    private final int firstCellIndex;
-    private final int secondCellIndex;
-    private final int thirdCellIndex;
-    private int cellLocation;
+    private final int firstPositionIndex;
+    private final int secondPositionIndex;
+    private final int thirdPositionIndex;
+    private List<String> lineValues;
 
     public Line(int cell1, int cell2, int cell3) {
-        this.firstCellIndex = cell1;
-        this.secondCellIndex = cell2;
-        this.thirdCellIndex = cell3;
+        this.firstPositionIndex = cell1;
+        this.secondPositionIndex = cell2;
+        this.thirdPositionIndex = cell3;
     }
 
-    public boolean doYouHaveWinner(Positions positions) {
-        return false;
+    public boolean doYouHaveWinner(List<String> positions) {
+        lineValues = getLineValues(positions);
+
+        return lineHasNoEmptyPositions() && lineHasEqualValues();
     }
 
-//    public boolean cellsHaveSameValues(List<Cell> boardCells) {
-//        return firstCellIsNotNull(boardCells) && firstCellEqualsSecondCell(boardCells) && secondCellEqualsThirdCell(boardCells);
-//    }
-//
-//    public Position identifyWinScenarioCellPosition(List<Cell> boardCells) {
-//        List<String> compareValues = new ArrayList<>();
-//
-//        compareValues.add(boardCells.get(firstCellIndex).value());
-//        compareValues.add(boardCells.get(secondCellIndex).value());
-//        compareValues.add(boardCells.get(thirdCellIndex).value());
-//
-//        if(Collections.frequency(compareValues, "X") == 2 && Collections.frequency(compareValues, "-") == 1) {
-//            cellLocation = compareValues.indexOf("-");
-//            return new Position(String.valueOf(cellLocation));
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    private boolean firstCellIsNotNull(List<Cell> boardCells) {
-//        return boardCells.get(firstCellIndex).value() != "-";
-//    }
-//
-//    private boolean secondCellEqualsThirdCell(List<Cell> boardCells) {
-//        return boardCells.get(secondCellIndex).value() == boardCells.get(thirdCellIndex).value();
-//    }
-//
-//    private boolean firstCellEqualsSecondCell(List<Cell> boardCells) {
-//        return boardCells.get(firstCellIndex).value() == boardCells.get(secondCellIndex).value();
-//    }
+    private List<String> getLineValues(List<String> positions) {
+        List<String> lineValues = new ArrayList<>();
+
+        lineValues.add(positions.get(firstPositionIndex));
+        lineValues.add(positions.get(secondPositionIndex));
+        lineValues.add(positions.get(thirdPositionIndex));
+
+        return lineValues;
+    }
+
+    private boolean lineHasEqualValues() {
+        return lineValues.get(0).equals(lineValues.get(1)) && lineValues.get(1).equals(lineValues.get(2));
+    }
+
+    private boolean lineHasNoEmptyPositions() {
+        return !lineValues.contains("-");
+    }
+
 }

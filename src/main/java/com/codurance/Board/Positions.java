@@ -9,11 +9,13 @@ import java.util.List;
 public class Positions {
 
     private static final String EMPTY_VALUE = "-";
+    private final Lines lines;
     private List<String> positions = new ArrayList<>(9);
     private Formatter formatter;
 
-    public Positions(Formatter formatter) {
+    public Positions(Formatter formatter, Lines lines) {
         this.formatter = formatter;
+        this.lines = lines;
         createPositions();
     }
 
@@ -29,8 +31,8 @@ public class Positions {
         formatter.print(console, positions);
     }
 
-    public void checkForWinner() {
-        // add this
+    public boolean checkForWinner() {
+        return lines.checkLinesForWinner(positions);
     }
 
     private void createPositions() {
@@ -39,4 +41,7 @@ public class Positions {
         }
     }
 
+    public List<String> getAll() {
+        return positions;
+    }
 }
