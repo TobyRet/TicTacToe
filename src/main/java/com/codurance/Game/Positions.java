@@ -1,5 +1,7 @@
 package com.codurance.Game;
 
+import com.codurance.Board.Formatter;
+import com.codurance.Console;
 import com.codurance.Positions.Marker;
 import com.codurance.Positions.Position;
 
@@ -10,8 +12,10 @@ public class Positions {
 
     private static final String EMPTY_VALUE = "-";
     private List<String> positions = new ArrayList<>(9);
+    private Formatter formatter;
 
-    public Positions() {
+    public Positions(Formatter formatter) {
+        this.formatter = formatter;
         createPositions();
     }
 
@@ -27,5 +31,9 @@ public class Positions {
         for(int i=0; i < 9; i++) {
             positions.add(EMPTY_VALUE);
         }
+    }
+
+    public void print(Console console) {
+        formatter.print(console, positions);
     }
 }

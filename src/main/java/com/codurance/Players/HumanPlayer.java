@@ -1,28 +1,33 @@
-/*package com.codurance.Players;
+package com.codurance.Players;
 
-import com.codurance.Board.BoardMarker;
-import com.codurance.Positions.Position;
 import com.codurance.Console;
 import com.codurance.Game.Positions;
+import com.codurance.Positions.Marker;
+import com.codurance.Positions.Position;
 
 public class HumanPlayer implements Player {
 
-    private final PlayerName playerName;
-    private final BoardMarker boardMarker;
+    private final PlayerName name;
+    private final Marker marker;
 
-    public HumanPlayer(PlayerName playerName, BoardMarker boardMarker) {
-        this.playerName = playerName;
-        this.boardMarker = boardMarker;
-    }
-
-    @Override
-    public String getName() {
-        return playerName.getValue();
+    public HumanPlayer(PlayerName name, Marker marker) {
+        this.name = name;
+        this.marker = marker;
     }
 
     @Override
     public void makeMove(Positions positions, Console console) {
-        Position move = console.requestNextMove(this);
-        positions.addMove(null, null);
+        Position position = console.requestNextMove(this);
+        positions.addMove(marker, position);
     }
-}*/
+
+    @Override
+    public String getName() {
+        return name.getValue();
+    }
+
+    @Override
+    public Marker getMarker() {
+        return marker;
+    }
+}

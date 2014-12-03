@@ -1,19 +1,30 @@
 package com.codurance.Positions;
 
+import com.codurance.Board.Formatter;
+import com.codurance.Console;
 import com.codurance.Game.Positions;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Matchers;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyList;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PositionsShould {
 
     private Positions positions;
+    @Mock Formatter formatter;
 
     @Before
     public void initialise() {
-        positions = new Positions();
+        positions = new Positions(formatter);
     }
 
     @Test public void
@@ -41,5 +52,14 @@ public class PositionsShould {
         }
 
         assertThat(positions.areEmpty(), is(true));
+    }
+
+    @Test public void
+    print_positions_to_the_console() {
+        Console console = mock(Console.class);
+
+        positions.print(console);
+
+        verify(formatter).print(Matchers.any(Console.class), anyList());
     }
 }

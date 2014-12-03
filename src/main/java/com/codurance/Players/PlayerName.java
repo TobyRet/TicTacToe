@@ -1,4 +1,3 @@
-/*
 package com.codurance.Players;
 
 public class PlayerName {
@@ -12,4 +11,3 @@ public class PlayerName {
         return value;
     }
 }
-*/

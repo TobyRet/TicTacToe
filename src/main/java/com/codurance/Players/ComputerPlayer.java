@@ -1,29 +1,25 @@
-/*package com.codurance.Players;
+package com.codurance.Players;
 
 import com.codurance.Console;
 import com.codurance.Game.Positions;
+import com.codurance.Positions.Marker;
 
 public class ComputerPlayer implements Player {
 
-    private final String playerName;
-    private final ComputerMove computerMove;
-    private BoardMarker boardMarker;
-
-    public ComputerPlayer(ComputerMove computerMove, BoardMarker boardMarker) {
-        this.computerMove = computerMove;
-        this.boardMarker = boardMarker;
-        this.playerName = "Computer";
+    @Override
+    public void makeMove(Positions board, Console console) {
+//        Position position = computerMove.calculateNextMove();
+//        console.computerMoveConfirmation();
+//        board.addMove(position, boardMarker);
     }
 
     @Override
     public String getName() {
-        return playerName;
+        return null;
     }
 
     @Override
-    public void makeMove(Positions board, Console console) {
-        Position position = computerMove.calculateNextMove();
-        console.computerMoveConfirmation();
-        board.addMove(position, boardMarker);
+    public Marker getMarker() {
+        return null;
     }
-}*/
+}
