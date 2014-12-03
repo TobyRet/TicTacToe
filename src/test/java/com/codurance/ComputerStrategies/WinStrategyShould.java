@@ -2,8 +2,8 @@
 //
 //import com.codurance.Board.Board;
 //import com.codurance.Cell.Cell;
-//import com.codurance.Positions.Position;
-//import com.codurance.Game.Lines;
+//import com.codurance.Board.Position;
+//import com.codurance.Board.Lines;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.mockito.Mock;

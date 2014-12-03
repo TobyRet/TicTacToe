@@ -1,7 +1,9 @@
 package com.codurance.Game;
 
-import com.codurance.Console;
+import com.codurance.Console.Console;
 import com.codurance.Players.Player;
+import com.codurance.Board.Lines;
+import com.codurance.Board.Positions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +70,7 @@ public class Game {
     }
 
     private boolean gameIncomplete() {
-        return lines.checkIfLineHasWinner() == false && positions.areEmpty() == true;
+        return lines.checkLinesForWinner(positions) == false && positions.areEmpty() == true;
     }
 
     private void checkForDraw() {
@@ -78,7 +80,7 @@ public class Game {
     }
 
     private boolean thereIsADraw() {
-        return lines.checkIfLineHasWinner() == false && positions.areEmpty() == false;
+        return lines.checkLinesForWinner(positions) == false && positions.areEmpty() == false;
     }
 
     private void announceWinner() {

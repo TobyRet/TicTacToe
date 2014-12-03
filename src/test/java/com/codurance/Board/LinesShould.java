@@ -1,6 +1,6 @@
-package com.codurance.Game;
+package com.codurance.Board;
 
-import com.codurance.Positions.Position;
+import com.codurance.Console.Formatter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,59 +17,64 @@ import static org.mockito.BDDMockito.given;
 @RunWith(MockitoJUnitRunner.class)
 public class LinesShould {
     private Lines lines;
+    private Formatter formatter;
+    private Positions positions;
     @Mock Position mockedPosition;
-    @Mock Line mockedLine;
+    @Mock
+    Line mockedLine;
 
     @Before
     public void initialise() {
+        formatter = new Formatter();
+        positions = new Positions(formatter);
         lines = new Lines(createMockLines());
     }
 
     @Test public void
     declare_there_is_no_winner_if_no_line_contains_three_in_row() {
-        given(mockedLine.doYouHaveWinner()).willReturn(false);
-        assertThat(lines.checkIfLineHasWinner(), is(false));
+        given(mockedLine.doYouHaveWinner(positions)).willReturn(false);
+        assertThat(lines.checkLinesForWinner(positions), is(false));
     }
 
     @Test public void
     declare_there_is_a_winner_if_line_contains_three_in_a_row() {
-        given(mockedLine.doYouHaveWinner()).willReturn(true, false, false, false, false, false, false, false, false);
-        assertThat(lines.checkIfLineHasWinner(), is(true));
+        given(mockedLine.doYouHaveWinner(positions)).willReturn(true, false, false, false, false, false, false, false, false);
+        assertThat(lines.checkLinesForWinner(positions), is(true));
     }
 
 //    @Test public void
 //    set_win_state_to_true_when_each_cell_in_a_column_is_a_cross() {
 //        given(board.getCells()).willReturn(columnWinCrosses());
 //        lines = new Lines(board.getCells(), createLines());
-//        assertThat(lines.checkIfLineHasWinner(), is(true));
+//        assertThat(lines.checkLinesForWinner(), is(true));
 //    }
 //
 //    @Test public void
 //    set_win_state_to_true_when_each_cell_in_a_column_is_a_nought() {
 //        given(board.getCells()).willReturn(columnWinNoughts());
 //        lines = new Lines(board.getCells(), createLines());
-//        assertThat(lines.checkIfLineHasWinner(), is(true));
+//        assertThat(lines.checkLinesForWinner(), is(true));
 //    }
 //
 //    @Test public void
 //    set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_cross() {
 //        given(board.getCells()).willReturn(diagonalWinCrosses());
 //        lines = new Lines(board.getCells(), createLines());
-//        assertThat(lines.checkIfLineHasWinner(), is(true));
+//        assertThat(lines.checkLinesForWinner(), is(true));
 //    }
 //
 //    @Test public void
 //    set_win_state_to_true_when_each_cell_in_a_diagonal_is_a_nought() {
 //        given(board.getCells()).willReturn(diagonalWinNoughts());
 //        lines = new Lines(board.getCells(), createLines());
-//        assertThat(lines.checkIfLineHasWinner(), is(true));
+//        assertThat(lines.checkLinesForWinner(), is(true));
 //    }
 //
 //    @Test public void
 //    not_change_win_state_if_there_is_no_winning_combination() {
 //        given(board.getCells()).willReturn(noWin());
 //        lines = new Lines(board.getCells(), createLines());
-//        assertThat(lines.checkIfLineHasWinner(), is(false));
+//        assertThat(lines.checkLinesForWinner(), is(false));
 //    }
 //
 //    @Test public void

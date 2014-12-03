@@ -1,7 +1,7 @@
 //package com.codurance.ComputerStrategies;
 //
 //import com.codurance.Board.Board;
-//import com.codurance.Positions.Position;
+//import com.codurance.Board.Position;
 //import org.junit.Before;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;

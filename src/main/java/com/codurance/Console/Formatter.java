@@ -1,6 +1,6 @@
-package com.codurance.Board;
+package com.codurance.Console;
 
-import com.codurance.Console;
+import com.codurance.Console.Console;
 
 import java.util.List;
 

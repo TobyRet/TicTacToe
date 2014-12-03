@@ -1,10 +1,10 @@
 package com.codurance.Players;
 
-import com.codurance.Console;
-import com.codurance.Game.Positions;
-import com.codurance.Positions.Cross;
-import com.codurance.Positions.Marker;
-import com.codurance.Positions.Position;
+import com.codurance.Console.Console;
+import com.codurance.Board.Positions;
+import com.codurance.Board.Cross;
+import com.codurance.Board.Marker;
+import com.codurance.Board.Position;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

@@ -1,4 +1,4 @@
-package com.codurance.Positions;
+package com.codurance.Board;
 
 public class Cross implements Marker {
     @Override

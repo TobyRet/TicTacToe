@@ -1,8 +1,7 @@
-package com.codurance.Positions;
+package com.codurance.Board;
 
-import com.codurance.Board.Formatter;
-import com.codurance.Console;
-import com.codurance.Game.Positions;
+import com.codurance.Console.Formatter;
+import com.codurance.Console.Console;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

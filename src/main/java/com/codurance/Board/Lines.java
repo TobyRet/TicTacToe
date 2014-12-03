@@ -1,4 +1,4 @@
-package com.codurance.Game;
+package com.codurance.Board;
 
 import java.util.List;
 
@@ -9,11 +9,11 @@ public class Lines {
         this.lines = lines;
     }
 
-    public boolean checkIfLineHasWinner() {
+    public boolean checkLinesForWinner(Positions positions) {
         boolean winner = false;
 
         for(Line line : lines) {
-            if(line.doYouHaveWinner()) {
+            if(line.doYouHaveWinner(positions)) {
                 winner = true;
             }
         }

@@ -1,6 +1,5 @@
-package com.codurance.Board;
+package com.codurance.Console;
 
-import com.codurance.Console;
 import org.junit.Test;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.codurance.Game;
 
-import com.codurance.Console;
+import com.codurance.Console.Console;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;

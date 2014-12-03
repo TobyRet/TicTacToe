@@ -2,7 +2,7 @@
 
 import com.codurance.Cell.Cell;
 import com.codurance.Positions.Position;
-import com.codurance.Game.Lines;
+import com.codurance.Positions.Lines;
 
 import java.util.List;
 

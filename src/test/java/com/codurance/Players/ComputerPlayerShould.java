@@ -2,9 +2,9 @@
 //
 //import com.codurance.Board.Board;
 //import com.codurance.Board.BoardMarker;
-//import com.codurance.Positions.Position;
+//import com.codurance.Board.Position;
 //import com.codurance.ComputerStrategies.ComputerMove;
-//import com.codurance.Console;
+//import com.codurance.Console.Console;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.mockito.Mock;

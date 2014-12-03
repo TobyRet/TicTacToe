@@ -1,9 +1,7 @@
-package com.codurance.Game;
+package com.codurance.Board;
 
-import com.codurance.Board.Formatter;
-import com.codurance.Console;
-import com.codurance.Positions.Marker;
-import com.codurance.Positions.Position;
+import com.codurance.Console.Formatter;
+import com.codurance.Console.Console;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,10 @@ public class Positions {
 
     public void print(Console console) {
         formatter.print(console, positions);
+    }
+
+    public void checkForWinner() {
+        // add this
     }
 
     private void createPositions() {

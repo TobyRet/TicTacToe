@@ -1,8 +1,8 @@
-package com.codurance;
+package com.codurance.Console;
 
 import com.codurance.Game.GameType;
 import com.codurance.Players.Player;
-import com.codurance.Positions.Position;
+import com.codurance.Board.Position;
 
 import java.util.Scanner;
 

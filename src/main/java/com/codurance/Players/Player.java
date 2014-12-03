@@ -1,8 +1,8 @@
 package com.codurance.Players;
 
-import com.codurance.Console;
-import com.codurance.Game.Positions;
-import com.codurance.Positions.Marker;
+import com.codurance.Console.Console;
+import com.codurance.Board.Positions;
+import com.codurance.Board.Marker;
 
 public interface Player {
 

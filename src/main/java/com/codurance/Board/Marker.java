@@ -1,4 +1,4 @@
-package com.codurance.Positions;
+package com.codurance.Board;
 
 public interface Marker {
     String value();

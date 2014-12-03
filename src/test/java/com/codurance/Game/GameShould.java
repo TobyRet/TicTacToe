@@ -1,9 +1,11 @@
 package com.codurance.Game;
 
-import com.codurance.Console;
+import com.codurance.Console.Console;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
 import com.codurance.Players.Player;
+import com.codurance.Board.Lines;
+import com.codurance.Board.Positions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +34,8 @@ public class GameShould {
     private List<Player> allMockPlayers;
     @Mock GameType gameType;
     @Mock Console console;
-    @Mock Lines lines;
+    @Mock
+    Lines lines;
     @Mock Positions mockPositions;
     @Mock Player mockHumanPlayer1;
     @Mock Player mockHumanPlayer2;
@@ -47,7 +50,7 @@ public class GameShould {
     @Test public void
     loads_human_players_when_multi_player_game() {
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(true);
+        given(lines.checkLinesForWinner(positions)).willReturn(true);
 
         game.start(gameType);
 
@@ -58,7 +61,7 @@ public class GameShould {
     @Test public void
     loads_computer_player_and_one_human_player_when_single_game() {
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(true);
+        given(lines.checkLinesForWinner(positions)).willReturn(true);
 
         game.start(gameType);
 
@@ -82,7 +85,7 @@ public class GameShould {
         game = new Game(allMockPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(false, false, true);
+        given(lines.checkLinesForWinner(positions)).willReturn(false, false, true);
         given(mockPositions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
@@ -98,7 +101,7 @@ public class GameShould {
         game = new Game(allMockPlayers, mockPositions, console, lines);
 
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(false, false, true);
+        given(lines.checkLinesForWinner(positions)).willReturn(false, false, true);
         given(mockPositions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
@@ -114,7 +117,7 @@ public class GameShould {
         game = new Game(allPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(false, false, false, false, false, true);
+        given(lines.checkLinesForWinner(positions)).willReturn(false, false, false, false, false, true);
         given(mockPositions.areEmpty()).willReturn(true);
 
         game.start(gameType);
@@ -129,7 +132,7 @@ public class GameShould {
         game = new Game(allPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.checkIfLineHasWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
+        given(lines.checkLinesForWinner(positions)).willReturn(false, false, false, false, false, false, false, false, false, false);
         given(mockPositions.areEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
 
         game.start(gameType);

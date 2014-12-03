@@ -1,3 +1,5 @@
+package com.codurance.Board;
+
 //package com.codurance.Game;
 //
 //import com.codurance.Cell.Cell;
@@ -9,18 +11,18 @@
 //import static org.hamcrest.CoreMatchers.is;
 //import static org.junit.Assert.assertThat;
 //
-//public class LineShould {
-//
-//    private List<Cell> cells;
-//    private Line line;
-//
-//    @Test public void
-//    return_true_if_cells_have_same_values() {
-//        Line line = new Line(0,1,2);
-//        List<Cell> boardCells = rowWinNoughts();
-//        assertThat(line.cellsHaveSameValues(boardCells), is(true));
-//    }
-//
+public class LineShould {
+
+    private List<Cell> cells;
+    private Line line;
+
+    @Test public void
+    return_true_if_cells_have_same_values() {
+        Line line = new Line(0,1,2);
+        List<Cell> boardCells = rowWinNoughts();
+        assertThat(line.cellsHaveSameValues(boardCells), is(true));
+    }
+
 //    @Test public void
 //    return_false_if_cells_have_same_values() {
 //        Line line = new Line(0,1,2);

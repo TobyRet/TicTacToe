@@ -1,4 +1,4 @@
-package com.codurance.Game;
+package com.codurance.Board;
 
 public class Line {
     private final int firstCellIndex;
@@ -12,7 +12,7 @@ public class Line {
         this.thirdCellIndex = cell3;
     }
 
-    public boolean doYouHaveWinner() {
+    public boolean doYouHaveWinner(Positions positions) {
         return false;
     }
 

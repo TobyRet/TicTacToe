@@ -2,7 +2,7 @@
 //
 //import com.codurance.Board.Board;
 //import com.codurance.Cell.Cell;
-//import com.codurance.Positions.Position;
+//import com.codurance.Board.Position;
 //import org.hamcrest.Matchers;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
