@@ -9,32 +9,14 @@ public class Formatter {
     private String formattedRow;
 
     public void print(Console console, List<String> positions) {
-        String formattedPositions = formatFirstRow(positions) + formatSecondRow(positions) + formatThirdRow(positions);
+        String formattedPositions = formatRow(0, 3, positions) + formatRow(3, 6, positions) + formatRow(6, 9, positions);
         console.printPositions(formattedPositions);
     }
 
-    private String formatThirdRow(List<String> positions) {
+    private String formatRow(int rowStart, int rowEnd, List<String> positions) {
         formattedRow = "";
 
-        for(int i=6; i < 9; i ++) {
-            formattedRow += (positions.get(i) + " ");
-        }
-        return formattedRow + "\n";
-    }
-
-    private String formatSecondRow(List<String> positions) {
-        formattedRow = "";
-
-        for(int i=3; i < 6; i ++) {
-            formattedRow += (positions.get(i) + " ");
-        }
-        return formattedRow + "\n";
-    }
-
-    private String formatFirstRow(List<String> positions) {
-       formattedRow = "";
-
-        for(int i=0; i < 3; i ++) {
+        for(int i=rowStart; i < rowEnd; i ++) {
             formattedRow += (positions.get(i) + " ");
         }
         return formattedRow + "\n";
