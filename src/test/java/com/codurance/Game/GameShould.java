@@ -1,11 +1,14 @@
 package com.codurance.Game;
 
+import com.codurance.Board.Lines;
+import com.codurance.Board.Marker;
+import com.codurance.Board.Nought;
+import com.codurance.Board.Positions;
+import com.codurance.ComputerStrategies.ComputerTurnGenerator;
 import com.codurance.Console.Console;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
 import com.codurance.Players.Player;
-import com.codurance.Board.Lines;
-import com.codurance.Board.Positions;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +34,7 @@ public class GameShould {
     private Game game;
     private List<Player> allPlayers;
     private List<Player> allMockPlayers;
+    private ComputerTurnGenerator computerTurnGenerator;
     @Mock Positions positions;
     @Mock GameType gameType;
     @Mock Console console;
@@ -141,10 +145,12 @@ public class GameShould {
 
     private void createPlayers() {
         allPlayers = new ArrayList();
+        computerTurnGenerator = new ComputerTurnGenerator();
+        Marker marker = new Nought();
 
         humanPlayer1 = new HumanPlayer(null, null);
         humanPlayer2 = new HumanPlayer(null, null);
-        computerPlayer = new ComputerPlayer();
+        computerPlayer = new ComputerPlayer(computerTurnGenerator, marker);
 
         allPlayers.add(humanPlayer1);
         allPlayers.add(humanPlayer2);
