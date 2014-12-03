@@ -1,26 +1,26 @@
 package com.codurance.Game;
 
-public class Lines {
+import java.util.List;
 
-//    private final List<Cell> boardCells;
-//    private List<Line> lines = new ArrayList();
-//
-//    public Lines(List<Cell> boardCells, List<Line> lines) {
-//        this.boardCells = boardCells;
-//        this.lines = lines;
-//    }
-//
-    public boolean isThereAWinner() {
-//        boolean winstate = false;
-//
-//        for(Line line : lines) {
-//            if(line.cellsHaveSameValues(boardCells)) {
-//                winstate = true;
-//            }
-//        }
-        return true;
+public class Lines {
+    private final List<Line> lines;
+
+    public Lines(List<Line> lines) {
+        this.lines = lines;
     }
-//
+
+    public boolean checkIfLineHasWinner() {
+        boolean winner = false;
+
+        for(Line line : lines) {
+            if(line.doYouHaveWinner()) {
+                winner = true;
+            }
+        }
+
+        return winner;
+    }
+
 //    public Position determineWinPosition(List<Cell> boardCells) {
 //        List<Position> possiblePositions = new ArrayList();
 //

@@ -24,10 +24,13 @@ public class HumanPlayerShould {
 
     @Test public void
     add_move_to_the_board() {
-        given(console.requestNextMove(any())).willReturn(position);
         Marker cross = new Cross();
         HumanPlayer humanPlayer = new HumanPlayer(playerName, cross);
+
+        given(console.requestNextMove(any())).willReturn(position);
+
         humanPlayer.makeMove(positions, console);
+
         verify(positions).addMove(cross, position);
     }
 }

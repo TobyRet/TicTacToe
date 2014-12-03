@@ -68,7 +68,7 @@ public class Game {
     }
 
     private boolean gameIncomplete() {
-        return lines.isThereAWinner() == false && positions.areEmpty() == true;
+        return lines.checkIfLineHasWinner() == false && positions.areEmpty() == true;
     }
 
     private void checkForDraw() {
@@ -78,7 +78,7 @@ public class Game {
     }
 
     private boolean thereIsADraw() {
-        return lines.isThereAWinner() == false && positions.areEmpty() == false;
+        return lines.checkIfLineHasWinner() == false && positions.areEmpty() == false;
     }
 
     private void announceWinner() {

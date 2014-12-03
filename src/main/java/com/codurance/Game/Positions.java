@@ -27,13 +27,14 @@ public class Positions {
         positions.set(position.value(), marker.value());
     }
 
+    public void print(Console console) {
+        formatter.print(console, positions);
+    }
+
     private void createPositions() {
         for(int i=0; i < 9; i++) {
             positions.add(EMPTY_VALUE);
         }
     }
 
-    public void print(Console console) {
-        formatter.print(console, positions);
-    }
 }

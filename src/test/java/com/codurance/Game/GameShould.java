@@ -47,7 +47,7 @@ public class GameShould {
     @Test public void
     loads_human_players_when_multi_player_game() {
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(true);
+        given(lines.checkIfLineHasWinner()).willReturn(true);
 
         game.start(gameType);
 
@@ -58,7 +58,7 @@ public class GameShould {
     @Test public void
     loads_computer_player_and_one_human_player_when_single_game() {
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(true);
+        given(lines.checkIfLineHasWinner()).willReturn(true);
 
         game.start(gameType);
 
@@ -82,7 +82,7 @@ public class GameShould {
         game = new Game(allMockPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(false, false, true);
+        given(lines.checkIfLineHasWinner()).willReturn(false, false, true);
         given(mockPositions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
@@ -98,7 +98,7 @@ public class GameShould {
         game = new Game(allMockPlayers, mockPositions, console, lines);
 
         given(gameType.isSinglePlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(false, false, true);
+        given(lines.checkIfLineHasWinner()).willReturn(false, false, true);
         given(mockPositions.areEmpty()).willReturn(true, true, true);
 
         game.start(gameType);
@@ -114,7 +114,7 @@ public class GameShould {
         game = new Game(allPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(false, false, false, false, false, true);
+        given(lines.checkIfLineHasWinner()).willReturn(false, false, false, false, false, true);
         given(mockPositions.areEmpty()).willReturn(true);
 
         game.start(gameType);
@@ -129,7 +129,7 @@ public class GameShould {
         game = new Game(allPlayers, mockPositions, console, lines);
 
         given(gameType.isMultiPlayer()).willReturn(true);
-        given(lines.isThereAWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
+        given(lines.checkIfLineHasWinner()).willReturn(false, false, false, false, false, false, false, false, false, false);
         given(mockPositions.areEmpty()).willReturn(false, false, false, false, false, false, false, false, false, true);
 
         game.start(gameType);
