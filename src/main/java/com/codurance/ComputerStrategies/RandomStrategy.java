@@ -26,8 +26,8 @@ public class RandomStrategy implements ComputerPlayerStrategy {
     private Position generateRandomPosition(Positions positions) {
 
         List<Integer> indexes = positions.getAll().stream().filter(position -> position.equals(EMPTY))
-                                                            .map(position -> positions.getAll()
-                                                                    .indexOf(position)).collect(Collectors.toList());
+                                                            .map(position -> positions.getAll().indexOf(position))
+                                                            .collect(Collectors.toList());
 
         int randomIndex = randomGenerator.nextInt(indexes.size());
 

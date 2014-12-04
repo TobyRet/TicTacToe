@@ -148,7 +148,7 @@ public class GameShould {
     private void createPlayers() {
         List<ComputerPlayerStrategy> computerPlayerStrategies = new ArrayList<>();
         computerPlayerStrategies.add(new RandomStrategy(randomGenerator));
-        computerPlayerStrategies.add(new WinStrategy());
+        computerPlayerStrategies.add(new WinStrategy(lines));
 
         allPlayers = new ArrayList();
         computerTurnGenerator = new ComputerTurnGenerator(computerPlayerStrategies);

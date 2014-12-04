@@ -39,4 +39,7 @@ public class Line {
         return !lineValues.contains("-");
     }
 
+    public Position completeARow(Positions positions) {
+        return null;
+    }
 }

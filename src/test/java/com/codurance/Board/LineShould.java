@@ -66,6 +66,11 @@ public class LineShould {
         assertThat(line.doYouHaveWinner(positions), is(false));
     }
 
+    @Test public void
+    return_a_position_that_completes_row() {
+        assertThat(, is());
+    }
+
     // Code smell. Fix below. Builder pattern?
 
     private List<String> rowNoWin() {
