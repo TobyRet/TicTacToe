@@ -13,6 +13,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -32,15 +34,20 @@ public class ComputerTurnGeneratorShould {
     }
 
     @Test public void
-    execute_strategies() {
+    execute_win_strategy_if_feasible() {
         Marker noughtMarker = new Nought();
+
+        given(winStrategy.isFeasible(noughtMarker, positions)).willReturn(true);
+
         computerTurnGenerator.calculateNextMove(noughtMarker,positions);
+
         verify(winStrategy).execute(noughtMarker, positions);
-        verify(randomStrategy).execute(noughtMarker, positions);
+        verify(randomStrategy, never()).execute(noughtMarker, positions);
     }
 
     private void addStrategiesToList() {
         computerStrategyList = new ArrayList();
+
         computerStrategyList.add(winStrategy);
         computerStrategyList.add(randomStrategy);
     }

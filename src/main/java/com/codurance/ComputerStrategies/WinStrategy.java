@@ -8,7 +8,6 @@ import com.codurance.Board.Positions;
 public class WinStrategy implements ComputerPlayerStrategy {
 
     private final Lines lines;
-    private Position position;
 
     public WinStrategy(Lines lines) {
         this.lines = lines;
@@ -16,7 +15,16 @@ public class WinStrategy implements ComputerPlayerStrategy {
 
     @Override
     public void execute(Marker marker, Positions positions) {
-        Integer positionIndex = lines.completeForWin(positions, marker);
+        Integer positionIndex = getWinningPosition(marker, positions);
         positions.addMove(marker, new Position(positionIndex));
+    }
+
+    private Integer getWinningPosition(Marker marker, Positions positions) {
+        return lines.completeForWin(positions, marker);
+    }
+
+    @Override
+    public boolean isFeasible(Marker marker, Positions positions) {
+        return lines.completeForWin(positions, marker) != null;
     }
 }

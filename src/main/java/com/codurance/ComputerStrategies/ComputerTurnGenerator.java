@@ -8,14 +8,21 @@ import java.util.List;
 public class ComputerTurnGenerator {
 
     private final List<ComputerPlayerStrategy> computerPlayerStrategyList;
+    private ComputerPlayerStrategy winStrategy;
+    private ComputerPlayerStrategy randomStrategy;
 
     public ComputerTurnGenerator(List<ComputerPlayerStrategy> computerPlayerStrategyList) {
         this.computerPlayerStrategyList = computerPlayerStrategyList;
     }
 
     public void calculateNextMove(Marker marker, Positions positions) {
-        for(ComputerPlayerStrategy computerPlayerStrategy : computerPlayerStrategyList) {
-            computerPlayerStrategy.execute(marker, positions);
+        winStrategy = computerPlayerStrategyList.get(0);
+        randomStrategy = computerPlayerStrategyList.get(1);
+
+        if(winStrategy.isFeasible(marker, positions)) {
+            winStrategy.execute(marker, positions);
+        } else {
+            randomStrategy.execute(marker, positions);
         }
     }
 }

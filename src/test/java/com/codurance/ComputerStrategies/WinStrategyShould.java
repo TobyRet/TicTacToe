@@ -6,6 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -26,4 +29,11 @@ public class WinStrategyShould {
         verify(positions).addMove(any(Cross.class), any(Position.class));
     }
 
+    @Test public void
+    know_if_a_win_strategy_is_possible() {
+        marker = new Cross();
+        winStrategy = new WinStrategy(lines);
+        given(lines.completeForWin(positions, marker)).willReturn(1);
+        assertThat(winStrategy.isFeasible(marker, positions), is(true));
+    }
 }

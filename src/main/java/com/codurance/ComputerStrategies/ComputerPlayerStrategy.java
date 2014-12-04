@@ -5,4 +5,6 @@ import com.codurance.Board.Positions;
 
 public interface ComputerPlayerStrategy {
     void execute(Marker marker, Positions positions);
+
+    boolean isFeasible(Marker marker, Positions positions);
 }

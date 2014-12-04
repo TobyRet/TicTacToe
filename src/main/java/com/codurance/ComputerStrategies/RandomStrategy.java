@@ -23,6 +23,11 @@ public class RandomStrategy implements ComputerPlayerStrategy {
         positions.addMove(marker, generateRandomPosition(positions));
     }
 
+    @Override
+    public boolean isFeasible(Marker marker, Positions positions) {
+        return false;
+    }
+
     private Position generateRandomPosition(Positions positions) {
 
         List<Integer> indexes = positions.getAll().stream().filter(position -> position.equals(EMPTY))

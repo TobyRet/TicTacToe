@@ -50,8 +50,6 @@ public class Launcher {
 
     private static void createGameComponents() {
         createPlayers();
-        createLines();
-
         scanner = new Scanner(System.in);
         console = new Console(scanner);
         formatter = new Formatter();
@@ -84,8 +82,9 @@ public class Launcher {
     private static List<ComputerPlayerStrategy> createComputerStrategyList() {
         computerStrategyList = new ArrayList<>();
         randomGenerator = new Random();
-        randomStrategy = new RandomStrategy(randomGenerator);
+        lines = new Lines(createLines());
         winStrategy = new WinStrategy(lines);
+        randomStrategy = new RandomStrategy(randomGenerator);
 
         computerStrategyList.add(winStrategy);
         computerStrategyList.add(randomStrategy);
