@@ -16,6 +16,8 @@ import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LinesShould {
+    private static final Integer FIRST_VALUE = 0;
+    private static final Integer SECOND_VALUE = 1;
     private Lines lines;
     private Formatter formatter;
     private List<String> positions;
@@ -23,6 +25,7 @@ public class LinesShould {
     @Mock Position mockedPosition2;
     @Mock Line mockedLine;
     @Mock Positions mockedPositions;
+    @Mock Marker marker;
 
     @Before
     public void initialise() {
@@ -45,8 +48,16 @@ public class LinesShould {
 
     @Test public void
     return_a_position_that_completes_a_lines_for_the_win() {
-        given(mockedLine.completeARow(mockedPositions)).willReturn(mockedPosition1, mockedPosition2);
-        assertThat(lines.completeForWin(mockedPositions), is(mockedPosition1));
+        given(mockedLine.completeARow(createValues(), marker)).willReturn(FIRST_VALUE, SECOND_VALUE);
+        assertThat(lines.completeForWin(mockedPositions, marker), is(0));
+    }
+
+    private List<String> createValues() {
+        List<String> values = new ArrayList<>();
+        for(int i=0; i<9; i++) {
+            values.add("-");
+        }
+        return values;
     }
 
     private List<Line> createMockLines() {

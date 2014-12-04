@@ -68,7 +68,9 @@ public class LineShould {
 
     @Test public void
     return_a_position_that_completes_row() {
-        assertThat(, is());
+        line = new Line(0,1,2);
+        Cross marker = new Cross();
+        assertThat(line.completeARow(rowNoWin(), marker), is(2));
     }
 
     // Code smell. Fix below. Builder pattern?

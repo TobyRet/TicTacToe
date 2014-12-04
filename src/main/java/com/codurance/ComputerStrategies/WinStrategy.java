@@ -16,7 +16,7 @@ public class WinStrategy implements ComputerPlayerStrategy {
 
     @Override
     public void execute(Marker marker, Positions positions) {
-        position = lines.completeForWin(positions);
-        positions.addMove(marker, position);
+        Integer positionIndex = lines.completeForWin(positions, marker);
+        positions.addMove(marker, new Position(positionIndex));
     }
 }

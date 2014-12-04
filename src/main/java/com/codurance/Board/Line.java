@@ -1,7 +1,7 @@
 package com.codurance.Board;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Line {
     private final int firstPositionIndex;
@@ -39,7 +39,27 @@ public class Line {
         return !lineValues.contains("-");
     }
 
-    public Position completeARow(Positions positions) {
-        return null;
+    public Integer completeARow(List<String> positions, Marker marker) {
+        List<String> lineValues = getLineValues(positions);
+        List<String> emptyValues = getEmptyPositions(lineValues);
+        List<String> computerMoves = getComputerMovesInLine(marker, lineValues);
+
+        if(emptyValues.size() == 1 && computerMoves.size() == 2) {
+            return lineValues.indexOf("-");
+        } else {
+            return null;
+        }
+    }
+
+    private List<String> getComputerMovesInLine(Marker marker, List<String> lineValues) {
+        List<String> computerMoves = new ArrayList<>();
+        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(marker.value())).collect(Collectors.toList()));
+        return computerMoves;
+    }
+
+    private List<String> getEmptyPositions(List<String> lineValues) {
+        List<String> emptyValues = new ArrayList<>();
+        emptyValues.addAll(lineValues.stream().filter(value -> value.equals("-")).collect(Collectors.toList()));
+        return emptyValues;
     }
 }

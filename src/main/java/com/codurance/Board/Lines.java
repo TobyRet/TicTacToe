@@ -1,7 +1,7 @@
 package com.codurance.Board;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lines {
     private final List<Line> lines;
@@ -21,9 +21,12 @@ public class Lines {
         return winner;
     }
 
-    public Position completeForWin(Positions positions) {
-        List<Position> winningPositions = lines.stream().map(line -> line.completeARow(positions))
-                                                                    .collect(Collectors.toList());
+    public Integer completeForWin(Positions positions, Marker marker) {
+        List<Integer> winningPositions = new ArrayList<>();
+
+        for(Line line : lines) {
+            winningPositions.add(line.completeARow(positions.getAll(), marker));
+        }
 
         return winningPositions.get(0);
     }
