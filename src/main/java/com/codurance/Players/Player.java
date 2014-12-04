@@ -6,7 +6,7 @@ import com.codurance.Board.Marker;
 
 public interface Player {
 
-    void makeMove(Positions board, Console console);
+    void makeMove(Positions positions, Console console);
 
     String getName();
 

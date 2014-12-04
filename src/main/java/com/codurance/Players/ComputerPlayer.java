@@ -1,7 +1,6 @@
 package com.codurance.Players;
 
 import com.codurance.Board.Marker;
-import com.codurance.Board.Position;
 import com.codurance.Board.Positions;
 import com.codurance.ComputerStrategies.ComputerTurnGenerator;
 import com.codurance.Console.Console;
@@ -18,9 +17,8 @@ public class ComputerPlayer implements Player {
 
     @Override
     public void makeMove(Positions positions, Console console) {
-        Position position = computerTurnGenerator.calculateNextMove(positions);
+        computerTurnGenerator.calculateNextMove(marker, positions);
         console.computerMoveConfirmation();
-        positions.addMove(marker, position);
     }
 
     @Override

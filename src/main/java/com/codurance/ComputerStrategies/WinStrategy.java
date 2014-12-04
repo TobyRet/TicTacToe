@@ -1,21 +1,23 @@
-/*package com.codurance.ComputerStrategies;
+package com.codurance.ComputerStrategies;
 
-import com.codurance.Cell.Cell;
-import com.codurance.Positions.Position;
-import com.codurance.Positions.Lines;
-
-import java.util.List;
+import com.codurance.Board.Marker;
+import com.codurance.Board.Positions;
 
 public class WinStrategy implements ComputerPlayerStrategy {
-    private final Lines lines;
-
-    public WinStrategy(Lines lines) {
-        this.lines = lines;
-    }
 
     @Override
-    public Position execute(List<Cell> boardCells) {
-        //return lines.determineWinPosition(boardCells);
-        return null;
+    public void execute(Marker marker, Positions positions) {
+
     }
-}*/
+//    private final Lines lines;
+//
+//    public WinStrategy(Lines lines) {
+//        this.lines = lines;
+//    }
+//
+//    @Override
+//    public Position execute(List<Cell> boardCells) {
+//        //return lines.determineWinPosition(boardCells);
+//        return null;
+//    }
+}

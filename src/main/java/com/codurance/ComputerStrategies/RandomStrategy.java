@@ -1,31 +1,36 @@
-/*
 package com.codurance.ComputerStrategies;
 
 
-import com.codurance.Cell.Cell;
-import com.codurance.Positions.Position;
+import com.codurance.Board.Marker;
+import com.codurance.Board.Position;
+import com.codurance.Board.Positions;
 
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 
 public class RandomStrategy implements ComputerPlayerStrategy {
 
-    private boolean notFoundEmptyPosition;
+    private static final String EMPTY = "-";
+    private Random randomGenerator;
 
-    @Override
-    public Position execute(List<Cell> boardCells) {
-
-        for(Cell cell : boardCells) {
-            notFoundEmptyPosition = true;
-            System.out.println("Current board values " + cell.value());
-            if (notFoundEmptyPosition && cell.value().equals("-")) {
-                String location = "" + (boardCells.indexOf(cell) + 1);
-                notFoundEmptyPosition = false;
-                return new Position(1); // fix the parametre here
-            }
-        }
-        return null;
+    public RandomStrategy(Random randomGenerator) {
+        this.randomGenerator = randomGenerator;
     }
 
+    @Override
+    public void execute(Marker marker, Positions positions) {
+        positions.addMove(marker, generateRandomPosition(positions));
+    }
 
+    private Position generateRandomPosition(Positions positions) {
+
+        List<Integer> indexes = positions.getAll().stream().filter(position -> position.equals(EMPTY))
+                                                            .map(position -> positions.getAll()
+                                                                    .indexOf(position)).collect(Collectors.toList());
+
+        int randomIndex = randomGenerator.nextInt(indexes.size());
+
+        return new Position(randomIndex);
+    }
 }
-*/

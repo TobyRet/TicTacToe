@@ -1,13 +1,8 @@
-/*
 package com.codurance.ComputerStrategies;
 
-import com.codurance.Cell.Cell;
-import com.codurance.Positions.Position;
-
-import java.util.List;
+import com.codurance.Board.Marker;
+import com.codurance.Board.Positions;
 
 public interface ComputerPlayerStrategy {
-
-    Position execute(List<Cell> boardCells);
+    void execute(Marker marker, Positions positions);
 }
-*/
