@@ -41,8 +41,7 @@ public class Launcher {
     private static Cross crossMarker;
     private static ComputerTurnGenerator computerTurnGenerator;
     private static Random randomGenerator;
-    private static Nought noughtMarkerHuman2;
-    private static Nought noughtMarkerHuman1;
+    private static Nought noughtMarker;
 
     public static void main(String[] args) {
         createGameComponents();
@@ -56,8 +55,8 @@ public class Launcher {
         scanner = new Scanner(System.in);
         console = new Console(scanner);
         formatter = new Formatter();
-        positions = new Positions(formatter, lines);
         lines = new Lines(linesList);
+        positions = new Positions(formatter, lines);
         game = new Game(players, positions, console, lines);
         ticTacToe = new TicTacToe(console, game);
     }
@@ -96,14 +95,14 @@ public class Launcher {
 
     private static void createHumanPlayer2() {
         playerNameHuman2 = new PlayerName("Player 2");
-        noughtMarkerHuman2 = new Nought();
-        humanPlayer2 = new HumanPlayer(playerNameHuman2, noughtMarkerHuman2);
+        crossMarker = new Cross();
+        humanPlayer2 = new HumanPlayer(playerNameHuman2, crossMarker);
     }
 
     private static void createHumanPLayer1() {
         playerNameHuman1 = new PlayerName("Player 1");
-        noughtMarkerHuman1 = new Nought();
-        humanPlayer1 = new HumanPlayer(playerNameHuman1, noughtMarkerHuman1);
+        noughtMarker = new Nought();
+        humanPlayer1 = new HumanPlayer(playerNameHuman1, noughtMarker);
     }
 
     private static List<Line> createLines() {
