@@ -12,6 +12,7 @@ public class LineShould {
 
     private static final String EMPTY = "-";
     private static final String CROSS = "X";
+    private static final String NOUGHT = "0";
     private Line line;
     private List<String> positions;
 
@@ -71,6 +72,25 @@ public class LineShould {
         line = new Line(0,1,2);
         Cross marker = new Cross();
         assertThat(line.completeARow(rowNoWin(), marker), is(2));
+
+        line = new Line(0,3,6);
+        assertThat(line.completeARow(columnNoWin(), marker), is(6));
+    }
+
+    private List<String> columnNoWin() {
+        positions = new ArrayList<>();
+
+        positions.add(CROSS);
+        positions.add(NOUGHT);
+        positions.add(EMPTY);
+        positions.add(CROSS);
+        positions.add(NOUGHT);
+        positions.add(EMPTY);
+        positions.add(EMPTY);
+        positions.add(EMPTY);
+        positions.add(EMPTY);
+
+        return positions;
     }
 
     // Code smell. Fix below. Builder pattern?

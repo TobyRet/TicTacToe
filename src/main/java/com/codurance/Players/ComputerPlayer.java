@@ -23,7 +23,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public String getName() {
-        return null;
+        return "Computer";
     }
 
     @Override

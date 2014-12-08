@@ -27,7 +27,6 @@ public class Line {
         lineValues.add(positions.get(firstPositionIndex));
         lineValues.add(positions.get(secondPositionIndex));
         lineValues.add(positions.get(thirdPositionIndex));
-
         return lineValues;
     }
 
@@ -43,6 +42,9 @@ public class Line {
         List<String> lineValues = getLineValues(positions);
         List<String> emptyValues = getEmptyPositions(lineValues);
         List<String> computerMoves = getComputerMovesInLine(marker, lineValues);
+
+        System.out.println();
+        System.out.println(lineValues);
 
         if(emptyValues.size() == 1 && computerMoves.size() == 2) {
             return lineValues.indexOf("-");
