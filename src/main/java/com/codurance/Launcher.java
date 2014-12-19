@@ -12,7 +12,6 @@ import com.codurance.Game.TicTacToe;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
 import com.codurance.Players.Player;
-import com.codurance.Players.PlayerName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +28,7 @@ public class Launcher {
     private static Positions positions;
     private static Lines lines;
     private static List<Player> players;
-    private static PlayerName playerNameHuman1;
     private static HumanPlayer humanPlayer1;
-    private static PlayerName playerNameHuman2;
     private static HumanPlayer humanPlayer2;
     private static ComputerPlayer computerPlayer;
     private static RandomStrategy randomStrategy;
@@ -51,7 +48,7 @@ public class Launcher {
     private static void createGameComponents() {
         createPlayers();
         scanner = new Scanner(System.in);
-        console = new Console(scanner);
+        console = new Console();
         formatter = new Formatter();
         lines = new Lines(linesList);
         positions = new Positions(formatter, lines);
@@ -93,15 +90,15 @@ public class Launcher {
     }
 
     private static void createHumanPlayer2() {
-        playerNameHuman2 = new PlayerName("Player 2");
         crossMarker = new Cross();
-        humanPlayer2 = new HumanPlayer(playerNameHuman2, crossMarker);
+        humanPlayer2 = new HumanPlayer(crossMarker);
+        humanPlayer2.setName("X");
     }
 
     private static void createHumanPLayer1() {
-        playerNameHuman1 = new PlayerName("Player 1");
         noughtMarker = new Nought();
-        humanPlayer1 = new HumanPlayer(playerNameHuman1, noughtMarker);
+        humanPlayer1 = new HumanPlayer(noughtMarker);
+        humanPlayer1.setName("O");
     }
 
     private static List<Line> createLines() {

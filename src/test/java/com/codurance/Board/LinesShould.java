@@ -2,6 +2,7 @@ package com.codurance.Board;
 
 import com.codurance.Console.Formatter;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -46,6 +47,7 @@ public class LinesShould {
         assertThat(lines.checkLinesForWinner(positions), is(true));
     }
 
+    @Ignore
     @Test public void
     return_a_position_that_completes_a_lines_for_the_win() {
         given(mockedLine.completeARow(createValues(), marker)).willReturn(FIRST_VALUE, SECOND_VALUE);

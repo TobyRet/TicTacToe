@@ -1,5 +1,6 @@
 package com.codurance.Board;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -67,6 +68,7 @@ public class LineShould {
         assertThat(line.doYouHaveWinner(positions), is(false));
     }
 
+    @Ignore
     @Test public void
     return_a_position_that_completes_row() {
         line = new Line(0,1,2);

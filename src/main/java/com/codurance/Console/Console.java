@@ -8,11 +8,7 @@ import java.util.Scanner;
 
 public class Console {
 
-    private final Scanner scanner;
-
-    public Console(Scanner scanner) {
-        this.scanner = scanner;
-    }
+    private Scanner scanner = new Scanner(System.in);
 
     public GameType requestGameType() {
         System.out.println("" +

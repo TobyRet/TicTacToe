@@ -7,11 +7,10 @@ import com.codurance.Board.Position;
 
 public class HumanPlayer implements Player {
 
-    private final PlayerName name;
+    private String name;
     private final Marker marker;
 
-    public HumanPlayer(PlayerName name, Marker marker) {
-        this.name = name;
+    public HumanPlayer(Marker marker) {
         this.marker = marker;
     }
 
@@ -21,9 +20,13 @@ public class HumanPlayer implements Player {
         positions.addMove(marker, position);
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String getName() {
-        return name.getValue();
+        return name;
     }
 
     @Override

@@ -18,14 +18,13 @@ import static org.mockito.Mockito.verify;
 public class HumanPlayerShould {
 
     @Mock Console console;
-    @Mock PlayerName playerName;
     @Mock Positions positions;
     @Mock Position position;
 
     @Test public void
     add_move_to_the_board() {
         Marker cross = new Cross();
-        HumanPlayer humanPlayer = new HumanPlayer(playerName, cross);
+        HumanPlayer humanPlayer = new HumanPlayer(cross);
 
         given(console.requestNextMove(any())).willReturn(position);
 

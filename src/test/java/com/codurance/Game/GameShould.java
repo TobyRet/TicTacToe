@@ -154,8 +154,8 @@ public class GameShould {
         computerTurnGenerator = new ComputerTurnGenerator(computerPlayerStrategies);
         Marker marker = new Nought();
 
-        humanPlayer1 = new HumanPlayer(null, null);
-        humanPlayer2 = new HumanPlayer(null, null);
+        humanPlayer1 = new HumanPlayer(null);
+        humanPlayer2 = new HumanPlayer(null);
         computerPlayer = new ComputerPlayer(computerTurnGenerator, marker);
 
         allPlayers.add(humanPlayer1);
