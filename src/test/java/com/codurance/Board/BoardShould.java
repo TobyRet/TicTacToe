@@ -2,6 +2,7 @@ package com.codurance.Board;
 
 import com.codurance.Console.Console;
 import com.codurance.Console.Formatter;
+import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,30 +18,29 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PositionsShould {
+public class BoardShould {
 
-    private Positions positions;
+    private Board board;
     @Mock Formatter formatter;
     @Mock Lines lines;
 
     @Before
     public void initialise() {
-        positions = new Positions(formatter, lines);
+        board = new Board(formatter, lines);
     }
 
     @Test public void
     have_empty_positions_when_initialised() {
-        assertThat(positions.areEmpty(), is(true));
+        assertThat(board.areEmpty(), is(true));
     }
 
     @Test public void
     record_a_players_position() {
-        Marker cross = new Cross();
         Position position = new Position(1);
 
-        positions.addMove(cross, position);
+        board.addMove(BoardMarker.CROSS, position);
 
-        assertThat(positions.areEmpty(), is(true));
+        assertThat(board.areEmpty(), is(true));
     }
 
     @Test public void
@@ -48,18 +48,17 @@ public class PositionsShould {
         Position position = new Position(1);
 
         for(int i=0; i<9; i++) {
-            Marker cross = new Cross();
-            positions.addMove(cross, position);
+            board.addMove(BoardMarker.CROSS, position);
         }
 
-        assertThat(positions.areEmpty(), is(true));
+        assertThat(board.areEmpty(), is(true));
     }
 
     @Test public void
     print_positions_to_the_console() {
         Console console = mock(Console.class);
 
-        positions.print(console);
+        board.print(console);
 
         verify(formatter).print(any(Console.class), anyList());
     }
@@ -67,6 +66,6 @@ public class PositionsShould {
     @Test public void
     check_if_there_is_a_winner() {
         given(lines.checkLinesForWinner(any())).willReturn(true);
-        assertThat(positions.checkForWinner(), is(true));
+        assertThat(board.checkForWinner(), is(true));
     }
 }

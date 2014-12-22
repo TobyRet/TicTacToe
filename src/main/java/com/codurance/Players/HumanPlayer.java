@@ -1,25 +1,25 @@
 package com.codurance.Players;
 
 import com.codurance.Console.Console;
-import com.codurance.Board.Positions;
-import com.codurance.Board.Marker;
+import com.codurance.Board.Board;
 import com.codurance.Board.Position;
 
 public class HumanPlayer implements Player {
 
+    private final BoardMarker boardMarker;
     private String name;
-    private final Marker marker;
 
-    public HumanPlayer(Marker marker) {
-        this.marker = marker;
+    public HumanPlayer(BoardMarker boardMarker) {
+        this.boardMarker = boardMarker;
     }
 
     @Override
-    public void makeMove(Positions positions, Console console) {
+    public void makeMove(Board board, Console console) {
         Position position = console.requestNextMove(this);
-        positions.addMove(marker, position);
+        board.addMove(boardMarker, position);
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
@@ -30,7 +30,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public Marker getMarker() {
-        return marker;
+    public String getMarker() {
+        return boardMarker.getMarker();
     }
 }

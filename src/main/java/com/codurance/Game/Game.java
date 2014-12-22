@@ -3,7 +3,7 @@ package com.codurance.Game;
 import com.codurance.Console.Console;
 import com.codurance.Players.Player;
 import com.codurance.Board.Lines;
-import com.codurance.Board.Positions;
+import com.codurance.Board.Board;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +15,11 @@ public class Game {
     private final Lines lines;
     private List<Player> gamePlayers = new ArrayList();
     private Player currentPlayer;
-    private Positions positions;
+    private Board board;
 
-    public Game(List<Player> players, Positions positions, Console console, Lines lines) {
+    public Game(List<Player> players, Board board, Console console, Lines lines) {
         this.players = players;
-        this.positions = positions;
+        this.board = board;
         this.console = console;
         this.lines = lines;
     }
@@ -63,14 +63,14 @@ public class Game {
 
     private void makeMoves() {
         while(gameIncomplete()) {
-            currentPlayer.makeMove(positions, console);
+            currentPlayer.makeMove(board, console);
             printBoard();
             switchPlayer();
         }
     }
 
     private boolean gameIncomplete() {
-        return positions.checkForWinner() == false && positions.areEmpty() == true;
+        return board.checkForWinner() == false && board.areEmpty() == true;
     }
 
     private void checkForDraw() {
@@ -80,7 +80,7 @@ public class Game {
     }
 
     private boolean thereIsADraw() {
-        return positions.checkForWinner() == false && positions.areEmpty() == false;
+        return board.checkForWinner() == false && board.areEmpty() == false;
     }
 
     private void announceWinner() {
@@ -93,7 +93,7 @@ public class Game {
     }
 
     private void printBoard() {
-        positions.print(console);
+        board.print(console);
     }
 
     public List<Player> getGamePlayers() {

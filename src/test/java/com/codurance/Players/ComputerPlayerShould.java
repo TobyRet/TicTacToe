@@ -14,18 +14,18 @@ import static org.mockito.Mockito.verify;
 public class ComputerPlayerShould {
 
     @Mock Position position;
-    @Mock Positions positions;
+    @Mock
+    Board board;
     @Mock Console console;
     @Mock ComputerTurnGenerator computerTurnGenerator;
 
     @Test public void
     add_move_to_the_board() {
-        Marker noughtMarker = new Nought();
-        ComputerPlayer computerPlayer = new ComputerPlayer(computerTurnGenerator, noughtMarker);
+        ComputerPlayer computerPlayer = new ComputerPlayer(computerTurnGenerator, BoardMarker.NOUGHT);
 
-        computerPlayer.makeMove(positions, console);
+        computerPlayer.makeMove(board, console);
 
         verify(console).computerMoveConfirmation();
-        verify(computerTurnGenerator).calculateNextMove(noughtMarker, positions);
+        verify(computerTurnGenerator).calculateNextMove(BoardMarker.NOUGHT, board);
     }
 }

@@ -1,5 +1,7 @@
 package com.codurance.Board;
 
+import com.codurance.Players.BoardMarker;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,7 +40,7 @@ public class Line {
         return !lineValues.contains("-");
     }
 
-    public Integer completeARow(List<String> positions, Marker marker) {
+    public Integer completeARow(List<String> positions, BoardMarker marker) {
         List<String> lineValues = getLineValues(positions);
         List<String> emptyValues = getEmptyPositions(lineValues);
         List<String> computerMoves = getComputerMovesInLine(marker, lineValues);
@@ -53,9 +55,9 @@ public class Line {
         }
     }
 
-    private List<String> getComputerMovesInLine(Marker marker, List<String> lineValues) {
+    private List<String> getComputerMovesInLine(BoardMarker boardMarker, List<String> lineValues) {
         List<String> computerMoves = new ArrayList<>();
-        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(marker.value())).collect(Collectors.toList()));
+        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(boardMarker.getMarker())).collect(Collectors.toList()));
         return computerMoves;
     }
 

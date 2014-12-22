@@ -9,6 +9,7 @@ import com.codurance.Console.Console;
 import com.codurance.Console.Formatter;
 import com.codurance.Game.Game;
 import com.codurance.Game.TicTacToe;
+import com.codurance.Players.BoardMarker;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
 import com.codurance.Players.Player;
@@ -25,7 +26,7 @@ public class Launcher {
     private static Scanner scanner;
     private static TicTacToe ticTacToe;
     private static Formatter formatter;
-    private static Positions positions;
+    private static Board board;
     private static Lines lines;
     private static List<Player> players;
     private static HumanPlayer humanPlayer1;
@@ -35,10 +36,8 @@ public class Launcher {
     private static List<ComputerPlayerStrategy> computerStrategyList;
     private static List<Line> linesList;
     private static WinStrategy winStrategy;
-    private static Cross crossMarker;
     private static ComputerTurnGenerator computerTurnGenerator;
     private static Random randomGenerator;
-    private static Nought noughtMarker;
 
     public static void main(String[] args) {
         createGameComponents();
@@ -51,8 +50,8 @@ public class Launcher {
         console = new Console();
         formatter = new Formatter();
         lines = new Lines(linesList);
-        positions = new Positions(formatter, lines);
-        game = new Game(players, positions, console, lines);
+        board = new Board(formatter, lines);
+        game = new Game(players, board, console, lines);
         ticTacToe = new TicTacToe(console, game);
     }
 
@@ -71,9 +70,8 @@ public class Launcher {
     private static void createComputerPlayer() {
         createComputerStrategyList();
 
-        crossMarker = new Cross();
         computerTurnGenerator = new ComputerTurnGenerator(computerStrategyList);
-        computerPlayer = new ComputerPlayer(computerTurnGenerator, crossMarker);
+        computerPlayer = new ComputerPlayer(computerTurnGenerator, BoardMarker.CROSS);
     }
 
     private static List<ComputerPlayerStrategy> createComputerStrategyList() {
@@ -90,15 +88,11 @@ public class Launcher {
     }
 
     private static void createHumanPlayer2() {
-        crossMarker = new Cross();
-        humanPlayer2 = new HumanPlayer(crossMarker);
-        humanPlayer2.setName("X");
+        humanPlayer2 = new HumanPlayer(BoardMarker.NOUGHT);
     }
 
     private static void createHumanPLayer1() {
-        noughtMarker = new Nought();
-        humanPlayer1 = new HumanPlayer(noughtMarker);
-        humanPlayer1.setName("O");
+        humanPlayer1 = new HumanPlayer(BoardMarker.CROSS);
     }
 
     private static List<Line> createLines() {

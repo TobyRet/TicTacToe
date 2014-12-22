@@ -1,10 +1,8 @@
 package com.codurance.Players;
 
-import com.codurance.Console.Console;
-import com.codurance.Board.Positions;
-import com.codurance.Board.Cross;
-import com.codurance.Board.Marker;
 import com.codurance.Board.Position;
+import com.codurance.Board.Board;
+import com.codurance.Console.Console;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -18,18 +16,18 @@ import static org.mockito.Mockito.verify;
 public class HumanPlayerShould {
 
     @Mock Console console;
-    @Mock Positions positions;
+    @Mock
+    Board board;
     @Mock Position position;
 
     @Test public void
     add_move_to_the_board() {
-        Marker cross = new Cross();
-        HumanPlayer humanPlayer = new HumanPlayer(cross);
+        HumanPlayer humanPlayer = new HumanPlayer(BoardMarker.NOUGHT);
 
         given(console.requestNextMove(any())).willReturn(position);
 
-        humanPlayer.makeMove(positions, console);
+        humanPlayer.makeMove(board, console);
 
-        verify(positions).addMove(cross, position);
+        verify(board).addMove(BoardMarker.NOUGHT, position);
     }
 }

@@ -1,5 +1,6 @@
 package com.codurance.Board;
 
+import com.codurance.Players.BoardMarker;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -72,11 +73,10 @@ public class LineShould {
     @Test public void
     return_a_position_that_completes_row() {
         line = new Line(0,1,2);
-        Cross marker = new Cross();
-        assertThat(line.completeARow(rowNoWin(), marker), is(2));
+        assertThat(line.completeARow(rowNoWin(), BoardMarker.CROSS), is(2));
 
         line = new Line(0,3,6);
-        assertThat(line.completeARow(columnNoWin(), marker), is(6));
+        assertThat(line.completeARow(columnNoWin(), BoardMarker.CROSS), is(6));
     }
 
     private List<String> columnNoWin() {

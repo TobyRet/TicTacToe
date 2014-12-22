@@ -1,9 +1,9 @@
 package com.codurance.ComputerStrategies;
 
 
-import com.codurance.Board.Marker;
 import com.codurance.Board.Position;
-import com.codurance.Board.Positions;
+import com.codurance.Board.Board;
+import com.codurance.Players.BoardMarker;
 
 import java.util.List;
 import java.util.Random;
@@ -19,19 +19,19 @@ public class RandomStrategy implements ComputerPlayerStrategy {
     }
 
     @Override
-    public void execute(Marker marker, Positions positions) {
-        positions.addMove(marker, generateRandomPosition(positions));
+    public void execute(BoardMarker boardMarker, Board board) {
+        board.addMove(boardMarker, generateRandomPosition(board));
     }
 
     @Override
-    public boolean isFeasible(Marker marker, Positions positions) {
+    public boolean isFeasible(BoardMarker marker, Board board) {
         return false;
     }
 
-    private Position generateRandomPosition(Positions positions) {
+    private Position generateRandomPosition(Board board) {
 
-        List<Integer> indexes = positions.getAll().stream().filter(position -> position.equals(EMPTY))
-                                                            .map(position -> positions.getAll().indexOf(position))
+        List<Integer> indexes = board.getAll().stream().filter(position -> position.equals(EMPTY))
+                                                            .map(position -> board.getAll().indexOf(position))
                                                             .collect(Collectors.toList());
 
         int randomIndex = randomGenerator.nextInt(indexes.size());

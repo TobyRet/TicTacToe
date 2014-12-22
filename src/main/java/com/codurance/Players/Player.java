@@ -1,14 +1,15 @@
 package com.codurance.Players;
 
 import com.codurance.Console.Console;
-import com.codurance.Board.Positions;
-import com.codurance.Board.Marker;
+import com.codurance.Board.Board;
 
 public interface Player {
 
-    void makeMove(Positions positions, Console console);
+    void makeMove(Board board, Console console);
+
+    void setName(String name);
 
     String getName();
 
-    Marker getMarker();
+    String getMarker();
 }

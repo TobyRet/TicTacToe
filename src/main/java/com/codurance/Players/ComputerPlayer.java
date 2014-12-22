@@ -1,24 +1,28 @@
 package com.codurance.Players;
 
-import com.codurance.Board.Marker;
-import com.codurance.Board.Positions;
+import com.codurance.Board.Board;
 import com.codurance.ComputerStrategies.ComputerTurnGenerator;
 import com.codurance.Console.Console;
 
 public class ComputerPlayer implements Player {
 
     private final ComputerTurnGenerator computerTurnGenerator;
-    private Marker marker;
+    private final BoardMarker boardMarker;
 
-    public ComputerPlayer(ComputerTurnGenerator computerTurnGenerator, Marker marker) {
+    public ComputerPlayer(ComputerTurnGenerator computerTurnGenerator, BoardMarker boardMarker) {
         this.computerTurnGenerator = computerTurnGenerator;
-        this.marker = marker;
+        this.boardMarker = boardMarker;
     }
 
     @Override
-    public void makeMove(Positions positions, Console console) {
-        computerTurnGenerator.calculateNextMove(marker, positions);
+    public void makeMove(Board board, Console console) {
+        computerTurnGenerator.calculateNextMove(boardMarker, board);
         console.computerMoveConfirmation();
+    }
+
+    @Override
+    public void setName(String name) {
+
     }
 
     @Override
@@ -27,7 +31,8 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public Marker getMarker() {
-        return null;
+    public String getMarker() {
+        return boardMarker.getMarker();
     }
+
 }

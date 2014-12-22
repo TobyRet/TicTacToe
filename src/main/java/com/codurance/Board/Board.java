@@ -2,18 +2,19 @@ package com.codurance.Board;
 
 import com.codurance.Console.Formatter;
 import com.codurance.Console.Console;
+import com.codurance.Players.BoardMarker;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Positions {
+public class Board {
 
     private static final String EMPTY_VALUE = "-";
     private final Lines lines;
     private List<String> positions = new ArrayList<>(9);
     private Formatter formatter;
 
-    public Positions(Formatter formatter, Lines lines) {
+    public Board(Formatter formatter, Lines lines) {
         this.formatter = formatter;
         this.lines = lines;
         createPositions();
@@ -23,8 +24,8 @@ public class Positions {
         return positions.contains(EMPTY_VALUE);
     }
 
-    public void addMove(Marker marker, Position position) {
-        positions.set(position.value(), marker.value());
+    public void addMove(BoardMarker marker, Position position) {
+        positions.set(position.value(), marker.getMarker());
     }
 
     public void print(Console console) {

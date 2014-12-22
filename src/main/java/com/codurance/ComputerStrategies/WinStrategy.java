@@ -1,9 +1,9 @@
 package com.codurance.ComputerStrategies;
 
 import com.codurance.Board.Lines;
-import com.codurance.Board.Marker;
 import com.codurance.Board.Position;
-import com.codurance.Board.Positions;
+import com.codurance.Board.Board;
+import com.codurance.Players.BoardMarker;
 
 public class WinStrategy implements ComputerPlayerStrategy {
 
@@ -14,17 +14,17 @@ public class WinStrategy implements ComputerPlayerStrategy {
     }
 
     @Override
-    public void execute(Marker marker, Positions positions) {
-        Integer positionIndex = getWinningPosition(marker, positions);
-        positions.addMove(marker, new Position(positionIndex));
+    public void execute(BoardMarker boardMarker, Board board) {
+        Integer positionIndex = getWinningPosition(boardMarker, board);
+        board.addMove(boardMarker, new Position(positionIndex));
     }
 
-    private Integer getWinningPosition(Marker marker, Positions positions) {
-        return lines.completeForWin(positions, marker);
+    private Integer getWinningPosition(BoardMarker boardMarker, Board board) {
+        return lines.completeForWin(board, boardMarker);
     }
 
     @Override
-    public boolean isFeasible(Marker marker, Positions positions) {
-        return lines.completeForWin(positions, marker) != null;
+    public boolean isFeasible(BoardMarker marker, Board board) {
+        return lines.completeForWin(board, marker) != null;
     }
 }

@@ -1,10 +1,10 @@
 package com.codurance.ComputerStrategies;
 
-import com.codurance.Board.Marker;
-import com.codurance.Board.Positions;
+import com.codurance.Board.Board;
+import com.codurance.Players.BoardMarker;
 
 public interface ComputerPlayerStrategy {
-    void execute(Marker marker, Positions positions);
+    void execute(BoardMarker boardMarker, Board board);
 
-    boolean isFeasible(Marker marker, Positions positions);
+    boolean isFeasible(BoardMarker marker, Board board);
 }

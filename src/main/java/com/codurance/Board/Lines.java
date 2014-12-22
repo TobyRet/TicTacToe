@@ -1,5 +1,7 @@
 package com.codurance.Board;
 
+import com.codurance.Players.BoardMarker;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +23,11 @@ public class Lines {
         return winner;
     }
 
-    public Integer completeForWin(Positions positions, Marker marker) {
+    public Integer completeForWin(Board board, BoardMarker marker) {
         List<Integer> winningPositions = new ArrayList<>();
 
         for(Line line : lines) {
-            winningPositions.add(line.completeARow(positions.getAll(), marker));
+            winningPositions.add(line.completeARow(board.getAll(), marker));
         }
 
         return winningPositions.get(0);

@@ -1,6 +1,7 @@
 package com.codurance.Board;
 
 import com.codurance.Console.Formatter;
+import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -25,13 +26,13 @@ public class LinesShould {
     @Mock Position mockedPosition1;
     @Mock Position mockedPosition2;
     @Mock Line mockedLine;
-    @Mock Positions mockedPositions;
-    @Mock Marker marker;
+    @Mock
+    Board mockedBoard;
 
     @Before
     public void initialise() {
         formatter = new Formatter();
-        positions = new Positions(formatter, lines).getAll();
+        positions = new Board(formatter, lines).getAll();
         lines = new Lines(createMockLines());
     }
 
@@ -50,8 +51,8 @@ public class LinesShould {
     @Ignore
     @Test public void
     return_a_position_that_completes_a_lines_for_the_win() {
-        given(mockedLine.completeARow(createValues(), marker)).willReturn(FIRST_VALUE, SECOND_VALUE);
-        assertThat(lines.completeForWin(mockedPositions, marker), is(0));
+        given(mockedLine.completeARow(createValues(), BoardMarker.CROSS)).willReturn(FIRST_VALUE, SECOND_VALUE);
+        assertThat(lines.completeForWin(mockedBoard, BoardMarker.CROSS), is(0));
     }
 
     private List<String> createValues() {
