@@ -1,6 +1,8 @@
 package com.codurance;
 
-import com.codurance.Board.*;
+import com.codurance.Board.Board;
+import com.codurance.Board.Line;
+import com.codurance.Board.Lines;
 import com.codurance.ComputerStrategies.ComputerPlayerStrategy;
 import com.codurance.ComputerStrategies.ComputerTurnGenerator;
 import com.codurance.ComputerStrategies.RandomStrategy;
@@ -8,7 +10,6 @@ import com.codurance.ComputerStrategies.WinStrategy;
 import com.codurance.Console.Console;
 import com.codurance.Console.Formatter;
 import com.codurance.Game.Game;
-import com.codurance.Game.TicTacToe;
 import com.codurance.Players.BoardMarker;
 import com.codurance.Players.ComputerPlayer;
 import com.codurance.Players.HumanPlayer;
@@ -24,7 +25,6 @@ public class Launcher {
     private static Console console;
     private static Game game;
     private static Scanner scanner;
-    private static TicTacToe ticTacToe;
     private static Formatter formatter;
     private static Board board;
     private static Lines lines;
@@ -41,7 +41,7 @@ public class Launcher {
 
     public static void main(String[] args) {
         createGameComponents();
-        ticTacToe.loadGameType();
+        game.start();
     }
 
     private static void createGameComponents() {
@@ -51,8 +51,7 @@ public class Launcher {
         formatter = new Formatter();
         lines = new Lines(linesList);
         board = new Board(formatter, lines);
-        game = new Game(players, board, console, lines);
-        ticTacToe = new TicTacToe(console, game);
+//        game = new Game(console, board, players);
     }
 
     private static void createPlayers() {

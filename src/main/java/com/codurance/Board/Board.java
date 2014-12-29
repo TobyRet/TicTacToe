@@ -45,4 +45,8 @@ public class Board {
     public List<String> getAll() {
         return positions;
     }
+
+    public boolean isThereAWinner() {
+        return false;
+    }
 }

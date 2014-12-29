@@ -1,8 +1,6 @@
 package com.codurance.Players;
 
-import com.codurance.Console.Console;
 import com.codurance.Board.Board;
-import com.codurance.Board.Position;
 
 public class HumanPlayer implements Player {
 
@@ -14,19 +12,14 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public void makeMove(Board board, Console console) {
-        Position position = console.requestNextMove(this);
-        board.addMove(boardMarker, position);
+    public void addMoveTo(Board board) {
+//        Position position = console.requestNextMove(this);
+//        board.addMove(boardMarker, position);
     }
 
     @Override
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     @Override

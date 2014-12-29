@@ -26,7 +26,7 @@ public class HumanPlayerShould {
 
         given(console.requestNextMove(any())).willReturn(position);
 
-        humanPlayer.makeMove(board, console);
+        humanPlayer.addMoveTo(board);
 
         verify(board).addMove(BoardMarker.NOUGHT, position);
     }

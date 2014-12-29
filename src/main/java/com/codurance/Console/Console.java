@@ -44,4 +44,12 @@ public class Console {
     public void printPositions(String formattedPositions) {
         System.out.println(formattedPositions);
     }
+
+    public String readLine() {
+        return null;
+    }
+
+    public void printLine(String instruction) {
+
+    }
 }

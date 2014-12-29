@@ -23,7 +23,7 @@ public class ComputerPlayerShould {
     add_move_to_the_board() {
         ComputerPlayer computerPlayer = new ComputerPlayer(computerTurnGenerator, BoardMarker.NOUGHT);
 
-        computerPlayer.makeMove(board, console);
+        computerPlayer.addMoveTo(board);
 
         verify(console).computerMoveConfirmation();
         verify(computerTurnGenerator).calculateNextMove(BoardMarker.NOUGHT, board);

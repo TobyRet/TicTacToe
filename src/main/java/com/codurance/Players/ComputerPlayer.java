@@ -2,7 +2,6 @@ package com.codurance.Players;
 
 import com.codurance.Board.Board;
 import com.codurance.ComputerStrategies.ComputerTurnGenerator;
-import com.codurance.Console.Console;
 
 public class ComputerPlayer implements Player {
 
@@ -15,19 +14,14 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public void makeMove(Board board, Console console) {
+    public void addMoveTo(Board board) {
         computerTurnGenerator.calculateNextMove(boardMarker, board);
-        console.computerMoveConfirmation();
+        //console.computerMoveConfirmation();
     }
 
     @Override
     public void setName(String name) {
 
-    }
-
-    @Override
-    public String getName() {
-        return "Computer";
     }
 
     @Override
