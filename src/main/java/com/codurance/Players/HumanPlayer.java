@@ -1,20 +1,22 @@
 package com.codurance.Players;
 
 import com.codurance.Board.Board;
+import com.codurance.Console.Console;
 
 public class HumanPlayer implements Player {
 
     private final BoardMarker boardMarker;
     private String name;
+    private Console console;
 
-    public HumanPlayer(BoardMarker boardMarker) {
+    public HumanPlayer(BoardMarker boardMarker, Console console) {
         this.boardMarker = boardMarker;
+        this.console = console;
     }
 
     @Override
     public void addMoveTo(Board board) {
-//        Position position = console.requestNextMove(this);
-//        board.addMove(boardMarker, position);
+        board.addMove(boardMarker, console.readLine());
     }
 
     @Override
@@ -23,7 +25,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public String getMarker() {
-        return boardMarker.getMarker();
+    public BoardMarker getMarker() {
+        return boardMarker;
     }
 }

@@ -1,24 +1,34 @@
 package com.codurance.Board;
 
-import com.codurance.Console.Formatter;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BoardShould {
 
     private Board board;
-    @Mock Formatter formatter;
     @Mock Lines lines;
 
     @Before
     public void initialise() {
-        board = new Board(formatter, lines);
+        board = new Board(lines);
     }
 
-    
+    @Test public void
+    confirm_if_there_is_a_winner() {
+        given(lines.checkForWin(any())).willReturn(true);
+        assertThat(board.isThereAWinner(), is(true));
+    }
+
+
 
 //    @Test public void
 //    have_empty_positions_when_initialised() {
@@ -56,7 +66,7 @@ public class BoardShould {
 //
 //    @Test public void
 //    check_if_there_is_a_winner() {
-//        given(lines.checkLinesForWinner(any())).willReturn(true);
+//        given(lines.checkForWin(any())).willReturn(true);
 //        assertThat(board.checkForWinner(), is(true));
 //    }
 }

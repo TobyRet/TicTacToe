@@ -25,8 +25,8 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public String getMarker() {
-        return boardMarker.getMarker();
+    public BoardMarker getMarker() {
+        return boardMarker;
     }
 
 }

@@ -5,8 +5,8 @@ import com.codurance.Board.Line;
 import com.codurance.Board.Lines;
 import com.codurance.ComputerStrategies.ComputerPlayerStrategy;
 import com.codurance.ComputerStrategies.ComputerTurnGenerator;
-import com.codurance.ComputerStrategies.RandomStrategy;
-import com.codurance.ComputerStrategies.WinStrategy;
+//import com.codurance.ComputerStrategies.RandomStrategy;
+//import com.codurance.ComputerStrategies.WinStrategy;
 import com.codurance.Console.Console;
 import com.codurance.Console.Formatter;
 import com.codurance.Game.Game;
@@ -32,10 +32,10 @@ public class Launcher {
     private static HumanPlayer humanPlayer1;
     private static HumanPlayer humanPlayer2;
     private static ComputerPlayer computerPlayer;
-    private static RandomStrategy randomStrategy;
+//    private static RandomStrategy randomStrategy;
     private static List<ComputerPlayerStrategy> computerStrategyList;
     private static List<Line> linesList;
-    private static WinStrategy winStrategy;
+//    private static WinStrategy winStrategy;
     private static ComputerTurnGenerator computerTurnGenerator;
     private static Random randomGenerator;
 
@@ -50,7 +50,7 @@ public class Launcher {
         console = new Console();
         formatter = new Formatter();
         lines = new Lines(linesList);
-        board = new Board(formatter, lines);
+//        board = new Board();
 //        game = new Game(console, board, players);
     }
 
@@ -77,21 +77,21 @@ public class Launcher {
         computerStrategyList = new ArrayList<>();
         randomGenerator = new Random();
         lines = new Lines(createLines());
-        winStrategy = new WinStrategy(lines);
-        randomStrategy = new RandomStrategy(randomGenerator);
+//        winStrategy = new WinStrategy(lines);
+//        randomStrategy = new RandomStrategy(randomGenerator);
 
-        computerStrategyList.add(winStrategy);
-        computerStrategyList.add(randomStrategy);
+//        computerStrategyList.add(winStrategy);
+//        computerStrategyList.add(randomStrategy);
 
         return computerStrategyList;
     }
 
     private static void createHumanPlayer2() {
-        humanPlayer2 = new HumanPlayer(BoardMarker.NOUGHT);
+        humanPlayer2 = new HumanPlayer(BoardMarker.NOUGHT, console);
     }
 
     private static void createHumanPLayer1() {
-        humanPlayer1 = new HumanPlayer(BoardMarker.CROSS);
+        humanPlayer1 = new HumanPlayer(BoardMarker.CROSS, console);
     }
 
     private static List<Line> createLines() {

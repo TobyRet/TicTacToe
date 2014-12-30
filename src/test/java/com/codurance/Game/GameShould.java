@@ -22,10 +22,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GameShould {
 
-    private static final String TWO_PLAYER_GAME = "T";
-    private static final List<Player> TWO_HUMAN_PLAYERS = new ArrayList<>(Arrays.asList(
-            new HumanPlayer(BoardMarker.NOUGHT),
-            new HumanPlayer(BoardMarker.CROSS)));
+    private final String TWO_PLAYER_GAME = "T";
     private Game game;
     @Mock Board board;
     @Mock Console console;
@@ -41,7 +38,7 @@ public class GameShould {
 
     @Test public void
     load_two_human_players_when_2_player_game_selected() {
-        given(players.load(TWO_PLAYER_GAME)).willReturn(TWO_HUMAN_PLAYERS);
+        given(players.load(TWO_PLAYER_GAME)).willReturn(twoHumanPlayers());
         given(board.isThereAWinner()).willReturn(true);
 
         game.start();
@@ -50,9 +47,10 @@ public class GameShould {
         verify(players).load(TWO_PLAYER_GAME);
     }
 
+
     @Test public void
     announce_the_winner_if_player_has_won_the_game() {
-        given(players.load(TWO_PLAYER_GAME)).willReturn(TWO_HUMAN_PLAYERS);
+        given(players.load(TWO_PLAYER_GAME)).willReturn(twoHumanPlayers());
         given(board.isThereAWinner()).willReturn(true);
 
         game.start();
@@ -70,6 +68,12 @@ public class GameShould {
 
         verify(mockPlayer1, times(2)).addMoveTo(board);
         verify(mockPlayer2, times(1)).addMoveTo(board);
+    }
+
+    private List<Player> twoHumanPlayers() {
+        return new ArrayList<>(Arrays.asList(
+                new HumanPlayer(BoardMarker.NOUGHT, console),
+                new HumanPlayer(BoardMarker.CROSS, console)));
     }
 
     private List<Player> createTwoMockPLayers() {
