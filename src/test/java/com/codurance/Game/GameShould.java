@@ -16,7 +16,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,13 +60,13 @@ public class GameShould {
 
     @Test public void
     let_players_submit_moves_if_there_is_no_winner() {
-        given(players.load(TWO_PLAYER_GAME)).willReturn(createTwoMockPLayers());
+        given(players.load(TWO_PLAYER_GAME)).willReturn(twoHumanPlayers());
         given(board.isThereAWinner()).willReturn(false, false, true);
 
         game.start();
 
-        verify(mockPlayer1, times(2)).addMoveTo(board);
-        verify(mockPlayer2, times(1)).addMoveTo(board);
+        verify(console).printLine("Select game type");
+        verify(console).printLine("O wins");
     }
 
     private List<Player> twoHumanPlayers() {

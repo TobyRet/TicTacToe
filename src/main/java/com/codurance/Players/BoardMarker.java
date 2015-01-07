@@ -9,7 +9,7 @@ public enum BoardMarker {
         this.marker = marker;
     }
 
-    public String getMarker() {
+    public String value() {
         return marker;
     }
 }

@@ -15,7 +15,7 @@ public class ComputerPlayer implements Player {
 
     @Override
     public void addMoveTo(Board board) {
-        computerTurnGenerator.calculateNextMove(boardMarker, board);
+        //computerTurnGenerator.calculateNextMove(boardMarker, board);
         //console.computerMoveConfirmation();
     }
 
@@ -25,7 +25,7 @@ public class ComputerPlayer implements Player {
     }
 
     @Override
-    public BoardMarker getMarker() {
+    public BoardMarker boardMarker() {
         return boardMarker;
     }
 

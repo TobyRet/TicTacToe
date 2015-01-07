@@ -1,5 +1,6 @@
 package com.codurance.Board;
 
+import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,9 +24,29 @@ public class BoardShould {
     }
 
     @Test public void
+    initialise_an_empty_board() {
+        assertThat(board.isEmpty(), is(true));
+    }
+
+    @Test public void
     confirm_if_there_is_a_winner() {
         given(lines.checkForWin(any())).willReturn(true);
         assertThat(board.isThereAWinner(), is(true));
+    }
+
+    @Test public void
+    add_a_players_move() {
+        board.addMove(BoardMarker.CROSS, "1");
+        assertThat(board.isEmpty(), is(false));
+    }
+
+    @Test public void
+    confirm_when_all_positions_have_values() {
+        for(int i=1; i<10; i++) {
+            board.addMove(BoardMarker.CROSS, "" + i);
+        }
+
+        assertThat(board.isFull(), is(true));
     }
 
 

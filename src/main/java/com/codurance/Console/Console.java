@@ -20,14 +20,14 @@ public class Console {
     }
 
     public Position requestNextMove(Player player) {
-        System.out.println(player.getMarker() + " please enter your move");
+        System.out.println(player.boardMarker() + " please enter your move");
         int position = Integer.parseInt(scanner.nextLine()) - 1;
         return new Position(position);
     }
 
     public void printWinner(Player player) {
         System.out.println("-----------------------");
-        System.out.println(player.getMarker() + " is the winner!");
+        System.out.println(player.boardMarker() + " is the winner!");
         System.out.println("-----------------------\n");
     }
 

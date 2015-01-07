@@ -32,7 +32,7 @@ public class Game {
     }
 
     private void announceWinner() {
-        console.printLine(currentPlayer.getMarker() + " wins");
+        console.printLine(currentPlayer.boardMarker().value() + " wins");
     }
 
     private void play() {

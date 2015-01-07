@@ -8,5 +8,5 @@ public interface Player {
 
     void setName(String name);
 
-    BoardMarker getMarker();
+    BoardMarker boardMarker();
 }

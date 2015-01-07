@@ -57,7 +57,7 @@ public class Line {
 
     private List<String> getComputerMovesInLine(BoardMarker boardMarker, List<String> lineValues) {
         List<String> computerMoves = new ArrayList<>();
-        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(boardMarker.getMarker())).collect(Collectors.toList()));
+        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(boardMarker.value())).collect(Collectors.toList()));
         return computerMoves;
     }
 

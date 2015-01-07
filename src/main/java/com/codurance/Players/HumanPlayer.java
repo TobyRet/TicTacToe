@@ -25,7 +25,7 @@ public class HumanPlayer implements Player {
     }
 
     @Override
-    public BoardMarker getMarker() {
+    public BoardMarker boardMarker() {
         return boardMarker;
     }
 }
