@@ -44,6 +44,7 @@ public class GameShould {
 
         verify(console).printLine("Select game type");
         verify(players).load(TWO_PLAYER_GAME);
+
     }
 
 
@@ -64,6 +65,8 @@ public class GameShould {
         given(board.isThereAWinner()).willReturn(false, false, true);
 
         game.start();
+
+
 
         verify(console).printLine("Select game type");
         verify(console).printLine("O wins");

@@ -22,3 +22,4 @@ DONE
 - Asking the user the game type could be part of the behaviour of the Game.start() method. 
 - Why do we need to create the Players up-front? Can’t they be created when the user decides which type of game she wants?
 
+Consider having gane class call line check direct to see if win state has been achieved.

@@ -1,163 +1,78 @@
 package com.codurance.Board;
 
 import com.codurance.Players.BoardMarker;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class LineShould {
 
-    private static final String EMPTY = "-";
-    private static final String CROSS = "X";
-    private static final String NOUGHT = "0";
     private Line line;
-    private List<String> positions;
+    private List<Move> board = new ArrayList<>();
+    private Move crossMove = new Move();
+    private Move nullMove = new Move();
+
+    @Before
+    public void initialise() {
+        crossMove.setBoardMarkerValue(BoardMarker.CROSS);
+    }
 
     @Test
     public void
-    return_true_if_a_row_has_equal_values() {
+    return_true_if_board_contains_three_consecutive_noughts_or_crosses() {
         line = new Line(0,1,2);
-        positions = rowWin();
 
-        assertThat(line.doYouHaveWinner(positions), is(true));
+        assertThat(line.doYouHaveWinner(boardWithRowWinner()), is(true));
     }
 
     @Test public void
-    return_false_if_row_does_not_have_equal_values() {
+    return_false_if_board_does_not_contain_three_consecutive_noughts_crosses() {
         line = new Line(0,1,2);
-        positions = rowNoWin();
 
-        assertThat(line.doYouHaveWinner(positions), is(false));
-    }
-
-    @Test
-    public void
-    return_true_if_a_column_has_equal_values() {
-        line = new Line(0,3,6);
-        positions = columnWin();
-
-        assertThat(line.doYouHaveWinner(positions), is(true));
+        assertThat(line.doYouHaveWinner(boardWithNoRowWinner()), is(false));
     }
 
     @Test public void
-    return_false_if_column_does_not_have_equal_values() {
-        line = new Line(0,3,6);
-        positions = rowWin();
-
-        assertThat(line.doYouHaveWinner(positions), is(false));
-    }
-
-    @Test
-    public void
-    return_true_if_a_diagonal_has_equal_values() {
+    return_false_if_board_contains_three_consecuitve_null_values() {
         line = new Line(0,4,8);
-        positions = diagonalWin();
 
-        assertThat(line.doYouHaveWinner(positions), is(true));
+        assertThat(line.doYouHaveWinner(boardWithAllNullValues()), is(false));
     }
 
-    @Test public void
-    return_false_if_diagonal_does_not_have_equal_values() {
-        line = new Line(0,3,6);
-        positions = rowWin();
+    private List<Move> boardWithAllNullValues() {
+        for(int i=0; i<8; i++) {
+            board.add(nullMove);
+        }
 
-        assertThat(line.doYouHaveWinner(positions), is(false));
+        return board;
     }
 
-    @Ignore
-    @Test public void
-    return_a_position_that_completes_row() {
-        line = new Line(0,1,2);
-        assertThat(line.completeARow(rowNoWin(), BoardMarker.CROSS), is(2));
+    private List<Move> boardWithRowWinner() {
+        for(int i=0; i<3; i++) {
+            board.add(crossMove);
+        }
 
-        line = new Line(0,3,6);
-        assertThat(line.completeARow(columnNoWin(), BoardMarker.CROSS), is(6));
+        for(int i=0; i<6; i++) {
+            board.add(nullMove);
+        }
+
+        return board;
     }
 
-    private List<String> columnNoWin() {
-        positions = new ArrayList<>();
+    private List<Move> boardWithNoRowWinner() {
+        for(int i=0; i<2; i++) {
+            board.add(crossMove);
+        }
 
-        positions.add(CROSS);
-        positions.add(NOUGHT);
-        positions.add(EMPTY);
-        positions.add(CROSS);
-        positions.add(NOUGHT);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
+        for(int i=0; i<7; i++) {
+            board.add(nullMove);
+        }
 
-        return positions;
-    }
-
-    // Code smell. Fix below. Builder pattern?
-
-    private List<String> rowNoWin() {
-        positions = new ArrayList<>();
-
-        positions.add(CROSS);
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-
-        return positions;
-    }
-
-    private List<String> columnWin() {
-        positions = new ArrayList<>();
-
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-
-        return positions;
-    }
-
-    private List<String> rowWin() {
-        positions = new ArrayList<>();
-
-        positions.add(CROSS);
-        positions.add(CROSS);
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-
-        return positions;
-    }
-
-    private List<String> diagonalWin() {
-        positions = new ArrayList<>();
-
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(CROSS);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(EMPTY);
-        positions.add(CROSS);
-
-        return positions;
+        return board;
     }
 }

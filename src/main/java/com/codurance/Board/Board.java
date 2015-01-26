@@ -7,35 +7,31 @@ import java.util.List;
 
 public class Board {
 
-    private final Lines lines;
+    private final LinesChecker linesChecker;
     private List<Move> boardPositions;
 
-    public Board(Lines lines) {
-        this.lines = lines;
+    public Board(LinesChecker linesChecker) {
+        this.linesChecker = linesChecker;
         initialiseEmptyBoard();
-
     }
 
-    private void initialiseEmptyBoard() {
-        boardPositions = new ArrayList();
-        for(int i=0; i<9; i++) {
-            boardPositions.add(new Move());
-        }
+    public List<Move> getBoard() {
+        return boardPositions;
     }
 
     public boolean isThereAWinner() {
-        return lines.checkForWin(this);
+        return linesChecker.checkForWin(getBoard());
     }
 
     public void addMove(BoardMarker boardMarker, String boardPosition) {
         int boardPositionAsIndexValue = Integer.parseInt(boardPosition) - 1;
-        boardPositions.get(boardPositionAsIndexValue).setValue(boardMarker);
+        boardPositions.get(boardPositionAsIndexValue).setBoardMarkerValue(boardMarker);
     }
 
     public boolean isEmpty() {
         boolean boardIsEmpty = true;
         for(Move move : boardPositions) {
-            if(!(move.getValue() == null)) {
+            if(!(move.getBoardMarkerValue() == null)) {
                 boardIsEmpty = false;
             }
         }
@@ -45,10 +41,17 @@ public class Board {
     public boolean isFull() {
         boolean boardIsFull = true;
         for(Move move : boardPositions) {
-            if((move.getValue() == null)) {
+            if((move.getBoardMarkerValue() == null)) {
                 boardIsFull = false;
             }
         }
         return boardIsFull;
+    }
+
+    private void initialiseEmptyBoard() {
+        boardPositions = new ArrayList();
+        for(int i=0; i<9; i++) {
+            boardPositions.add(new Move());
+        }
     }
 }

@@ -1,69 +1,39 @@
 package com.codurance.Board;
 
-import com.codurance.Players.BoardMarker;
-
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
 
 public class Line {
-    private final int firstPositionIndex;
-    private final int secondPositionIndex;
-    private final int thirdPositionIndex;
-    private List<String> lineValues;
+    private final int firstPosition;
+    private final int secondPosition;
+    private final int thirdPosition;
 
-    public Line(int cell1, int cell2, int cell3) {
-        this.firstPositionIndex = cell1;
-        this.secondPositionIndex = cell2;
-        this.thirdPositionIndex = cell3;
+    public Line(int firstPosition, int secondPosition, int thirdPosition) {
+        this.firstPosition = firstPosition;
+        this.secondPosition = secondPosition;
+        this.thirdPosition = thirdPosition;
     }
 
-    public boolean doYouHaveWinner(List<String> positions) {
-        lineValues = getLineValues(positions);
-
-        return lineHasNoEmptyPositions() && lineHasEqualValues();
+    public boolean doYouHaveWinner(List<Move> board) {
+        return !lineContainsNullValues(board) && firstPositionEqualsSecondPosition(board) &&
+                secondPositionEqualsThirdPosition(board);
     }
 
-    private List<String> getLineValues(List<String> positions) {
-        List<String> lineValues = new ArrayList<>();
-
-        lineValues.add(positions.get(firstPositionIndex));
-        lineValues.add(positions.get(secondPositionIndex));
-        lineValues.add(positions.get(thirdPositionIndex));
-        return lineValues;
+    private boolean firstPositionEqualsSecondPosition(List<Move> board) {
+        return board.get(firstPosition).getBoardMarkerValue()
+                .equals(board.get(secondPosition).getBoardMarkerValue());
     }
 
-    private boolean lineHasEqualValues() {
-        return lineValues.get(0).equals(lineValues.get(1)) && lineValues.get(1).equals(lineValues.get(2));
+    private boolean secondPositionEqualsThirdPosition(List<Move> board) {
+        return board.get(secondPosition).getBoardMarkerValue()
+                .equals(board.get(thirdPosition).getBoardMarkerValue());
     }
 
-    private boolean lineHasNoEmptyPositions() {
-        return !lineValues.contains("-");
-    }
-
-    public Integer completeARow(List<String> positions, BoardMarker marker) {
-        List<String> lineValues = getLineValues(positions);
-        List<String> emptyValues = getEmptyPositions(lineValues);
-        List<String> computerMoves = getComputerMovesInLine(marker, lineValues);
-
-        System.out.println();
-        System.out.println(lineValues);
-
-        if(emptyValues.size() == 1 && computerMoves.size() == 2) {
-            return lineValues.indexOf("-");
-        } else {
-            return null;
+    private boolean lineContainsNullValues(List<Move> board) {
+        if(board.get(firstPosition).getBoardMarkerValue() == null
+                || board.get(secondPosition).getBoardMarkerValue() == null
+                || board.get(thirdPosition).getBoardMarkerValue() == null) {
+            return true;
         }
-    }
-
-    private List<String> getComputerMovesInLine(BoardMarker boardMarker, List<String> lineValues) {
-        List<String> computerMoves = new ArrayList<>();
-        computerMoves.addAll(lineValues.stream().filter(value -> value.equals(boardMarker.value())).collect(Collectors.toList()));
-        return computerMoves;
-    }
-
-    private List<String> getEmptyPositions(List<String> lineValues) {
-        List<String> emptyValues = new ArrayList<>();
-        emptyValues.addAll(lineValues.stream().filter(value -> value.equals("-")).collect(Collectors.toList()));
-        return emptyValues;
+        return false;
     }
 }

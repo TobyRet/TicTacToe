@@ -1,36 +1,21 @@
 package com.codurance.Board;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lines {
-    private final List<Line> lines;
+    public static List<Line> create() {
+        List<Line> lines = new ArrayList<>();
 
-    public Lines(List<Line> lines) {
-        this.lines = lines;
+        lines.add(new Line(0,1,2));
+        lines.add(new Line(3,4,5));
+        lines.add(new Line(6,7,8));
+        lines.add(new Line(0,3,6));
+        lines.add(new Line(1,4,7));
+        lines.add(new Line(2,5,8));
+        lines.add(new Line(0,4,8));
+        lines.add(new Line(2,4,6));
+
+        return lines;
     }
-
-    public boolean checkForWin(Board board) {
-//        boolean winner = false;
-//
-//        for(Line line : lines) {
-//            if(line.doYouHaveWinner(positions)) {
-//                winner = true;
-//            }
-//        }
-        return false;
-    }
-
-//    public Integer completeForWin(Board board, BoardMarker marker) {
-//        List<Integer> winningPositions = new ArrayList<>();
-//
-//        for(Line line : lines) {
-//            winningPositions.add(line.completeARow(board.getAll(), marker));
-//        }
-//
-//        return winningPositions.get(0);
-//    }
-
-//    public boolean checkForWin(Board board) {
-//        return false;
-//    }
 }
