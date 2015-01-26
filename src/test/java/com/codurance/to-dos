@@ -1,25 +1,25 @@
 
-- Launcher: You went way over the top with creating classes and passing them into the constructors of other classes. A new obsession? :) 
-- Many classes you are creating and passing into the constructors could be created inside other classes and not be mocked. 
-- Lines should not receive a List<Line> in its constructor. This List<Line> is part of the internals of Lines and should not be exposed to/known by the external world.
-- I don’t get why you have Positions, Lines, and Line. Shouldn’t Lines and Line be enough?
-- Is Positions trying to play the role of a “board”? 
 - Positions (or Board) should not have a “List<String> positions” inside. It should store the move in the respective lines.
-- Game: Methods checkIfMultiplayerGameSelected and checkIfSinglePlayerGameSelected violate POLA/POLS (Principle of Least Astonishment/Surprise). If method is called checkXYZ I expect it to check something and not to load anything. Calling one after another seems wrong (not natural). If the first is true, the other should not even be called. 
-- Game: printBoard() method has the following single line implementation: positions.print(console). That doesn’t make sense. printBoard() should have something to do with a “board”. This is telling you that your Positions class should be called “Board”. Also, you don’t print a Console. You ask the Console to print something for you. If you want to have something like positions.print(); then you should pass the Console in the Positions constructor and not as a method parameter.
 - Game: announceWinner() also violate POLA. Why does it switch players? This may be a sign that the logic is not quite there yet or is not done in the right place. Logic of switching players should have nothing to do with figuring out who the winner is.
 - Game: checkForDraw() violates POLA. Is it checking or printing to console. A “check” should be side effect free. It checks something but doesn’t do anything with it. 
-Game: Lines attribute is not used anywhere. Should be deleted and not received as parameter.
-- Console: The Console should be a simple wrapper around the Java console APIs. It should only have two methods: void printLine(String) and String readLine(); It should not know anything about Player, Lines, Position, etc. You could also have something like void printLines(String… lines), if you want to print multiple lines with a single command. This way you could test all the things that are being printed to the console while testing the classes that invoke the console. 
+- I don’t get why you have Positions, Lines, and Line. Shouldn’t Lines and Line be enough?
 
 
 DONE
+- Game: Methods checkIfMultiplayerGameSelected and checkIfSinglePlayerGameSelected violate POLA/POLS (Principle of Least Astonishment/Surprise). If method is called checkXYZ I expect it to check something and not to load anything. Calling one after another seems wrong (not natural). If the first is true, the other should not even be called. 
+- Game: printBoard() method has the following single line implementation: positions.print(console). That doesn’t make sense. printBoard() should have something to do with a “board”. This is telling you that your Positions class should be called “Board”. Also, you don’t print a Console. You ask the Console to print something for you. If you want to have something like positions.print(); then you should pass the Console in the Positions constructor and not as a method parameter.
+- Game: Lines attribute is not used anywhere. Should be deleted and not received as parameter.
+- Console: The Console should be a simple wrapper around the Java console APIs. It should only have two methods: void printLine(String) and String readLine(); It should not know anything about Player, Lines, Position, etc. You could also have something like void printLines(String… lines), if you want to print multiple lines with a single command. This way you could test all the things that are being printed to the console while testing the classes that invoke the console. 
+- Is Positions trying to play the role of a “board”? 
+- Lines should not receive a List<Line> in its constructor. This List<Line> is part of the internals of Lines and should not be exposed to/known by the external world.
 - Game: Should not receive this amount of parameters in the constructor. Maybe just the console and Positions (or Board)? Lines should be part of Board and not exposed to Game.
+- Many classes you are creating and passing into the constructors could be created inside other classes and not be mocked. 
 - Launcher, TicTacToe, and Game. Too many layers. You just need Launcher and Game.
 - Nought and Cross markers. They should be an “enum” and not a class hierarchy. 
 - Why does the player have a name? Wouldn’t it be simpler just to say that player “X” or “O” won the game?
 - First player is always “X”. This should only be decided after the user decides which game type she wants. If she decides to play against the computer she should also decide if she wants to go first or last. That dictates which player is X and O. 
 - Asking the user the game type could be part of the behaviour of the Game.start() method. 
 - Why do we need to create the Players up-front? Can’t they be created when the user decides which type of game she wants?
+- Launcher: You went way over the top with creating classes and passing them into the constructors of other classes. A new obsession? :) 
+- Consider having game class call line check direct to see if win state has been achieved.
 
-Consider having gane class call line check direct to see if win state has been achieved.

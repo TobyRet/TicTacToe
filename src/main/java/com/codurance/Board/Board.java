@@ -54,4 +54,12 @@ public class Board {
             boardPositions.add(new Move());
         }
     }
+
+    public String getBoardForPrinting() {
+        return null;
+    }
+
+    public boolean isThereADraw() {
+        return false;
+    }
 }

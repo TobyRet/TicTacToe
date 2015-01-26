@@ -16,7 +16,7 @@ public class HumanPlayer implements Player {
 
     @Override
     public void addMoveTo(Board board) {
-        board.addMove(boardMarker, console.readLine());
+        board.addMove(boardMarker, console.read());
     }
 
     @Override

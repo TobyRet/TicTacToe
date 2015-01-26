@@ -22,11 +22,11 @@ public class HumanPlayerShould {
     add_move_to_the_board() {
         HumanPlayer humanPlayer = new HumanPlayer(BoardMarker.CROSS, console);
 
-        given(console.readLine()).willReturn("0");
+        given(console.read()).willReturn("0");
 
         humanPlayer.addMoveTo(board);
 
-        verify(console).readLine();
+        verify(console).read();
         verify(board).addMove(BoardMarker.CROSS, "0");
     }
 }
