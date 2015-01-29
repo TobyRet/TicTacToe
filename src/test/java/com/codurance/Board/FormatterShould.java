@@ -1,6 +1,5 @@
-package com.codurance.Console;
+package com.codurance.Board;
 
-import com.codurance.Board.Move;
 import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Test;

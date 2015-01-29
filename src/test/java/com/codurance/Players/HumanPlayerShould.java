@@ -1,7 +1,6 @@
 package com.codurance.Players;
 
 import com.codurance.Board.Board;
-import com.codurance.Board.Position;
 import com.codurance.Console.Console;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +15,6 @@ public class HumanPlayerShould {
 
     @Mock Console console;
     @Mock Board board;
-    @Mock Position position;
 
     @Test public void
     add_move_to_the_board() {

@@ -1,6 +1,4 @@
-package com.codurance.Console;
-
-import com.codurance.Board.Move;
+package com.codurance.Board;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,5 @@
 package com.codurance.Board;
 
-import com.codurance.Console.Formatter;
 import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Test;

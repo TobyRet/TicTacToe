@@ -4,7 +4,7 @@ import com.codurance.Board.Board;
 import com.codurance.Board.Lines;
 import com.codurance.Board.LinesChecker;
 import com.codurance.Console.Console;
-import com.codurance.Console.Formatter;
+import com.codurance.Board.Formatter;
 import com.codurance.Game.Game;
 
 public class Launcher {
