@@ -1,9 +1,9 @@
 ## Tic Tac Toe
 
-Tic Tac Toe written in Java for the console.
+Tic Tac Toe written in Java for the console. It has been rewritten a number of times ... each time I have tried to make the code cleaner.
 
-Currently there are two game modes.
+Currently there is one game mode:
 
 <em>Multi player</em> allows two players to play against each other.
 
-<em>Single Player</em> mode allows a single player to play against the computer. The computer has access to some pre-defined game strategies which it will attempt to execute before defaulting to a random move. Two game strategies are currently in place, and there are a few more that still need to be added (such as blocking an opponents move).
+A single player mode (playing against the computer will be dded shortly).
