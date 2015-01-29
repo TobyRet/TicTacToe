@@ -1,11 +1,11 @@
-package com.codurance.Players;
-
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
-
-@RunWith(MockitoJUnitRunner.class)
-public class ComputerPlayerShould {
-
+//package com.codurance.Players;
+//
+//import org.junit.runner.RunWith;
+//import org.mockito.runners.MockitoJUnitRunner;
+//
+//@RunWith(MockitoJUnitRunner.class)
+//public class ComputerPlayerShould {
+//
 //    @Mock Position position;
 //    @Mock Board board;
 //    @Mock Console console;
@@ -21,4 +21,4 @@ public class ComputerPlayerShould {
 //        verify(console).computerMoveConfirmation();
 //        verify(computerTurnGenerator).calculateNextMove(BoardMarker.NOUGHT, board);
 //    }
-}
+//}

@@ -1,5 +1,6 @@
 package com.codurance.Board;
 
+import com.codurance.Console.Formatter;
 import com.codurance.Players.BoardMarker;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +16,14 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class BoardShould {
 
+    private static final String EMPTY_FORMATTED_BOARD = "_ _ _ \n_ _ _ \n_ _ _ \n";
     private Board board;
-    @Mock
-    LinesChecker linesChecker;
+    @Mock LinesChecker linesChecker;
+	@Mock Formatter formatter;
 
     @Before
     public void initialise() {
-        board = new Board(linesChecker);
+        board = new Board(linesChecker, formatter);
     }
 
     @Test public void
@@ -49,5 +51,13 @@ public class BoardShould {
             board.addMove(BoardMarker.CROSS, "" + i);
         }
         assertThat(board.isFull(), is(true));
+    }
+
+    @Test public void
+    return_an_empty_formatted_board() {
+	    given(formatter.format(board.getBoard())).willReturn(EMPTY_FORMATTED_BOARD);
+
+        assertThat(board.getBoardForPrinting(), is(EMPTY_FORMATTED_BOARD));
+	    verify(formatter).format(board.getBoard());
     }
 }

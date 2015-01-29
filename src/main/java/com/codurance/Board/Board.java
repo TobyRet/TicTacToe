@@ -1,5 +1,6 @@
 package com.codurance.Board;
 
+import com.codurance.Console.Formatter;
 import com.codurance.Players.BoardMarker;
 
 import java.util.ArrayList;
@@ -9,9 +10,11 @@ public class Board {
 
     private final LinesChecker linesChecker;
     private List<Move> boardPositions;
+	private Formatter formatter;
 
-    public Board(LinesChecker linesChecker) {
+	public Board(LinesChecker linesChecker, Formatter formatter) {
         this.linesChecker = linesChecker;
+		this.formatter = formatter;
         initialiseEmptyBoard();
     }
 
@@ -56,7 +59,7 @@ public class Board {
     }
 
     public String getBoardForPrinting() {
-        return null;
+        return formatter.format(boardPositions);
     }
 
     public boolean isThereADraw() {
