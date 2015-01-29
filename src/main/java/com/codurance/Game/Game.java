@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Game {
 
-	public static final int PLAYER_ONE = 0;
+	private static final int PLAYER_ONE = 0;
 	private static final int PLAYER_TWO = 1;
 	private final Console console;
 	private final Board board;

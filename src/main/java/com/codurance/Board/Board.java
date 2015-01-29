@@ -8,8 +8,8 @@ import java.util.List;
 public class Board {
 
     private final LinesChecker linesChecker;
+	private final Formatter formatter;
     private List<Move> boardPositions;
-	private Formatter formatter;
 
 	public Board(LinesChecker linesChecker, Formatter formatter) {
         this.linesChecker = linesChecker;

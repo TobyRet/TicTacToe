@@ -6,8 +6,8 @@ import com.codurance.Console.Console;
 public class HumanPlayer implements Player {
 
     private final BoardMarker boardMarker;
+    private final Console console;
     private String name;
-    private Console console;
 
     public HumanPlayer(BoardMarker boardMarker, Console console) {
         this.boardMarker = boardMarker;

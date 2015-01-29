@@ -29,11 +29,8 @@ public class Line {
     }
 
     private boolean lineContainsNullValues(List<Move> board) {
-        if(board.get(firstPosition).getBoardMarkerValue() == null
-                || board.get(secondPosition).getBoardMarkerValue() == null
-                || board.get(thirdPosition).getBoardMarkerValue() == null) {
-            return true;
-        }
-        return false;
+	    return board.get(firstPosition).getBoardMarkerValue() == null
+			    || board.get(secondPosition).getBoardMarkerValue() == null
+			    || board.get(thirdPosition).getBoardMarkerValue() == null;
     }
 }

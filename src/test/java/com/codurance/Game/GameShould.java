@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class GameShould {
 
-	public static final String SOME_BOARD_POSITION = "1";
+	private static final String SOME_BOARD_POSITION = "1";
 	private static final String ANOTHER_BOARD_POSITION = "2";
 	private static final String FORMATTED_EMPTY_BOARD = "_ _ _\n_ _ _\n_ _ _";
 	private static final String FORMATTED_BOARD_WITH_ONE_POSITION = "O _ _\n_ _ _\n_ _ _";

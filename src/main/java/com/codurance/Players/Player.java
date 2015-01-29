@@ -6,7 +6,5 @@ public interface Player {
 
     void addMoveTo(Board board);
 
-    void setName(String name);
-
     BoardMarker boardMarker();
 }

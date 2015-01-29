@@ -24,14 +24,12 @@ public class FormatterShould {
 
 	@Test public void
 	format_an_empty_board_for_printing() {
-		createEmpty(board);
-		assertThat(formatter.format(board), is(A_FORMATTED_EMPTY_BOARD));
+		assertThat(formatter.format(createEmpty(board)), is(A_FORMATTED_EMPTY_BOARD));
 	}
 
 	@Test public void
 	format_a_full_board_for_printing() {
-	    createFull(board);
-		assertThat(formatter.format(board), is(A_FORMATTED_FULL_BOARD));
+		assertThat(formatter.format(createFull(board)), is(A_FORMATTED_FULL_BOARD));
 	}
 
 	private List<Move> createFull(List<Move> board) {

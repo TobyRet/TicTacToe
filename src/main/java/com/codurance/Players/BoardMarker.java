@@ -3,7 +3,7 @@ package com.codurance.Players;
 public enum BoardMarker {
     CROSS("X"), NOUGHT("O");
 
-    private String marker;
+    private final String marker;
 
     BoardMarker(String marker) {
         this.marker = marker;
